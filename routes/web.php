@@ -37,7 +37,7 @@ Route::group(['middleware'=>['guest']], function(){
     Route::group(['prefix'=>'memberauth'], function(){
         Route::get('/', 'Auth\LoginController@memberShowLogin')->name('member-show-login');
         Route::post('/', 'Auth\LoginController@memberActionLogin')->name('member-action-login');
-        Route::get('/reset', 'Auth\LoginController@memberShowLogin')->name('member-show-login');
+        Route::get('/reset', 'Auth\LoginController@memberShowLogin')->name('member-show-reset');
         Route::post('/reset', 'Auth\LoginController@memberActionReset')->name('member-action-reset');
     });
 
@@ -48,6 +48,7 @@ Route::group(['middleware'=>['guest']], function(){
         Route::get('/reset', 'Auth\LoginController@adminShowReset')->name('admin-show-reset');
         Route::post('/reset', 'Auth\LoginController@adminActionReset')->name('admin-action-reset');
     });
+
 });
 
 // AUTHORIZED ACCESS
@@ -60,14 +61,16 @@ Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=
         Route::post('role/{role}/revoke','Pengaturan\RoleManController@revokePermission')->middleware('permission:role-manager');
         Route::resource('role', 'Pengaturan\RoleManController')->middleware('permission:role-manager');
     });
-
-    
 });
+
 
 Route::group(['middleware'=>['auth']], function(){
     Route::get('/keluar','Auth\LoginController@logout');
 });
 // Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// PORTAL ROUTES
+Route::get('/', 'Portal\HomeController@index')->name('home');
+Route::get('/contactus', 'Portal\HomeController@contactus')->name('contactus');
+Route::get('/download', 'Portal\HomeController@download')->name('download');
 

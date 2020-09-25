@@ -10,7 +10,7 @@
     <title>{{ config('app.name', '') }} @yield('page-title')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portal-app.css') }}" rel="stylesheet">
     @yield('page-style')
 </head>
 <body>
@@ -24,7 +24,7 @@
         <nav id="menubar" class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                  <img src="{{ url('./media/images/logo.png') }}" height="60" loading="lazy" alt="LSP P1 SMK N 1 Kandeman">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,14 +41,14 @@
                         <li class="nav-item">
                             <a href="{{url("/")}}" class="nav-link">Beranda</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">Profil</a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">Galeri</a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Download</a>
+                            <a href="{{route('download')}}" class="nav-link">Download</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{url('/contactus')}}" class="nav-link">Hubungi Kami</a>
@@ -56,7 +56,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item auth-menu">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fa fa-user mr-2"></i>{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('member-show-login') }}"><i class="fa fa-user-circle mr-2 text-primary"></i>{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item  auth-menu">
@@ -66,7 +66,7 @@
                         @else
                             <li class="nav-item dropdown  auth-menu">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-primary text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fa fa-user mr-2"></i>{{ Auth::user()->dataPribadi->nama ?? 'Login' }} <span class="caret"></span>
+                                    <i class="fa fa-user-circle mr-2"></i>{{ Auth::user()->dataPribadi->nama ?? 'Login' }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -87,7 +87,7 @@
             </div>
         </nav>
 
-        <main class="container-fluid p-0 m-0" >
+        <main class="container-fluid p-0 m-0 mainsection" >
             @yield('page-content')
         </main>
         <footer class="bg-dark mt-5">
@@ -140,7 +140,7 @@
           </footer>
     </div>
 
-    <script src="{{url('js/app.js')}}"></script>
+    <script src="{{url('js/portal-app.js')}}"></script>
     @yield('page-script')
 </body>
 </html>

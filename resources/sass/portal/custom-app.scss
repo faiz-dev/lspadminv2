@@ -1,0 +1,85 @@
+.navbar {
+    min-height: 76px;
+}
+
+// custom padding
+.my-p-large {
+    padding: 5rem;
+}
+
+.mainsection{
+    min-height: 50vh;
+}
+
+#widgetJadwal .nav-tabs {
+    background-color: #2a41e8;
+    border: 0px;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+
+    .nav-item {
+        margin-bottom: 0px;
+
+        .nav-link {
+            height: 60px;
+            padding: 0.8rem 2rem;
+            font-weight: bolder;
+            font-size: 1.5em;
+            color: white;
+            border: 0px;
+        }
+
+        .nav-link.active {
+            background-color: #3b50ea;
+        }
+    }
+}
+
+.btn-jadwal-lain {
+    height: 40px;
+    background-color: #2a41e8;
+    color: white;
+    text-align: center;
+    border: 0px;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.btn-jadwal-lain:hover {
+    background-color: #3b50ea;
+}
+
+footer {
+    color: #ccc;
+
+    a {
+        color: #ccc;
+    }
+
+    a:hover {
+        color: #fff;
+    }
+}
+
+#menubar {
+    .nav-link,
+    .navbar-brand {
+        font-size: 1.2em;
+        color: black;
+    }
+
+    .auth-menu {
+        margin-left: 2em;
+        padding-left: 1em;
+        border-left: 1px solid #ddd;
+    }
+}
+
+.my-media{
+    margin-bottom: 10px;
+}
+
+.page-subheader{
+    min-height: 200px;
+    
+}

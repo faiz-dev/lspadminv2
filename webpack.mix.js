@@ -16,7 +16,16 @@ const rimraf = require('rimraf');
  */
 
 // Default
-mix.js('resources/js/app.js', 'public/js').scripts('resources/js/config.js', 'public/js/config.js').sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js').scripts('resources/js/config.js', 'public/js/config.js');
+
+
+// Portal Need
+
+mix.sass("resources/sass/portal/app.scss", "public/css/portal-app.css")
+    .js("resources/js/portal/app.js", "public/js/portal-app.js")
+    .js("resources/js/portal/serviceworker.js", "public/sw.js")
+    .copyDirectory("node_modules/@fortawesome/fontawesome-free/webfonts","public/webfonts")
+    .copyDirectory("resources/imgs","public/media/images");
 
 // Global jquery
 // mix.autoload({
