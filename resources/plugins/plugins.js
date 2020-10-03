@@ -96,34 +96,34 @@ require('inputmask/dist/inputmask/inputmask.numeric.extensions.js');
 window.noUiSlider = require('nouislider/distribute/nouislider.js');
 
 // Owl Carousel - Touch enabled jQuery plugin that lets you create a beautiful responsive carousel slider: https://owlcarousel2.github.io/OwlCarousel2/
-require('owl.carousel/dist/owl.carousel');
+// require('owl.carousel/dist/owl.carousel');
 
 // The autosize - function accepts a single textarea element, or an array or array-like object (such as a NodeList or jQuery collection) of textarea elements: https://www.jacklmoore.com/autosize/
 window.autosize = require('autosize/dist/autosize.js');
 
 // Clipboard - Copy text to the clipboard shouldn't be hard. It shouldn't require dozens of steps to configure or hundreds of KBs to load: https://clipboardjs.com/
-window.ClipboardJS = require('clipboard/dist/clipboard.min.js');
+// window.ClipboardJS = require('clipboard/dist/clipboard.min.js');
 
 // DropzoneJS -  is an open source library that provides drag'n'drop file uploads with image previews: https://www.dropzonejs.com/
-window.Dropzone = require('dropzone/dist/dropzone.js');
-require('../metronic/js/vendors/plugins/dropzone.init.js');
+// window.Dropzone = require('dropzone/dist/dropzone.js');
+// require('../metronic/js/vendors/plugins/dropzone.init.js');
 
 // Quill - is a free, open source WYSIWYG editor built for the modern web. Completely customize it for any need with its modular architecture and expressive API: https://quilljs.com/
-window.Quill = require('quill/dist/quill.js');
+// window.Quill = require('quill/dist/quill.js');
 
 // Tagify - Transforms an input field or a textarea into a Tags component, in an easy, customizable way, with great performance and small code footprint, exploded with features: https://github.com/yairEO/tagify
-require('@yaireo/tagify/dist/tagify.polyfills.min');
-window.Tagify = require('@yaireo/tagify/dist/tagify.min');
+// require('@yaireo/tagify/dist/tagify.polyfills.min');
+// window.Tagify = require('@yaireo/tagify/dist/tagify.min');
 
 // Summernote - Super Simple WYSIWYG Editor on Bootstrap Summernote is a JavaScript library that helps you create WYSIWYG editors online: https://summernote.org/
-require('summernote/dist/summernote.js');
+// require('summernote/dist/summernote.js');
 
 // Markdown - A Markdown parser for javascript: https://github.com/evilstreak/markdown-js
-require('markdown/lib/markdown.js');
+// require('markdown/lib/markdown.js');
 
 // Bootstrap Markdown - Bootstrap plugin for markdown editing: https://github.com/toopay/bootstrap-markdown
-require('bootstrap-markdown/js/bootstrap-markdown.js');
-require('../metronic/js/vendors/plugins/bootstrap-markdown.init.js');
+// require('bootstrap-markdown/js/bootstrap-markdown.js');
+// require('../metronic/js/vendors/plugins/bootstrap-markdown.init.js');
 
 // Bootstrap Notify - This plugin helps to turn standard bootstrap alerts into "growl" like notifications: http://bootstrap-notify.remabledesigns.com/
 require('bootstrap-notify/bootstrap-notify.min.js');
@@ -133,7 +133,7 @@ require('../metronic/js/vendors/plugins/bootstrap-notify.init.js');
 window.toastr = require('toastr/build/toastr.min.js');
 
 // Dual Listbox - Make your multi select pretty and easy to use with only javascript: https://github.com/maykinmedia/dual-listbox
-window.DualListbox = require('dual-listbox').default;
+// window.DualListbox = require('dual-listbox').default;
 
 // Bootstrap Session Timeout - Session timeout and keep-alive control with a nice Bootstrap warning dialog: https://github.com/orangehill/bootstrap-session-timeout
 window.sessionTimeout = require('../metronic/plugins/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js');
@@ -145,7 +145,7 @@ require('../metronic/plugins/jquery-idletimer/idle-timer.min.js');
 require('waypoints/lib/jquery.waypoints.js');
 
 // Counter-Up - is a jQuery plugin that animates a number from zero (counting up towards it). It supports counting up: https://github.com/bfintal/Counter-Up
-require('counterup/jquery.counterup.js');
+// require('counterup/jquery.counterup.js');
 
 // ES6 Promise Polyfill - This is a polyfill of the ES6 Promise: https://github.com/lahmatiy/es6-promise-polyfill
 require('es6-promise-polyfill/promise.min.js');
@@ -155,4 +155,4 @@ window.Swal = window.swal = require('sweetalert2/dist/sweetalert2.min.js');
 require('../metronic/js/vendors/plugins/sweetalert2.init.js');
 
 // JQuery Repeater - Create a repeatable group of input elements: https://github.com/DubFriend/jquery.repeater
-require('jquery.repeater');
+// require('jquery.repeater');

@@ -218,19 +218,19 @@ return [
             'submenu' => [
                 [
                     'title' => 'Manager',
-                    'page' => 'test',
+                    'page' => './m/pengaturan/member/manager',
                 ],
                 [
                     'title' => 'Jejaring',
-                    'page' => 'test',
+                    'page' => './m/pengaturan/member/jejaring',
                 ],
                 [
                     'title' => 'Asesor',
-                    'page' => 'test',
+                    'page' => './m/pengaturan/member/asesor',
                 ],
                 [
                     'title' => 'Asesi',
-                    'page' => 'test',
+                    'page' => './m/pengaturan/member/asesi',
                 ]
             ]
         ],

@@ -6,11 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoles;
+    use SoftDeletes;
 
     protected $guard_name = 'web';
 
@@ -40,4 +42,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function dataDiri()
+    {
+        return $this->hasOne('App\Models\DataDiri');
+    }
+
+    public function asesi()
+    {
+        return $this->hasOne('App\Models\DataDiri');
+    }
+
+    public function asesor()
+    {
+        return $this->hasOne('App\Models\DataDiri');
+    }
+
+    public function manajer()
+    {
+        return $this->hasOne('App\Models\Manajer');
+    }
+
+    public function manajerJejaring()
+    {
+        return $this->hasOne('App\Models\ManajerJejaring');
+    }
 }

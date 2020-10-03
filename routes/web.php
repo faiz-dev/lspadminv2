@@ -55,11 +55,15 @@ Route::group(['middleware'=>['guest']], function(){
 Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=>'/m'], function() {
     Route::get('/','Admin\MainController@index');
 
-    Route::group(['prefix'=>'/pengaturan'], function() {        
-        Route::resource('member', 'Pengaturan\MemberManController')->middleware('permission:user-manager');
+    Route::group(['prefix'=>'/pengaturan'], function() {                
         Route::resource('permission', 'Pengaturan\PermissionsManController')->middleware('permission:permission-manager');
         Route::post('role/{role}/revoke','Pengaturan\RoleManController@revokePermission')->middleware('permission:role-manager');
         Route::resource('role', 'Pengaturan\RoleManController')->middleware('permission:role-manager');
+
+
+        Route::group(['middleware' => ['permission:user-manager'],'prefix'=>'/member'], function() {
+            Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');            
+        });
     });
 });
 

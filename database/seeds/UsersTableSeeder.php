@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,6 +18,8 @@ class UsersTableSeeder extends Seeder
             [
                 "name"=>   "alfian",
                 "email" =>  "a.faizmail@gmail.com",
+                "tipe"  => json_encode(['manager']),
+                "uid"   =>   Str::uuid(),
                 "password" =>   Hash::make("root", [
                         'memory' => 1024,
                         'time'  => 2,
@@ -26,6 +29,8 @@ class UsersTableSeeder extends Seeder
             [
                 "name"=>   "faiz",
                 "email" =>  "alfian@smkn1kandeman.sch.id",
+                "tipe"  => json_encode(["manager_jejaring"]),
+                "uid"   =>   Str::uuid(),
                 "password" =>   Hash::make("root", [
                         'memory' => 1024,
                         'time'  => 2,
@@ -35,6 +40,8 @@ class UsersTableSeeder extends Seeder
             [
                 "name"=>   "keramik",
                 "email" =>  "keramik@smkn1kandeman.sch.id",
+                "uid"   =>   Str::uuid(),
+                "tipe"  => json_encode(["asesi"]),
                 "password" =>   Hash::make("root", [
                         'memory' => 1024,
                         'time'  => 2,
@@ -44,6 +51,8 @@ class UsersTableSeeder extends Seeder
             [
                 "name"=>   "tembok",
                 "email" =>  "tembok@smkn1kandeman.sch.id",
+                "uid"   =>   Str::uuid(),
+                "tipe"  => json_encode(["asesor"]),
                 "password" =>   Hash::make("root", [
                         'memory' => 1024,
                         'time'  => 2,

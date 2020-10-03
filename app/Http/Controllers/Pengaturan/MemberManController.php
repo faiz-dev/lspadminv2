@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pengaturan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Service\MemberService;
 
 class MemberManController extends Controller
 {
@@ -14,7 +15,22 @@ class MemberManController extends Controller
      */
     public function index()
     {
-        //
+        
+    }
+
+    public function asesiPanel(Request $request)
+    {
+        return view('pengaturan.member.asesi.index');
+    }
+
+    public function asesorPanel(Request $request)
+    {
+        # code...
+    }
+
+    public function manajerJejaring(Request $request)
+    {
+        # code...
     }
 
     /**
