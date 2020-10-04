@@ -2,37 +2,38 @@
 
 namespace App\Service;
 use App\Models\{User, Asesi, Asesor, ManajerJejaring, DataDiri};
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class MemberService 
 {
-    public function getAll($tipe, $deleted): User
+    public function getAll($tipe, $deleted = false): Collection
     {
         $dataMember = User::select('*');
         switch($tipe) {
             case 'asesi' : 
-                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataPribadi','asesi');
+                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri','asesi');
             break;
             case 'manajer_jejaring':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataPribadi','manajerJejaring');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataDiri','manajerJejaring');
             break;
             case 'asesor':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataPribadi','asesor');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataDiri','asesor');
             break;
             case 'manajer':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer'])->with('dataPribadi');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer'])->with('dataDiri');
             break;
             default: 
-                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manajer'])->with('dataPribadi');
+                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manajer'])->with('dataDiri');
             break;
         }
 
         if($deleted)
             $dataMember = $dataMember->withTrashed();
 
-        return $dataMember;
+        return $dataMember->get();
     }
 
     public function createAccount($data): User
@@ -134,19 +135,19 @@ class MemberService
         $dataMember = User::where('uid', $uid);
         switch($tipe) {
             case 'asesi' : 
-                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataPribadi','asesi');
+                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri','asesi');
             break;
             case 'manajer_jejaring':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataPribadi','manajerJejaring');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataDiri','manajerJejaring');
             break;
             case 'asesor':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataPribadi','asesor');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataDiri','asesor');
             break;
             case 'manajer':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer'])->with('dataPribadi');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer'])->with('dataDiri');
             break;
             default: 
-                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manajer'])->with('dataPribadi');
+                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manajer'])->with('dataDiri');
             break;
         }
         return $dataMember->firstOrFail();

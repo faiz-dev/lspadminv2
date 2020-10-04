@@ -62,8 +62,11 @@ Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=
 
 
         Route::group(['middleware' => ['permission:user-manager'],'prefix'=>'/member'], function() {
-            Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');            
+            Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');
+            Route::get('/asesi/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
+            Route::get('/asesi/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
         });
+
     });
 });
 

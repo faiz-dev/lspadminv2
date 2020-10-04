@@ -33,6 +33,22 @@ class MemberManController extends Controller
         # code...
     }
 
+    public function fetchMember(Request $request)
+    {
+        // if($request->ajax()) {
+            $tipe = 'asesi';
+            $memberService = new MemberService();
+            $dataMember = $memberService->getAll($tipe);
+            return $dataMember;
+        // } else 
+        // abort(404);
+    }
+
+    public function createAsesi()
+    {
+        return view('pengaturan.member.asesi.create');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

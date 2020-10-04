@@ -46,9 +46,13 @@ var CDataTable = function () {
             return dt(element, arraySource, columns);
         },
 
-        cek: function() {
-            console.log("CEK");
-        }
+        initSearch: function(dtObject, searchElement, columnTarget) {
+            searchElement.on('change', function() {
+                console.log("Cari ", $(this).val())
+                dtObject.search($(this).val(), columnTarget)
+            })
+        },
+
     };
 };
 

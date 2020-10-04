@@ -50,12 +50,12 @@ class User extends Authenticatable
 
     public function asesi()
     {
-        return $this->hasOne('App\Models\DataDiri');
+        return $this->hasOne('App\Models\Asesi');
     }
 
     public function asesor()
     {
-        return $this->hasOne('App\Models\DataDiri');
+        return $this->hasOne('App\Models\Asesor');
     }
 
     public function manajer()
