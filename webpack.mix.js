@@ -80,7 +80,7 @@ mix.copyDirectory('resources/metronic/media', 'public/media');
 
 // custom
 // Custom Datatable
-(glob.sync('resources/js/custom/datatable/*.js') || []).forEach(file => {
+(glob.sync('resources/js/custom/**/*.js') || []).forEach(file => {
     mix.js(file, `public/${file.replace('resources', '')}`);
 });
 
