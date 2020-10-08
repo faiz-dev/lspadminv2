@@ -14,10 +14,13 @@
                         <h3 class="card-label">Pencarian Member Asesi</h3>
                     </div>
                     <div class="card-toolbar">
+                        <a href="{{route('pengaturan.member.asesi.create')}}"  class="btn btn-light-success mx-2 font-weight-bolder ">
+                            <i class="flaticon-upload"></i>
+                            New Record
+                        </a>
                         <!--begin::Button-->
                         <button id="card_collapser" class="btn btn-sm btn-light-primary mx-2 font-weight-bolder " data-card-tool="toggle">
                             <i class="ki ki-arrow-up icon-nm"></i>
-                            
                         </button>
                         <!--end::Button-->
                     </div>
@@ -113,10 +116,7 @@
                             Import Data
                         </button>
                         
-                        <a href="{{route('pengaturan.member.asesi.create')}}"  class="btn btn-light-success mx-2 font-weight-bolder ">
-                            <i class="flaticon-upload"></i>
-                            New Record
-                        </a>
+                        
                         <!--end::Button-->
                     </div>
                 </div>

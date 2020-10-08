@@ -4,7 +4,7 @@
 var KTBootstrapSwitch = function() {
 
     // Private functions
-    var demos = function() {
+    var demos = function(element) {
         // minimum setup
         $('[data-switch=true]').bootstrapSwitch();
     };

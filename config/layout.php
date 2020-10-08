@@ -129,7 +129,7 @@ return [
 
     // Content
     'content' => [
-        'width' => 'fluid', // fluid, fixed
+        'width' => 'fixed', // fluid, fixed
         'extended' => false, // true, false
     ],
 
