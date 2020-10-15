@@ -46,7 +46,13 @@
             {{ Metronic::printAttrs('aside_menu') }}>
 
             <ul class="menu-nav {{ Metronic::printClasses('aside_menu_nav', false) }}">
-                {{ Menu::renderVerMenu(config('menu_aside.items')) }}
+                @if(Auth::user()->hasRole('Member'))
+                    {{ Menu::renderVerMenu(config('menu_aside.member_menu')) }}
+                @elseif(Auth::user()->hasRole('Asesor'))
+                    {{ Menu::renderVerMenu(config('menu_aside.items')) }}
+                @elseif(Auth::user()->hasRole('Super Admin'))
+                    {{ Menu::renderVerMenu(config('menu_aside.items')) }}
+                @endif
             </ul>
         </div>
     </div>

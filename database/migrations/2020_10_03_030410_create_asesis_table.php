@@ -25,6 +25,7 @@ class CreateAsesisTable extends Migration
             $table->boolean('isActive');
             $table->string('status',10);
             $table->string('jurusan');
+            $table->string('kelas');
             
             // relation
             $table->foreign('user_id')->references('id')->on('users');

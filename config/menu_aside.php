@@ -1,7 +1,56 @@
 <?php
 // Aside menu
 return [
-
+    "member_menu" => [
+        // Dashboard
+        [
+            'title' => 'Dashboard',
+            'root' => true,
+            'icon' => 'media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page' => '/member',
+            'new-tab' => false,
+        ],
+        // Domain Utama
+        [
+            'section' => 'Assessmen',
+        ],
+        // Pendaftaran
+        [
+            'title' => 'Pendaftaran Uji',
+            'root' => true,
+            'icon' => 'media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page' => '/',
+            'new-tab' => false,
+        ],
+        // Pendaftaran
+        [
+            'title' => 'Pra Assessmen',
+            'root' => true,
+            'icon' => 'media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page' => '/',
+            'new-tab' => false,
+        ],
+        // Domain Utama
+        [
+            'section' => 'Pengaturan',
+        ],
+        // Profil
+        [
+            'title' => 'Profil',
+            'root' => true,
+            'icon' => 'media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page' => '/member/pengaturan/profil',
+            'new-tab' => false,
+        ],
+        // Profil
+        [
+            'title' => 'Akun',
+            'root' => true,
+            'icon' => 'media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page' => '/member/pengaturan/profil',
+            'new-tab' => false,
+        ],
+    ],
     'items' => [
         // Dashboard
         [

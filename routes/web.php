@@ -52,7 +52,7 @@ Route::group(['middleware'=>['guest']], function(){
 });
 
 // AUTHORIZED ACCESS
-Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=>'/m'], function() {
+Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=>'/manager'], function() {
     Route::get('/','Admin\MainController@index');
 
     Route::group(['prefix'=>'/pengaturan'], function() {                
@@ -67,6 +67,14 @@ Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=
             Route::get('/asesi/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
         });
 
+    });
+});
+
+// AUTHORIZED ACCESS 
+Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function() {
+    Route::get('/','Asesi\MainController@welcome')->name('asesi.welcome');
+    Route::group(['prefix'=> '/pengaturan'], function() {
+        Route::get('/profil','Asesi\Pengaturan\ProfileController@index')->name('asesi.pengaturan.profil');
     });
 });
 

@@ -6,8 +6,8 @@ var KTLayoutStickyCard = function() {
     var _object;
 
 	// Private functions
-	var _init = function() {
-		var offset = 300;
+	var _init = function(offset = 300) {
+		var offset = offset;
 
 		if (typeof KTLayoutHeader !== 'undefined') {
 			offset = KTLayoutHeader.getHeight();
@@ -65,7 +65,7 @@ var KTLayoutStickyCard = function() {
 
     // Public methods
 	return {
-		init: function(id) {
+		init: function(id, offset) {
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -73,7 +73,7 @@ var KTLayoutStickyCard = function() {
             }
 
             // Initialize
-			_init();
+			_init(offset);
 		},
 
 		update: function() {
