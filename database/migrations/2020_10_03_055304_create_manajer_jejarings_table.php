@@ -18,9 +18,11 @@ class CreateManajerJejaringsTable extends Migration
             $table->timestamps();
             $table->uuid("uid")->unique();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('sekolah_id');
 
             // relation
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('sekolah_id')->references('id')->on('sekolahs');
 
             $table->softDeletes('deleted_at', 0);
         });

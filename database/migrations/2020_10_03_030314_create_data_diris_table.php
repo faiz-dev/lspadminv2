@@ -48,6 +48,8 @@ class CreateDataDirisTable extends Migration
             $table->string('ktp_kota', 30);            
             $table->string('ktp_kode_pos', 10)->nullable();
 
+            $table->boolean('is_complete')->nullable();
+
             //# relation
             $table->foreign('user_id')->references('id')->on('users');
 

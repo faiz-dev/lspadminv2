@@ -15,10 +15,15 @@ class CreateJurusansTable extends Migration
     {
         Schema::create('jurusans', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uid')->unique();
+            $table->unsignedBigInteger('sekolah_id');
             $table->timestamps();
-            $table->slug()->unique();
+            $table->string('slug')->unique();
             $table->string("nama");
             $table->date('terdaftar');
+
+            //# relation
+            $table->foreign('sekolah_id')->references('id')->on('sekolahs');
         });
     }
 

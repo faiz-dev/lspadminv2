@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SekolahJejaring extends Model
+class Tuk extends Model
 {
     //
 }

@@ -72,17 +72,19 @@
                         <div class="col-lg-1"></div>
                         <div class="col-12 col-lg-10">
                             <form class="form" method="post" novalidate="novalidate" id="kt_form">
+                                @csrf
+                                <input type="hidden" name="_method" value="PUT">
                                 <h4 class="card-label">Profil</h4>
                                 <div class="form-group row">
                                     <label for="nik" class="col-12 col-md-3">NIK<span class="reqstar">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan">
+                                        <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan" value="3326160810950003">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="nama" class="col-12 col-md-3">Nama Lengkap<span class="reqstar">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap">
+                                        <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" value="alfian">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -95,7 +97,7 @@
                                 <div class="form-group row">
                                     <label for="tempat_lahir" class="col-12 col-md-3">Tempat Lahir<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Tempat Lahir">
+                                        <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Tempat Lahir" value="pekalonga">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -124,7 +126,7 @@
                                     <div class="col-md-6">
                                         <select name="jurusan" class="form-control">
                                             <option value="">Pilih Jurusan</option>
-                                            <option value="tav">Teknik Audio Video</option>
+                                            <option value="tav" selected>Teknik Audio Video</option>
                                             <option value="tkr">Teknik Kendaraan Ringan</option>
                                             <option value="tp">Teknik Pemesinan</option>
                                         </select>
@@ -136,7 +138,7 @@
                                     <div class="col-md-6">
                                         <select name="kelas" class="form-control">
                                             <option value="">Pilih Kelas</option>
-                                            <option value="tav1">XII TAV 1</option>
+                                            <option value="tav1" selected>XII TAV 1</option>
                                             <option value="tav2">XII TAV 2</option>
                                             <option value="tkro1">XII TKRO 1</option>
                                             <option value="tkro2">XII TKRO 2</option>
@@ -485,7 +487,8 @@
             
             validation_form.validate().then(function(status) {
                 if(status == 'Valid') {
-                    alert("OK Valid")
+                    formData = new FormData(document.getElementById("kt_form"))
+                    actionSubmit(formData)
                 } else {
                     swal.fire({
                         text: "Maaf, terjadi kesalahan, silakan coba lagi.",
@@ -501,6 +504,26 @@
                 }
             })
         });
+
+        const actionSubmit = async function (formData) {
+            return axios.post('{{route("asesi.pengaturan.profil.update")}}', formData)
+                .then(response => {
+                    console.log(response.data)
+                })
+                .catch(e => {
+                    swal.fire({
+                        text: "Maaf, terjadi kesalahan, silakan coba lagi.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok",
+                        customClass: {
+                            confirmButton: "btn font-weight-bold btn-light-primary"
+                        }
+                    }).then(function() {
+                        KTUtil.scrollTop();
+                    });
+                })
+        }
 
         $('input[name="jenis_kelamin"]').bootstrapSwitch({
             onSwitchChange: function(e) {

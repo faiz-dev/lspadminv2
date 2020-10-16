@@ -52,19 +52,25 @@ Route::group(['middleware'=>['guest']], function(){
 });
 
 // AUTHORIZED ACCESS
-Route::group(['middleware'=>['role:Super Admin|Asesor|Admin Jejaring'],'prefix'=>'/manager'], function() {
+Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'prefix'=>'/manager'], function() {
     Route::get('/','Admin\MainController@index');
 
-    Route::group(['prefix'=>'/pengaturan'], function() {                
+    Route::group(['prefix'=>'/pengaturan'], function() {      
+        // permission          
         Route::resource('permission', 'Pengaturan\PermissionsManController')->middleware('permission:permission-manager');
         Route::post('role/{role}/revoke','Pengaturan\RoleManController@revokePermission')->middleware('permission:role-manager');
         Route::resource('role', 'Pengaturan\RoleManController')->middleware('permission:role-manager');
 
-
+        // user manager
         Route::group(['middleware' => ['permission:user-manager'],'prefix'=>'/member'], function() {
             Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');
             Route::get('/asesi/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
             Route::get('/asesi/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
+        });
+
+        // sekolah
+        Route::group(['middleware' => ['permission:sekolah manager'],'prefix' => "/sekolahjejaring"], function(){
+            Route::get('/sekolah', 'Pengaturan\JejaringManController@index')->name('pengaturan.sekolahjejaring.sekolah.index');
         });
 
     });
@@ -75,6 +81,7 @@ Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function(
     Route::get('/','Asesi\MainController@welcome')->name('asesi.welcome');
     Route::group(['prefix'=> '/pengaturan'], function() {
         Route::get('/profil','Asesi\Pengaturan\ProfileController@index')->name('asesi.pengaturan.profil');
+        Route::put('/profil','Asesi\Pengaturan\ProfileController@actionUpdate')->name('asesi.pengaturan.profil.update');
     });
 });
 

@@ -50,7 +50,7 @@
                     {{ Menu::renderVerMenu(config('menu_aside.member_menu')) }}
                 @elseif(Auth::user()->hasRole('Asesor'))
                     {{ Menu::renderVerMenu(config('menu_aside.items')) }}
-                @elseif(Auth::user()->hasRole('Super Admin'))
+                @elseif(Auth::user()->hasRole('Super Manajer'))
                     {{ Menu::renderVerMenu(config('menu_aside.items')) }}
                 @endif
             </ul>

@@ -51,7 +51,7 @@ class LoginController extends Controller
         
         if (Auth::attempt(['email'=> $credentials->username, 'password' => $credentials->password])) {                        
             $user = Auth::user();
-            if($user->hasRole(['Super Admin'])) {
+            if($user->hasRole(['Super Manajer'])) {
                 return redirect('/manager');
             } else {
                 Auth::logout();
@@ -76,7 +76,7 @@ class LoginController extends Controller
             $user = Auth::user();
             if($user->hasRole(['Member'])) {
                 return redirect('/member');
-            } elseif($user->hasRole(['Asesor','Admin Jejaring'])) {
+            } elseif($user->hasRole(['Asesor','Manajer Jejaring'])) {
                 return redirect('/manager');
             } else {
                 Auth::logout();

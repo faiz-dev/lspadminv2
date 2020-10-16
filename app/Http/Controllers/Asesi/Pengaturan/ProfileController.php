@@ -12,4 +12,9 @@ class ProfileController extends Controller
         $page_title = "Profil Member";
         return view('asesi.pengaturan.profil', compact('page_title'));
     }
+
+    public function actionUpdate(Request $request)
+    {
+        dd($request->all());
+    }
 }

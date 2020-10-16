@@ -251,12 +251,28 @@ return [
             'submenu' => [
                 [
                     'title' => 'Permissions',
-                    'page' => './m/pengaturan/permission',
+                    'page' => './manager/pengaturan/permission',
                 ],
                 [
                     'title' => 'Role',
-                    'page' => './m/pengaturan/role',
+                    'page' => './manager/pengaturan/role',
                 ]
+            ]
+        ],
+        [
+            'title' => 'Sekolah & Jejaring',
+            'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
+            'bullet' => 'line',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'Sekolah',
+                    'page' => './manager/pengaturan/sekolahjejaring/sekolah',
+                ],
+                [
+                    'title' => 'Admin Jejaring',
+                    'page' => './manager/pengaturan/sekolahjejaring/manajer',
+                ],
             ]
         ],
         [
@@ -267,19 +283,15 @@ return [
             'submenu' => [
                 [
                     'title' => 'Manager',
-                    'page' => './m/pengaturan/member/manager',
-                ],
-                [
-                    'title' => 'Jejaring',
-                    'page' => './m/pengaturan/member/jejaring',
+                    'page' => './manager/pengaturan/member/manager',
                 ],
                 [
                     'title' => 'Asesor',
-                    'page' => './m/pengaturan/member/asesor',
+                    'page' => './manager/pengaturan/member/asesor',
                 ],
                 [
                     'title' => 'Asesi',
-                    'page' => './m/pengaturan/member/asesi',
+                    'page' => './manager/pengaturan/member/asesi',
                 ]
             ]
         ],

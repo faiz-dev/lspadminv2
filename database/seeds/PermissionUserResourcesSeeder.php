@@ -25,6 +25,13 @@ class PermissionUserResourcesSeeder extends Seeder
         Permission::create(['guard_name' => 'web','name' => 'show users','description'=>'Membolehkan pengguna menampilkan member','category'=>'user']);
         Permission::create(['guard_name' => 'web','name' => 'all users','category'=>'user']);
 
+        Permission::create(['guard_name' => 'web','name' => 'sekolah manager','description'=>'Membolehkan pengguna mengelola sekolah','category'=>'sekolah']);
+        Permission::create(['guard_name' => 'web','name' => 'create sekolah','description'=>'Membolehkan pengguna menambahkan sekolah','category'=>'sekolah']);
+        Permission::create(['guard_name' => 'web','name' => 'edit sekolah','description'=>'Membolehkan pengguna mengubah data sekolah','category'=>'sekolah']);
+        Permission::create(['guard_name' => 'web','name' => 'delete sekolah','description'=>'Membolehkan pengguna menghapus sekolah','category'=>'sekolah']);
+        Permission::create(['guard_name' => 'web','name' => 'show sekolah','description'=>'Membolehkan pengguna menampilkan sekolah','category'=>'sekolah']);
+        Permission::create(['guard_name' => 'web','name' => 'all sekolah','category'=>'sekolah']);
+
         Permission::create(['guard_name' => 'web','name' => 'create users jejaring','description'=>'Membolehkan pengguna membuat member jejaring','category'=>'user']);
         Permission::create(['guard_name' => 'web','name' => 'edit users jejaring','description'=>'Membolehkan pengguna mengubah data member jejaring','category'=>'user']);
         Permission::create(['guard_name' => 'web','name' => 'delete users jejaring','description'=>'Membolehkan pengguna menghapus data member jejaring','category'=>'user']);
@@ -36,7 +43,7 @@ class PermissionUserResourcesSeeder extends Seeder
 
 
         // ADMIN JEJARING
-        $role1 = Role::create(['guard_name' => 'web','name' => 'Admin Jejaring']);
+        $role1 = Role::create(['guard_name' => 'web','name' => 'Manajer Jejaring']);
         $role1->givePermissionTo('user manager');
         $role1->givePermissionTo('create users jejaring');
         $role1->givePermissionTo('edit users jejaring');
@@ -59,7 +66,7 @@ class PermissionUserResourcesSeeder extends Seeder
         $role3->givePermissionTo('show users self');
 
         // SUPER ADMIN
-        $role4 = Role::create(['guard_name' => 'web','name'=>'Super Admin']);
+        $role4 = Role::create(['guard_name' => 'web','name'=>'Super Manajer']);
 
         // user role assignment
         $user1 = User::find(1);
