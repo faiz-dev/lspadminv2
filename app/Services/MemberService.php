@@ -62,14 +62,14 @@ class MemberService
         $dataDiri->user_id = $idMember;
         $dataDiri->nik                  = $data->nik;
         $dataDiri->nama                 = $data->nama;
-        $dataDiri->gelar_depan          = $data->gelar_depan;
-        $dataDiri->gelar_belakang       = $data->gelar_belakang;
+        $dataDiri->gelar_depan          = isset($data->gelar_depan) ? $data->gelar_depan : "";
+        $dataDiri->gelar_belakang       = isset($data->gelar_belakang) ? $data->gelar_belakang : "";
         $dataDiri->jenis_kelamin        = $data->jenis_kelamin;
         $dataDiri->tempat_lahir         = $data->tempat_lahir;
         $dataDiri->tanggal_lahir        = $data->tanggal_lahir;
-        $dataDiri->url_foto             = $data->url_foto;
+        $dataDiri->url_foto             = isset($data->url_foto) ? $data->url_foto : "";
         $dataDiri->no_telp              = $data->no_telp;
-        $dataDiri->pendidikan_terakhir  = $data->pendidikan_terakhir;
+        $dataDiri->pendidikan_terakhir  = isset($data->pendidikan_terakhir)  ? $data->pendidikan_terakhir : "";
         $dataDiri->pekerjaan_instansi   = $data->pekerjaan_instansi;
         $dataDiri->pekerjaan_jabatan    = $data->pekerjaan_jabatan;
         $dataDiri->pekerjaan_alamat     = $data->pekerjaan_alamat;
@@ -95,16 +95,18 @@ class MemberService
         DB::transaction(function() use($idMember, $data, $dataAsesi) {
             // find last nomor urut
             $lastUrut = Asesi::select('no_urut', 'tahun_daftar')->latest()->first();
+            $noUrutTerakhir = $lastUrut != null ? $lastUrut->no_urut : 1;
             $dataAsesi->uid = Str::uuid();
             $dataAsesi->user_id = $idMember;
-            $dataAsesi->no_urut = $lastUrut;
+            $dataAsesi->no_urut = $noUrutTerakhir;
             $dataAsesi->tahun_daftar = date('Y');
-            $dataAsesi->no_reg = $lastUrut +" "+$dataAsesi->tahun_daftar;
+            $dataAsesi->no_reg = $noUrutTerakhir +" 2020";
+            $dataAsesi->jurusan = $data->jurusan;
+            $dataAsesi->kelas = $data->kelas;
             $dataAsesi->tipe = $data->tipe;
-            $dataAsesi->no_urut = $lastUrut;
             $dataAsesi->isActive = true;
             $dataAsesi->status = 'active';
-
+            
             $dataAsesi->save();
         });
         

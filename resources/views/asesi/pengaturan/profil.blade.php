@@ -107,6 +107,22 @@
                                     </div>
                                 </div>
 
+                                
+                                <div class="form-group row">
+                                    <label for="nama" class="col-12 col-md-3">Email<span class="reqstar">*</span></label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="Email" value="{{Auth::user()->email}}" readonly>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group row">
+                                    <label for="nama" class="col-12 col-md-3">Nomor HP<span class="reqstar">*</span></label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="no_telp" placeholder="Nomor Telpon / HP">
+                                    </div>
+                                </div>
+
                                 <h4 class="card-label">Pekerjaan</h4>
                                 <div class="form-group row">
                                     <label for="pekerjaan_instansi" class="col-12 col-md-3">Instansi</label>
@@ -310,6 +326,13 @@
                     }
                 },
                 tanggal_lahir: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Tidak boleh Kosong'
+                        }
+                    }
+                },
+                no_telp: {
                     validators: {
                         notEmpty: {
                             message: 'Tidak boleh Kosong'
