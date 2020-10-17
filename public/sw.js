@@ -183,7 +183,7 @@ self.addEventListener("fetch", function (event) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\afaiz\Documents\Project\Laravel\lspadminv2\resources\js\portal\serviceworker.js */"./resources/js/portal/serviceworker.js");
+module.exports = __webpack_require__(/*! E:\Project\Laravel\lspadminv2\resources\js\portal\serviceworker.js */"./resources/js/portal/serviceworker.js");
 
 
 /***/ })

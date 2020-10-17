@@ -14,6 +14,10 @@
                         <h3 class="card-label">Pencarian Member Asesi</h3>
                     </div>
                     <div class="card-toolbar">
+                        <button class="btn btn-light-info mx-2 font-weight-bolder " data-toggle="modal" data-target="#modalImport">
+                            <i class="flaticon-upload"></i>
+                            Import Data
+                        </button>
                         <a href="{{route('pengaturan.member.asesi.create')}}"  class="btn btn-light-success mx-2 font-weight-bolder ">
                             <i class="flaticon-upload"></i>
                             New Record
@@ -111,10 +115,6 @@
                             <i class="flaticon-download"></i>
                             Export Data
                         </a>
-                        <button class="btn btn-primary mx-2 font-weight-bolder " data-toggle="modal" data-target="#modalImport">
-                            <i class="flaticon-upload"></i>
-                            Import Data
-                        </button>
                         
                         
                         <!--end::Button-->

@@ -36,19 +36,19 @@ window.axios.interceptors.request.use(function(config) {
 });
 
 
-if ("serviceWorker" in navigator) {
-    console.log("registering sw");
-    navigator.serviceWorker.register("sw.js");
-} else {
-    console.log("sw not found in navigator");
-}
+// if ("serviceWorker" in navigator) {
+//     console.log("registering sw");
+//     navigator.serviceWorker.register("sw.js");
+// } else {
+//     console.log("sw not found in navigator");
+// }
 
-const channel = new BroadcastChannel("sw-messages");
-let isOnline = true;
-channel.addEventListener("message", event => {
-    console.log("Received", event.data);
-    if (isOnline && event.data == "offline") {
-        isOnline = false;
-        alert("You now offline");
-    }
-});
+// const channel = new BroadcastChannel("sw-messages");
+// let isOnline = true;
+// channel.addEventListener("message", event => {
+//     console.log("Received", event.data);
+//     if (isOnline && event.data == "offline") {
+//         isOnline = false;
+//         alert("You now offline");
+//     }
+// });

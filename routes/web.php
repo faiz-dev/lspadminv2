@@ -87,7 +87,7 @@ Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function(
 
 
 Route::group(['middleware'=>['auth']], function(){
-    Route::get('/keluar','Auth\LoginController@logout');
+    Route::get('/keluar','Auth\LoginController@logout')->name('logout');
 });
 // Auth::routes();
 

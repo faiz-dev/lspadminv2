@@ -22,6 +22,7 @@ class CreateSekolahsTable extends Migration
             $table->string('kota');
             $table->string('provinsi');
             $table->string('no_telp');
+            $table->string('email');
             $table->string('kode_pos');
             
             $table->date('terdaftar');

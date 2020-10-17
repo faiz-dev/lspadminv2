@@ -33,6 +33,9 @@ mix.sass("resources/sass/portal/app.scss", "public/css/portal-app.css")
 // Popper: ['popper.js', 'default'],
 // });
 
+// Other file template
+mix.copyDirectory('resources/xlsx', 'public/xlsx');
+
 // 3rd party plugins css/js
 mix.sass('resources/plugins/plugins.scss', 'public/plugins/global/plugins.bundle.css').then(() => {
     // remove unused preprocessed fonts folder
