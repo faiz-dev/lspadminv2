@@ -6,7 +6,7 @@
 
     {{-- Dashboard 1 --}}
 
-    <div class="row">
+    <div class="row" id="app">
         <div class="col-12">
             <div class="card card-custom mb-5">
                 <div class="card-body">
@@ -23,7 +23,7 @@
                 </div>    
             @endif
         </div>
-        <div class="col-12 col-md-4">
+        {{-- <div class="col-12 col-md-4">
             <div class="card card-custom mb-5">
                 <div class="card-header">
                     <div class="card-title">
@@ -61,7 +61,8 @@
                     
                 </div>
             </div>
-        </div>
+        </div> --}}
+        @if(Auth::user()->dataDiri != null)
         <div class="col-12">
             <div class="card card-custom mb-5">
                 <div class="card-header">
@@ -70,13 +71,18 @@
                             <i class="flaticon2-chat-1 text-primary"></i>
                         </span>
                         <h3 class="card-label">Informasi Uji Kompetensi</h3>
+                        <small>Anda dapat memilih Uji Kompetensi yang tersedia pada tabel di bawah ini. Perhatikan Judul dan Kompetensinya!</small>
                     </div>
                 </div>
                 <div class="card-body">
-                    
+                    <!--begin: Datatable-->
+                    <div class="datatable datatable-bordered datatable-head-custom" id="ktdt_ujikom">
+                    </div>
+                    <!--end: Datatable-->
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
 @endsection
@@ -84,5 +90,94 @@
 
 {{-- Scripts Section --}}
 @section('scripts')
-    
+    <script src="{{ url('js/custom/datatable/local.js') }}"></script>
+    <script>
+     
+        let app = new Vue({
+            el: '#app',
+            data: {
+                elements: {
+                    dataTableUji: null,
+                },
+                dataBase: {
+                    daftarUji: JSON.parse(`{!! json_encode($daftar_uji) !!}`)
+                },
+                config: {
+                    dataTable: {
+                        columns: [
+                            {
+                                field: 'No',
+                                title: 'No',    
+                                width: 30,
+                                sortable: true,
+                                overflow: 'visible',
+                                template: function(row, index) {
+                                    return index + 1;
+                                }
+                            },
+                            {
+                                field: 'nama',
+                                title: 'Nama',
+                            },
+                            {
+                                field: 'tgl_awal',
+                                title: 'Tanggal', 
+                                width: 200,
+                                autoHide: false,
+                                template: function(row) {
+                                    return `${row.tgl_awal} s.d ${row.tgl_akhir}`
+                                }
+                            }, 
+                            {
+                                field: 'jml_asesi',
+                                title: 'Kuota',    
+                                width: 150,
+                                template: function(row) {
+                                    return `${row.jml_asesi} Asesi`
+                                }
+                            },
+                            {
+                                field: 'Actions',
+                                title: 'Aksi', 
+                                width: 100,
+                                autoHide: false,
+                                template: function(row, index) {
+                                    const url = '{{url("./member/ujikom/pendaftaran")}}?q='+row.uid;
+                                    return `<a href="${url}"  class="btn btn-sm btn-primary btnRegister" title="Klik untuk Mendaftar">
+                                                <i class="flaticon-list"></i> Daftar
+                                            </a>`;
+                                },
+                            }
+                        ]
+                    }
+                }
+            },
+            mounted() {
+                let vm = this;
+                vm.initDataTable();
+                
+            }, 
+            methods: {
+                initDataTable: async function() {
+                    this.elements.dataTableUji = $('#ktdt_ujikom');
+                    console.log(this.elements.dataTableUji)
+                    CDataTable.init(this.elements.dataTableUji, this.dataBase.daftarUji, this.config.dataTable.columns);
+                },
+                initDataTableToolbar: function() {
+                    this.elements.filterTableNama = $('#filterTableNama')
+                    this.elements.filterTableNoReg = $('#filterTableNoReg')
+                    this.elements.filterTableJurusan = $('#filterTableJurusan')
+                    this.elements.filterTableSekolah = $('#filterTableSekolah')
+                    console.log("initializing datatable toolbar", this.elements.filterTableNama)
+                    CDataTable.initSearch(this.elements.dataTableUji, this.elements.filterTableNama, 'nama')
+                    CDataTable.initSearch(this.elements.dataTableUji, this.elements.filterTableNoReg, 'no_reg')
+                    CDataTable.initSearch(this.elements.dataTableUji, this.elements.filterTableJurusan, 'jurusan')
+                    CDataTable.initSearch(this.elements.dataTableUji, this.elements.filterTableSekolah, 'tipe')
+                },
+                pendaftaranUji: function(event) {
+                    alert('daftar')
+                } 
+            }
+        })
+    </script>
 @endsection

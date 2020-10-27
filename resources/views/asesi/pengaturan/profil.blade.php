@@ -55,7 +55,7 @@
                         <h3 class="card-label">Data Profil Member</h3>
                     </div>
                     <div class="card-toolbar">
-                        <a href="#" class="btn btn-light-primary font-weight-bolder mr-2">
+                        <a href="{{route('asesi.welcome')}}" class="btn btn-light-primary font-weight-bolder mr-2">
                             <i class="ki ki-long-arrow-back icon-sm"></i>
                             Dashboard
                         </a>
