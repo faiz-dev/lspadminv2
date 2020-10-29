@@ -18,6 +18,15 @@ class CreateTuksTable extends Migration
             $table->uuid('uid');
             $table->unsignedBigInteger('sekolah_id')->nullable();
 
+            $table->string('nama');
+            $table->string('jenis');
+            
+            $table->string('telp');
+            $table->string('alamat');
+            $table->string('provinsi', 20);
+            $table->string('kota', 30);            
+            $table->string('kode_pos', 10)->nullable();
+
 
             $table->timestamps();
         });

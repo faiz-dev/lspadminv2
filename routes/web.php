@@ -76,9 +76,16 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
     });
 });
 
-// AUTHORIZED ACCESS 
+// AUTHORIZED ACCESS ASESI
 Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function() {
     Route::get('/','Asesi\MainController@welcome')->name('asesi.welcome');
+    
+    // UJI KOMPETENSI
+    Route::group(['prefix'=> '/ujikom'], function() {
+        Route::get('/','Asesi\Asesmen\AplikasiController@index')->name('asesi.asesmen.index');
+        Route::get('/pendaftaran','Asesi\Asesmen\AplikasiController@pendaftaran')->name('asesi.asesmen.pendaftaran');
+    });
+
     Route::group(['prefix'=> '/pengaturan'], function() {
         Route::get('/profil','Asesi\Pengaturan\ProfileController@index')->name('asesi.pengaturan.profil');
         Route::put('/profil','Asesi\Pengaturan\ProfileController@actionUpdate')->name('asesi.pengaturan.profil.update');

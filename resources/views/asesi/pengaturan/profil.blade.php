@@ -55,7 +55,7 @@
                         <h3 class="card-label">Data Profil Member</h3>
                     </div>
                     <div class="card-toolbar">
-                        <a href="#" class="btn btn-light-primary font-weight-bolder mr-2">
+                        <a href="{{route('asesi.welcome')}}" class="btn btn-light-primary font-weight-bolder mr-2">
                             <i class="ki ki-long-arrow-back icon-sm"></i>
                             Dashboard
                         </a>
@@ -104,6 +104,22 @@
                                     <label for="tanggal_lahir" class="col-12 col-md-3">Tanggal Lahir<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
                                         <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Tanggal Lahir">
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group row">
+                                    <label for="nama" class="col-12 col-md-3">Email<span class="reqstar">*</span></label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="Email" value="{{Auth::user()->email}}" readonly>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="form-group row">
+                                    <label for="nama" class="col-12 col-md-3">Nomor HP<span class="reqstar">*</span></label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="no_telp" placeholder="Nomor Telpon / HP">
                                     </div>
                                 </div>
 
@@ -310,6 +326,13 @@
                     }
                 },
                 tanggal_lahir: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Tidak boleh Kosong'
+                        }
+                    }
+                },
+                no_telp: {
                     validators: {
                         notEmpty: {
                             message: 'Tidak boleh Kosong'

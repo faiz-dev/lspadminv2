@@ -14,5 +14,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(PermissionUserResourcesSeeder::class);
         $this->call(SekolahResourcesSeeder::class);
+        $this->call(TUKResourcesSeeder::class);
+        $this->call(SkemaResourcesSeeder::class);
+        $this->call(UjiKompetensiResourcesSeeder::class);
+        
     }
 }
