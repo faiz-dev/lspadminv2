@@ -13,18 +13,17 @@ class CreateUnitSkemasTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_skemas', function (Blueprint $table) {
-            $table->id();
+        Schema::create('unit_skemas', function (Blueprint $table) {            
             
             $table->unsignedBigInteger('unit_kompetensi_id');
             $table->unsignedBigInteger('skema_id');
 
             
             // relation
-            $table->foreign('unit_kompetensi_id')->references('id')->on('unit_kompetensis');
-            $table->foreign('skema_id')->references('id')->on('skemas');
+            $table->foreign('unit_kompetensi_id')->references('id')->on('unit_kompetensis')->onDelete('cascade');
+            $table->foreign('skema_id')->references('id')->on('skemas')->onDelete('cascade');
             
-            $table->softDeletes('deleted_at', 0);
+            $table->primary(['skema_id', 'unit_kompetensi_id']);            
             $table->timestamps();
         });
     }

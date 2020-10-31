@@ -82,8 +82,11 @@ Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function(
     
     // UJI KOMPETENSI
     Route::group(['prefix'=> '/ujikom'], function() {
-        Route::get('/','Asesi\Asesmen\AplikasiController@index')->name('asesi.asesmen.index');
+        Route::get('/','Asesi\Asesmen\AplikasiController@index')->name('asesi.asesmen.index');    
+        Route::get('/pendaftaran/list','Asesi\Asesmen\AplikasiController@listPendaftaran')->name('asesi.asesmen.list-pendaftaran');
         Route::get('/pendaftaran','Asesi\Asesmen\AplikasiController@pendaftaran')->name('asesi.asesmen.pendaftaran');
+        Route::post('/pendaftaran','Asesi\Asesmen\AplikasiController@actionPendaftaran')->name('asesi.asesmen.action-pendaftaran');
+        Route::get('/pendaftaran/detail','Asesi\Asesmen\AplikasiController@showPendaftaran')->name('asesi.asesmen.show-pendaftaran');
     });
 
     Route::group(['prefix'=> '/pengaturan'], function() {

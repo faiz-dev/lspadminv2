@@ -7,7 +7,7 @@
     {{-- Dashboard 1 --}}
 
     <div class="row">
-        @if(Auth::user()->dataDiri != null)
+        @if($data_diri != null)
         <div class="col-md-3">
                 <div class="card card-custom mb-5">
                     <div class="card-header">
@@ -76,34 +76,38 @@
                                 <input type="hidden" name="_method" value="PUT">
                                 <h4 class="card-label">Profil</h4>
                                 <div class="form-group row">
-                                    <label for="nik" class="col-12 col-md-3">NIK<span class="reqstar">*</span></label>
+                                    <label for="nik" class="col-12 col-md-3">NIK<span class="reqstar">*</span> <br><small>Anda tidak dapat mengubah NIK</small></label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan" value="3326160810950003">
+                                        <input type="text" class="form-control" name="nik" placeholder="Nomor Induk Kependudukan" value="{{ $data_diri != null ? $data_diri->nik : '' }}" {{ $data_diri != null ? "readonly" : '' }} title="Anda tidak dapat mengubah NIK">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="nama" class="col-12 col-md-3">Nama Lengkap<span class="reqstar">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" value="alfian">
+                                        <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" value="{{ $data_diri != null ? $data_diri->nama : '' }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="nik" class="col-12 col-md-3 ">Jenis Kelamin<span class="reqstar">*</span></label>
+                                    <label for="nik" class="col-12 col-md-3 ">Jenis Kelamin<span class="reqstar">*</span></label>                                    
                                     <div class="col-lg-9 col-md-9 col-sm-12">
-                                        <input data-switch="true" name="jenis_kelamin" type="checkbox" checked="checked" data-on-text="Laki-laki" data-off-text="Perempuan" data-off-color="success"   />
+                                        @if($data_diri != null && $data_diri->jenis_kelamin == "P")
+                                            <input data-switch="true" name="jenis_kelamin" type="checkbox" data-on-text="Laki-laki" data-off-text="Perempuan" data-off-color="success"   />
+                                        @else
+                                            <input data-switch="true" name="jenis_kelamin" type="checkbox" checked="checked" data-on-text="Laki-laki" data-off-text="Perempuan" data-off-color="success"   />
+                                        @endif
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
                                     <label for="tempat_lahir" class="col-12 col-md-3">Tempat Lahir<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Tempat Lahir" value="pekalonga">
+                                        <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Tempat Lahir" value="{{ $data_diri != null ? $data_diri->tempat_lahir : '' }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="tanggal_lahir" class="col-12 col-md-3">Tanggal Lahir<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Tanggal Lahir">
+                                        <input type="date" class="form-control" name="tanggal_lahir" placeholder="Tanggal Tanggal Lahir" value="{{ $data_diri != null ? $data_diri->tanggal_lahir : '' }}">
                                     </div>
                                 </div>
 
@@ -119,7 +123,7 @@
                                 <div class="form-group row">
                                     <label for="nama" class="col-12 col-md-3">Nomor HP<span class="reqstar">*</span></label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="no_telp" placeholder="Nomor Telpon / HP">
+                                        <input type="text" class="form-control" name="no_telp" placeholder="Nomor Telpon / HP" value="{{ $data_diri != null ? $data_diri->no_telp : '' }}" >
                                     </div>
                                 </div>
 
@@ -127,7 +131,7 @@
                                 <div class="form-group row">
                                     <label for="pekerjaan_instansi" class="col-12 col-md-3">Instansi</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="pekerjaan_instansi" placeholder="Instansi" value="SMK Negeri 1 Kandeman" readonly>
+                                        <input type="text" class="form-control" name="pekerjaan_instansi" placeholder="Instansi" value="{{ $data_diri != null ? $data_diri->pekerjaan_instansi : 'SMK Negeri 1 Kandeman' }}"  readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -190,64 +194,66 @@
                                 <div class="form-group row">
                                     <label for="ktp_alamat" class="col-12 col-md-3">Alamat KTP Asesi<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="ktp_alamat" placeholder="Alamat KTP Asesi">
+                                        <input type="text" class="form-control" name="ktp_alamat" placeholder="Alamat KTP Asesi" value="{{ $data_diri != null ? $data_diri->ktp_alamat : '' }}" >
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label for="ktp_provinsi" class="col-12 col-md-3">Provinsi KTP<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="ktp_provinsi" placeholder="Provinsi KTP">
+                                        <input type="text" class="form-control" name="ktp_provinsi" placeholder="Provinsi KTP" value="{{ $data_diri != null ? $data_diri->ktp_provinsi : '' }}">
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label for="ktp_kota" class="col-12 col-md-3">Kota KTP<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="ktp_kota" placeholder="Kota KTp">
+                                        <input type="text" class="form-control" name="ktp_kota" placeholder="Kota KTP" value="{{ $data_diri != null ? $data_diri->ktp_kota : '' }}">
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label for="ktp_kode_pos" class="col-12 col-md-3">Kode Pos KTP<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="ktp_kode_pos" placeholder="Kode Pos KTP">
+                                        <input type="text" class="form-control" name="ktp_kode_pos" placeholder="Kode Pos KTP" value="{{ $data_diri != null ? $data_diri->ktp_kode_pos : '' }}">
                                     </div>
                                 </div>
         
                                 <h4 class="card-label">Domisili</h4>
+                                @if($data_diri == null)
                                 <div class="form-group row">
                                     <label for="domisili_alamat" class="col-12 col-md-3">Apakah alamat anda <br>sama dengan alamat di KTP ? </label>
                                     <div class="col-md-6">
                                         <input data-switch="true" id="sama_ktp" name="sama_ktp" type="checkbox" checked="checked" data-on-text="Berbeda" data-off-text="Sama" data-off-color="success"   />
                                     </div>
                                 </div>
+                                @endif
         
                                 <div class="form-group row">
                                     <label for="domisili_alamat" class="col-12 col-md-3">Alamat Domisili Asesi<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="domisili_alamat" placeholder="Alamat Domisili Asesi">
+                                        <input type="text" class="form-control" name="domisili_alamat" placeholder="Alamat Domisili Asesi" value="{{ $data_diri != null ? $data_diri->domisili_alamat : '' }}">
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label for="domisili_provinsi" class="col-12 col-md-3">Provinsi Domisili<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="domisili_provinsi" placeholder="Provinsi Domisili">
+                                        <input type="text" class="form-control" name="domisili_provinsi" placeholder="Provinsi Domisili" value="{{ $data_diri != null ? $data_diri->domisili_provinsi : '' }}">
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label for="domisili_kota" class="col-12 col-md-3">Kota Domisili<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="domisili_kota" placeholder="Kota Domisili">
+                                        <input type="text" class="form-control" name="domisili_kota" placeholder="Kota Domisili" value="{{ $data_diri != null ? $data_diri->domisili_kota : '' }}">
                                     </div>
                                 </div>
         
                                 <div class="form-group row">
                                     <label for="domisili_kode_pos" class="col-12 col-md-3">Kode Pos Domisili<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="domisili_kode_pos" placeholder="Kode Pos Domisili">
+                                        <input type="text" class="form-control" name="domisili_kode_pos" placeholder="Kode Pos Domisili" value="{{ $data_diri != null ? $data_diri->domisili_kode_pos : '' }}">
                                     </div>
                                 </div>
                             </form>
@@ -532,6 +538,15 @@
             return axios.post('{{route("asesi.pengaturan.profil.update")}}', formData)
                 .then(response => {
                     console.log(response.data)
+                    if(response.status == 200) {
+                        swal.fire({
+                            text: "Update Profil Berhasil",
+                            icon: "success",                            
+                        }).then(function() {
+                            KTUtil.scrollTop();
+                            window.location.reload();
+                        });  
+                    }
                 })
                 .catch(e => {
                     swal.fire({

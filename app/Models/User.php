@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\ManajerJejaring');
     }
+
+    public function pendaftaran()
+    {
+        return $this->hasMany('App\Models\Pendaftaran','user_id');
+    }
 }

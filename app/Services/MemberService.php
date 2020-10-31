@@ -137,7 +137,7 @@ class MemberService
         $dataMember = User::where('uid', $uid);
         switch($tipe) {
             case 'asesi' : 
-                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri','asesi');
+                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri','asesi','pendaftaran');
             break;
             case 'manajer_jejaring':
                 $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataDiri','manajerJejaring');
@@ -234,16 +234,16 @@ class MemberService
     public function updateDataDiri($idMember, $data): DataDiri
     {
         $dataDiri = DataDiri::where('user_id', $idMember)->firstOrFail();
-        
-        $dataDiri->nik                  = $data->nik;
+                
         $dataDiri->nama                 = $data->nama;
-        $dataDiri->gelar_depan          = $data->gelar_depan;
-        $dataDiri->gelar_belakang       = $data->gelar_belakang;
+        $dataDiri->gelar_depan          = isset($data->gelar_depan) ? $data->gelar_depan : "";
+        $dataDiri->gelar_belakang       = isset($data->gelar_belakang) ? $data->gelar_belakang : "";
         $dataDiri->jenis_kelamin        = $data->jenis_kelamin;
         $dataDiri->tempat_lahir         = $data->tempat_lahir;
         $dataDiri->tanggal_lahir        = $data->tanggal_lahir;
+        $dataDiri->url_foto             = isset($data->url_foto) ? $data->url_foto : "";
         $dataDiri->no_telp              = $data->no_telp;
-        $dataDiri->pendidikan_terakhir  = $data->pendidikan_terakhir;
+        $dataDiri->pendidikan_terakhir  = isset($data->pendidikan_terakhir)  ? $data->pendidikan_terakhir : "";
         $dataDiri->pekerjaan_instansi   = $data->pekerjaan_instansi;
         $dataDiri->pekerjaan_jabatan    = $data->pekerjaan_jabatan;
         $dataDiri->pekerjaan_alamat     = $data->pekerjaan_alamat;

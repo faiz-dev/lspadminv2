@@ -12,7 +12,8 @@ class ProfileController extends Controller
     public function index()
     {
         $page_title = "Profil Member";
-        return view('asesi.pengaturan.profil', compact('page_title'));
+        $data_diri = Auth::user()->dataDiri;
+        return view('asesi.pengaturan.profil', compact('page_title','data_diri'));
     }
 
     public function actionUpdate(Request $request)
@@ -20,8 +21,7 @@ class ProfileController extends Controller
         $userID = Auth::user()->id;
         $data = (object) $request->all();
         $memberService = new MemberService();
-        $request->validate([
-            "nik"   =>  'required|unique:data_diris|max:16|min:16',
+        $request->validate([            
             "nama"  =>  'required',
             "jenis_kelamin" =>  'required',
             "tempat_lahir"  =>  'required',
@@ -41,11 +41,21 @@ class ProfileController extends Controller
             "ktp_kota"  =>  'required',
             "ktp_kode_pos"  =>  'required',
             ]);
+        
+        $data->jenis_kelamin = $data->jenis_kelamin == "on" ? "L" : "P";
 
-        $dataDiri = $memberService->fillDataDiri($userID, $data);
-        $data->tipe = "induk";
-        $dataAsesi = $memberService->createAsesi($userID, $data);
-        $dataUser = Auth::user();
-        dd([$dataUser, $dataUser->dataDiri, $dataUser->asesi ]);
+        // checking if the user has profile 
+        if(Auth::user()->dataDiri == null) {
+            $request->validate([
+                "nik"   =>  'required|unique:data_diris|max:16|min:16']);
+            $dataDiri = $memberService->fillDataDiri($userID, $data);
+            $data->tipe = "induk";
+            $dataAsesi = $memberService->createAsesi($userID, $data);
+        } else {
+            $dataDiri = $memberService->updateDataDiri($userID, $data);            
+        }
+        
+        return response()->json(["status"=>"success"],200);
+        // dd([$dataUser, $dataUser->dataDiri, $dataUser->asesi ]);
     }
 }

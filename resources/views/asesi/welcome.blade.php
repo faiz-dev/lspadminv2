@@ -63,6 +63,47 @@
             </div>
         </div> --}}
         @if(Auth::user()->dataDiri != null)
+        <div class="col-6">
+            <!--begin::Stats Widget 13-->
+            <a href="#"
+            class="card card-custom bgi-no-repeat card-stretch gutter-b"
+            style="background-position: right top; background-size: 30% auto; background-image: url({{url('/media/svg/shapes/abstract-3.svg')}})">
+            <!--begin::Body-->
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <i class="flaticon-clock-2 icon-3x text-primary"></i>
+                    <span class="font-weight-bold text-success p-2">2 Jadwal Uji Aktif</span>
+                </div>
+                <div class="text-dark-75 font-weight-bolder font-size-h5 mb-2 mt-5">
+                    Jadwal Uji Kompetensi</div>
+                <div class="font-weight-bold text-muted text-hover-primary font-size-sm">
+                    Lihat Jadwal Uji anda yang telah disetujui LSP</div>
+            </div>
+            <!--end::Body-->
+            </a>
+        </div>
+        @if ($ct_pendaftaran > 0)
+        <div class="col-6">
+            <!--begin::Stats Widget 13-->
+            <a href="{{route('asesi.asesmen.list-pendaftaran')}}"
+            class="card card-custom bgi-no-repeat card-stretch gutter-b"
+            style="background-position: right top; background-size: 30% auto; background-image: url({{url('/media/svg/shapes/abstract-4.svg')}})">
+            <!--begin::Body-->
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <i class="flaticon-file icon-3x text-primary"></i>
+                    <span class="font-weight-bold text-success p-2">{{$ct_pendaftaran}} Pendaftaran Sedang Review / Revisi</span>
+                </div>
+                <div class="text-dark-75 font-weight-bolder font-size-h5 mb-2 mt-5">
+                    Riwayat Pendaftaran Uji</div>
+                <div class="font-weight-bold text-muted text-hover-primary font-size-sm">
+                    Daftar Pengajuan Pendaftaran Uji Kompetensi</div>
+            </div>
+            <!--end::Body-->
+            </a>
+        </div>
+        
+        @endif
         <div class="col-12">
             <div class="card card-custom mb-5">
                 <div class="card-header">

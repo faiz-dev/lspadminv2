@@ -18,6 +18,7 @@ class CreateUnitKompetensisTable extends Migration
             $table->uuid('uid')->unique();
             $table->string('kode')->unique();
             $table->string('judul');
+            $table->string('jenis_standar');
 
             
             $table->softDeletes('deleted_at', 0);

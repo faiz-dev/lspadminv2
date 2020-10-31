@@ -107,6 +107,13 @@ var KTWizard = function(elementId, options) {
                 Plugin.goTo(Plugin.getLastStep(), true);
             });
 
+            // Submit button event handler
+            KTUtil.addEvent(the.btnSubmit, 'click', function(e) {
+                e.preventDefault();
+
+                Plugin.eventTrigger('submit');
+            });
+
             if (the.options.clickableSteps === true) {
                 KTUtil.on(element, '[data-wizard-type="step"]', 'click', function() {
                     var index = KTUtil.index(this) + 1;

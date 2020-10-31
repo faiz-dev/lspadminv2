@@ -10,4 +10,9 @@ class Skema extends Model
     {
         return $this->belongsTo('App\Models\Skema', 'parent_id');
     }
+
+    public function unitKompetensi()
+    {
+        return $this->belongsToMany('App\Models\UnitKompetensi','unit_skemas','skema_id','unit_kompetensi_id');
+    }
 }
