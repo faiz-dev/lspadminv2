@@ -178,6 +178,7 @@
                         <!--end::Form-->
                     </div>
                     <!--end::Signup-->
+                    
 
                     <!--begin::Forgot-->
                     <div class="login-form login-forgot">

@@ -145,10 +145,10 @@
                                     <label for="jurusan" class="col-12 col-md-3">Jurusan</label>
                                     <div class="col-md-6">
                                         <select name="jurusan" class="form-control">
-                                            <option value="">Pilih Jurusan</option>
-                                            <option value="tav" selected>Teknik Audio Video</option>
-                                            <option value="tkr">Teknik Kendaraan Ringan</option>
-                                            <option value="tp">Teknik Pemesinan</option>
+                                            <option value="" selected>Pilih Jurusan</option>
+                                            <option value="tav" {{ $data_asesi->jurusan == "tav" ? "selected":"" }} >Teknik Audio Video</option>
+                                            <option value="tkr" {{ $data_asesi->jurusan == "tkr" ? "selected":"" }} >Teknik Kendaraan Ringan</option>
+                                            <option value="tp" {{ $data_asesi->jurusan == "tp" ? "selected":"" }} >Teknik Pemesinan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -158,13 +158,13 @@
                                     <div class="col-md-6">
                                         <select name="kelas" class="form-control">
                                             <option value="">Pilih Kelas</option>
-                                            <option value="tav1" selected>XII TAV 1</option>
-                                            <option value="tav2">XII TAV 2</option>
-                                            <option value="tkro1">XII TKRO 1</option>
-                                            <option value="tkro2">XII TKRO 2</option>
-                                            <option value="tkro3">XII TKRO 3</option>
-                                            <option value="tp1">XII TP 1</option>
-                                            <option value="tp2">XII TP 2</option>
+                                            <option value="tav1"  {{ $data_asesi->kelas == "tav1" ? "selected":"" }}  >XII TAV 1</option>
+                                            <option value="tav2" {{ $data_asesi->kelas == "tav2" ? "selected":"" }}  >XII TAV 2</option>
+                                            <option value="tkro1" {{ $data_asesi->kelas == "tkro1" ? "selected":"" }}  >XII TKRO 1</option>
+                                            <option value="tkro2" {{ $data_asesi->kelas == "tkro2" ? "selected":"" }}  >XII TKRO 2</option>
+                                            <option value="tkro3" {{ $data_asesi->kelas == "tkro3" ? "selected":"" }}  >XII TKRO 3</option>
+                                            <option value="tp1" {{ $data_asesi->kelas == "tp1" ? "selected":"" }}  >XII TP 1</option>
+                                            <option value="tp2" {{ $data_asesi->kelas == "tp2" ? "selected":"" }}  >XII TP 2</option>
                                         </select>
                                     </div>
                                 </div>

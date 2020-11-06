@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->date('pwd_exp_date')->nullable();
 
             $table->softDeletes('deleted_at',0);
 

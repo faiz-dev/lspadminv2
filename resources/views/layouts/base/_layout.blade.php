@@ -51,9 +51,9 @@
         @include('layout.partials.extras.offcanvas._quick-actions')
     @endif
 
-    @if (config('layout.extras.user.layout') == 'offcanvas')
+    {{-- @if (config('layout.extras.user.layout') == 'offcanvas')
         @include('layout.partials.extras.offcanvas._quick-user')
-    @endif
+    @endif --}}
 
     @if (config('layout.extras.quick-panel.display'))
         @include('layout.partials.extras.offcanvas._quick-panel')

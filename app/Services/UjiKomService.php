@@ -104,7 +104,7 @@ class UjiKomService
 
     public static function getPendaftaranByUser($user_id): Collection
     {
-        $daftar_pendaftaran = PendaftaranUji::where('user_id', $user_id)->with('ujiKompetensi')->get();
+        $daftar_pendaftaran = PendaftaranUji::where('user_id', $user_id)->with('ujiKompetensi')->orderBy('created_at', 'desc')->get();
 
         $daftar_pendaftaran->transform(function($p) {
             $p->dump_skema = json_decode($p->dump_skema);

@@ -25,9 +25,11 @@ class CreateUjiKompetensisTable extends Migration
             $table->boolean('isActive')->default(true);
             
             $table->unsignedBigInteger('skema_id');
+            $table->unsignedBigInteger('tuk_id')->nullable();
 
             // related
             $table->foreign('skema_id')->references('id')->on('skemas');
+            $table->foreign('tuk_id')->references('id')->on('tuks');
             
             $table->timestamps();
         });

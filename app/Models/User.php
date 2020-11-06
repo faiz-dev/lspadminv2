@@ -72,4 +72,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Pendaftaran','user_id');
     }
+
+    // custom functions
+
+    public function isPasswordValid()
+    {        
+        if(strtotime($this->pwd_exp_date) < date("Y-m-d") || $this->pwd_exp_date == null) {
+            return false;
+        }
+        return true;
+    }
 }

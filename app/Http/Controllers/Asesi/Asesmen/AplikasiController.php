@@ -81,7 +81,7 @@ class AplikasiController extends Controller
 
         return response()->json([
                 'status'=>'success', 
-                "redirect_target" => route('asesi.asesmen.show-pendaftaran').'?q='.$request->q
+                "redirect_target" => route('asesi.asesmen.list-pendaftaran').'?q='.$request->q
             ], 200);
     }
 
@@ -91,7 +91,7 @@ class AplikasiController extends Controller
         $data_ujikom = UjiKomService::getOne($request->q);
         $data_pendaftaran = UjiKomService::getPendaftaranOne(Auth::user()->id, $data_ujikom->id);
         $page_title = 'Detail Pendaftaran';
-        return view('asesi.asesmen.aplikasi.index', compact('page_title','data_ujikom','data_pendaftaran'));
+        return view('asesi.asesmen.aplikasi.detail', compact('page_title','data_ujikom','data_pendaftaran'));
     }
     
 }

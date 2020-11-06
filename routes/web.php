@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\ChckPwdExp;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,7 +77,7 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
 });
 
 // AUTHORIZED ACCESS ASESI
-Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function() {
+Route::group(['middleware' => ['role:Member',ChckPwdExp::class], 'prefix' => '/member'], function() {
     Route::get('/','Asesi\MainController@welcome')->name('asesi.welcome');
     
     // UJI KOMPETENSI
@@ -92,6 +92,8 @@ Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function(
     Route::group(['prefix'=> '/pengaturan'], function() {
         Route::get('/profil','Asesi\Pengaturan\ProfileController@index')->name('asesi.pengaturan.profil');
         Route::put('/profil','Asesi\Pengaturan\ProfileController@actionUpdate')->name('asesi.pengaturan.profil.update');
+        Route::get('/profil/password-reset','Asesi\Pengaturan\ProfileController@showResetPassword')->name('asesi.pengaturan.profil.show-password-reset');
+        Route::put('/profil/password-reset','Asesi\Pengaturan\ProfileController@actionResetPassword')->name('asesi.pengaturan.profil.action-password-reset');
     });
 });
 
