@@ -14,20 +14,16 @@ class CreateJadwalUjiKomsTable extends Migration
     public function up()
     {
         Schema::create('jadwal_uji_koms', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('ujikom_id');
-            $table->unsignedBigInteger('asesor_id')->nullable();
+            $table->id();            
+            $table->unsignedBigInteger('ujikom_id');            
 
             $table->date('tgl_pelaksanaan');
-            $table->boolean('ishadir');
+            $table->string('status');
+            $table->string('url_surat_tugas')->nullable();
+            $table->string('url_berita_acara')->nullable();
 
             // relation
-            $table->foreign('user_id')->references("id")->on('users');
-            $table->foreign('ujikom_id')->references('id')->on('uji_kompetensis');
-            $table->foreign('asesor_id')->references('id')->on('asesors');
-
-            $table->primary(['user_id', 'ujikom_id']);
+            $table->foreign('ujikom_id')->references('id')->on('uji_kompetensis');           
 
             $table->timestamps();
         });

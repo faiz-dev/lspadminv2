@@ -78,7 +78,8 @@ return [
                 [
                     'title' => 'Modul Aplikasi',
                     'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
-                    'bullet' => 'line'
+                    'bullet' => 'line',
+                    'page' => './manager/sertifikasi/aplikasi'
                 ],
                 [
                     'title' => 'Modul Asesmen',

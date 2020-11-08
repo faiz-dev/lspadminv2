@@ -26,10 +26,12 @@ class CreateUjiKompetensisTable extends Migration
             
             $table->unsignedBigInteger('skema_id');
             $table->unsignedBigInteger('tuk_id')->nullable();
+            $table->unsignedBigInteger('sekolah_id')->nullable();
 
             // related
             $table->foreign('skema_id')->references('id')->on('skemas');
             $table->foreign('tuk_id')->references('id')->on('tuks');
+            $table->foreign('sekolah_id')->references('id')->on('sekolahs');
             
             $table->timestamps();
         });
