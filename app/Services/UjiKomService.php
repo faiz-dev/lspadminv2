@@ -140,26 +140,29 @@ class UjiKomService
 
     public static function getAllPendaftaranSafe(Object $filter,Object $options): Collection
     {
-        $daftar_pendaftaran = PendaftaranUji::with('ujiKompetensi')->orderBy('created_at', 'desc');
+        $daftar_pendaftaran = PendaftaranUji::with('ujiKompetensi')
+                                            ->with('user.asesi')
+                                            ->with('user.dataDiri')
+                                            ->orderBy('created_at', 'desc');
 
         // FILTER UJI KOMPETENSI
         if(isset($filter->uji_kom_uid)) {
-            // $dataUjiKompetensi = $daftar_pendaftaran->whereHas('ujiKompetensi', function($query) use ($filter) {
-            //     $query->where('uid', $filter->uji_kom_uid);
-            // });
+            $dataUjiKompetensi = $daftar_pendaftaran->whereHas('ujiKompetensi', function($query) use ($filter) {
+                $query->where('uid', $filter->uji_kom_uid);
+            });
         }
 
         // // FILTER STATUS
-        // if( isset($filter->status) && $filter->status != "" && in_array($filter->status, ['review','revisi','ditolak','disetujui'])) {
-        //     $daftar_pendaftaran = $daftar_pendaftaran->where('status', $filter->status);
-        // }
+        if( isset($filter->status) && $filter->status != "" && in_array($filter->status, ['review','revisi','ditolak','disetujui'])) {
+            $daftar_pendaftaran = $daftar_pendaftaran->where('status', $filter->status);
+        }
 
         // if(isset($filter->start_date)) {
         //     $daftar_pendaftaran = $daftar_pendaftaran->where('created_at','>=',date('Y-m-d',$filter->start_date));
         // }
 
         $daftar_pendaftaran = $daftar_pendaftaran->get();
-
+        
         if($options->complete) {
             $daftar_pendaftaran->transform(function($p) {
                 $p->dump_skema = json_decode($p->dump_skema);
@@ -170,6 +173,22 @@ class UjiKomService
             $daftar_pendaftaran->transform(function($p) {
                 unset($p->dump_skema);
                 unset($p->dump_profile);
+
+                $p->data_asesi = (object) [
+                    "uid"   =>  $p->user->asesi->uid,
+                    "jurusan"   =>  $p->user->asesi->jurusan,
+                    "no_reg"   =>  $p->user->asesi->no_reg,
+                    "no_urut"   =>  $p->user->asesi->no_urut,
+                    "kelas"   =>  $p->user->asesi->kelas,
+                    "tahun_daftar"   =>  $p->user->asesi->tahun_daftar,
+                ];
+
+                $p->data_diri = (object) [
+                    "nama"  =>  $p->user->dataDiri->nama
+                ];
+
+                unset($p->user);
+
                 return $p;
             });
         }

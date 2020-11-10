@@ -18,7 +18,7 @@ class UjiKomUtils extends Controller
         ];
         $options = (object) [
             "complete"  =>   false
-        ];
+        ];        
 
         if(Auth::user()->hasRole(['Super Manajer'])) {
             // filter sekolah

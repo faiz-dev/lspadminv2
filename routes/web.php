@@ -59,6 +59,7 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
         // aplikasi
         Route::group(['prefix'=>'/aplikasi'], function() {
             Route::get('/', 'Sertifikasi\AplikasiController@index')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.index');
+            Route::post('/data', 'Sertifikasi\AplikasiController@data')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.data');
             Route::get('/detail', 'Sertifikasi\AplikasiController@detail')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.detail');
             Route::put('/updateStatus', 'Sertifikasi\AplikasiController@updateStatus')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.update-status');
             Route::delete('/', 'Sertifikasi\AplikasiController@delete')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.delete');

@@ -13,31 +13,38 @@ class AplikasiController extends Controller
 {
     public function index(Request $request)
     {
+        // sekolah
+        $daftar_sekolah = SekolahService::getAllSafe();        
+                
+        $page_title = "Aplikasi Uji Kompetensi";
+        return view('sertifikasi.aplikasi.index', compact('page_title','daftar_sekolah'));
+    }
+
+    public function data(Request $request)
+    {
         $filter = (object) [];
         $options = (object) [
             "complete"  =>  false
         ];
 
-        // sekolah
-        $daftar_sekolah = SekolahService::getAllSafe();        
-
-        if($request->ajax()) {
-            $request->validate([
-                'status'        =>  "required|in:semua,review,revisi,ditolak,disetujui",
-                'ujikom'   =>  "required|uuid"
-            ]);
-            // set filter
-            $filter->status = $request->status;
-            $filter->uji_kom_uid = $request->ujikom;
-            
-            $daftar_pendaftaran = UjiKomService::getAllPendaftaranSafe($filter, $options);
-
-            return response()->json(["status"=> "success", "daftar_pendaftaran" => $daftar_pendaftaran]);
-        }
+        $request->validate([
+            'status'        =>  "required|in:semua,review,revisi,ditolak,disetujui",
+            'ujikom'        =>  "required|uuid"
+        ]);
+        // set filter
+        $filter->status = $request->status;
+        $filter->uji_kom_uid = $request->ujikom;
         
         $daftar_pendaftaran = UjiKomService::getAllPendaftaranSafe($filter, $options);
-        $page_title = "Aplikasi Uji Kompetensi";
-        return view('sertifikasi.aplikasi.index', compact('page_title', 'daftar_pendaftaran','daftar_sekolah'));
+
+        $data = (object) [
+            "meta" => (object) [
+                "page"  =>  1,
+                "total" =>  count($daftar_pendaftaran)
+            ], 
+            "data" => $daftar_pendaftaran
+        ];
+        return response()->json($data);
     }
 
     /**
