@@ -50,7 +50,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item auth-menu">
-                                <a class="nav-link" href="{{ route('member-show-login') }}"><i class="fa fa-user-circle mr-2 text-primary"></i>{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('saml2_login','google') }}"><i class="fa fa-user-circle mr-2 text-primary"></i>{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item  auth-menu">
