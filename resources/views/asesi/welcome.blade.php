@@ -63,7 +63,7 @@
             </div>
         </div> --}}
         @if(Auth::user()->dataDiri != null)
-        <div class="col-6">
+        {{-- <div class="col-6">
             <!--begin::Stats Widget 13-->
             <a href="#"
             class="card card-custom bgi-no-repeat card-stretch gutter-b"
@@ -81,7 +81,7 @@
             </div>
             <!--end::Body-->
             </a>
-        </div>
+        </div> --}}
         @if ($ct_pendaftaran > 0)
         <div class="col-6">
             <!--begin::Stats Widget 13-->

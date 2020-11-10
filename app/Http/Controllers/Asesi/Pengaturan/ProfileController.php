@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Service\MemberService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -13,7 +14,8 @@ class ProfileController extends Controller
     {
         $page_title = "Profil Member";
         $data_diri = Auth::user()->dataDiri;
-        return view('asesi.pengaturan.profil', compact('page_title','data_diri'));
+        $data_asesi = Auth::user()->asesi;
+        return view('asesi.pengaturan.profil', compact('page_title','data_diri','data_asesi'));
     }
 
     public function actionUpdate(Request $request)
@@ -57,5 +59,33 @@ class ProfileController extends Controller
         
         return response()->json(["status"=>"success"],200);
         // dd([$dataUser, $dataUser->dataDiri, $dataUser->asesi ]);
+    }
+
+    public function showResetPassword()
+    {
+        $page_title = "Update Password";
+        return view('asesi.pengaturan.change-password', compact('page_title'));
+    }
+
+    public function actionResetPassword(Request $request)
+    {
+        $request->validate([
+            "password"  =>  "required|min:8|max:16|confirmed"            
+        ]);
+
+
+        $user = Auth::user();
+
+        $user->password = Hash::make($request->password, [
+            'memory' => 1024,
+            'time'  => 2,
+            'threads' => 2
+        ]);        
+
+        $user->pwd_exp_date = date('Y-m-d', strtotime('+365 days'));
+
+        $user->save();
+
+        return response()->json(['status'=>'success'], 200);
     }
 }
