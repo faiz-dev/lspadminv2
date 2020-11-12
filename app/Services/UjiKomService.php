@@ -116,7 +116,7 @@ class UjiKomService
 
     public static function countPendaftaranActiveByUser($user_id): int
     {
-        $ct_pendaftaran = PendaftaranUji::where('user_id', $user_id)->whereRaw("status = 'revisi' OR status = 'review'")->count();
+        $ct_pendaftaran = PendaftaranUji::where('user_id', $user_id)->whereRaw("(status = 'revisi' OR status = 'review')")->count();
 
         return $ct_pendaftaran;
     }

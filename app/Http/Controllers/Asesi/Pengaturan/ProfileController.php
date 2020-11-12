@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Asesi\Pengaturan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Service\MemberService;
+use App\Services\MemberService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,7 +25,6 @@ class ProfileController extends Controller
         $memberService = new MemberService();
         $request->validate([            
             "nama"  =>  'required',
-            "jenis_kelamin" =>  'required',
             "tempat_lahir"  =>  'required',
             "tanggal_lahir" =>  'required',
             "no_telp"   =>  'required',
@@ -44,7 +43,7 @@ class ProfileController extends Controller
             "ktp_kode_pos"  =>  'required',
             ]);
         
-        $data->jenis_kelamin = $data->jenis_kelamin == "on" ? "L" : "P";
+        $data->jenis_kelamin = isset($data->jenis_kelamin) && $data->jenis_kelamin == "on" ? "L" : "P";
 
         // checking if the user has profile 
         if(Auth::user()->dataDiri == null) {
