@@ -63,7 +63,7 @@
             </div>
         </div> --}}
         @if(Auth::user()->dataDiri != null)
-        {{-- <div class="col-6">
+        {{-- <div class="col-12 col-md-6">
             <!--begin::Stats Widget 13-->
             <a href="#"
             class="card card-custom bgi-no-repeat card-stretch gutter-b"
@@ -83,7 +83,7 @@
             </a>
         </div> --}}
         @if ($ct_pendaftaran > 0)
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <!--begin::Stats Widget 13-->
             <a href="{{route('asesi.asesmen.list-pendaftaran')}}"
             class="card card-custom bgi-no-repeat card-stretch gutter-b"
@@ -159,12 +159,13 @@
                             {
                                 field: 'nama',
                                 title: 'Nama',
+                                autoHide:false,
                             },
                             {
                                 field: 'tgl_awal',
                                 title: 'Tanggal', 
                                 width: 200,
-                                autoHide: false,
+                                autoHide: true,
                                 template: function(row) {
                                     return `${row.tgl_awal} s.d ${row.tgl_akhir}`
                                 }

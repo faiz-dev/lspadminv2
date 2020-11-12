@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Pengaturan;
 
 use App\Http\Controllers\Controller;
-use App\Service\SekolahService;
+use App\Services\SekolahService;
 use Illuminate\Http\Request;
 
 class JejaringManController extends Controller

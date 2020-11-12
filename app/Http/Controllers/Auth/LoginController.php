@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role as ModelsRole;
 
 class LoginController extends Controller
 {
@@ -74,15 +75,21 @@ class LoginController extends Controller
         
         if (Auth::attempt(['email'=> $credentials->username, 'password' => $credentials->password])) {                        
             $user = Auth::user();
+            $userType = json_decode($user->tipe);
+
             if($user->hasRole(['Member'])) {
                 return redirect('/member');
             } elseif($user->hasRole(['Asesor','Manajer Jejaring'])) {
                 return redirect('/manager');
+            } elseif(in_array('asesi', $userType)){                
+                $role = ModelsRole::findByName('Member', 'web');
+                $user->assignRole($role);
+                return redirect('/member');
             } else {
                 Auth::logout();
-                return redirect('/memberauth')->with('errors','Username/Password anda salah');  
-            }
-        } else {
+                return redirect('/');
+            }            
+        } else {            
             return redirect('/memberauth')->with('errors','Username/Password anda salah');            
         }
     }

@@ -10,4 +10,9 @@ class UjiKompetensi extends Model
     {
         return $this->belongsTo('App\Models\Skema');
     }
+
+    public function tuk()
+    {
+        return $this->belongsTo('App\Models\Tuk','tuk_id');
+    }
 }

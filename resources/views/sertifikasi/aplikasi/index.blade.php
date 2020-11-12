@@ -119,27 +119,87 @@
                 </div>
             </div>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                Launch static backdrop modal
-            </button>
-            
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Data Pendaftaran</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
-                        ...
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>Data Asesi</h6>
+                                    <table class="table">
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>@{{ status.dataPendaftaran.asesi.nama }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sekolah</td>
+                                            <td>@{{ status.dataPendaftaran.asesi.sekolah }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jurusan</td>
+                                            <td>@{{ status.dataPendaftaran.asesi.jurusan }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kelas</td>
+                                            <td>@{{ status.dataPendaftaran.asesi.kelas }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <h6>Data Uji Kompetensi</h6>
+                                    <table class="table">
+                                        <tr>
+                                            <td>Nama</td>
+                                            <td>@{{ status.dataPendaftaran.ujikom.nama }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Klaster</td>
+                                            <td>@{{ status.dataPendaftaran.ujikom.skema_judul_klaster }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>TUK</td>
+                                            <td>@{{ status.dataPendaftaran.ujikom.tuk }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <h6>Data Pendaftaran</h6>
+                                    <table class="table">
+                                        <tr>
+                                            <td>Tanggal Daftar</td>
+                                            <td>@{{ status.dataPendaftaran.pendaftaran.tgl_daftar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>@{{ status.dataPendaftaran.pendaftaran.tujuan_sertifikasi }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tujuan Sertifikasi</td>
+                                            <td>@{{ status.dataPendaftaran.pendaftaran.status }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <h6>Rekomendasi Review</h6>
+                                    <div class="form-group">
+                                        <label for="form-label">Catatan</label>
+                                        <textarea name="catatanreview" id="catatanreview" class="form-control" v-model="form.catatanReview" cols="30" rows="3" placeholder="Tuliskan Rekomendasi di sini" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                            <button type="button" class="btn btn-warning" @click="updateStatus('revisi')" >Revisi</button>
+                            <button type="button" class="btn btn-danger" @click="updateStatus('ditolak')">Tolak</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" @click="updateStatus('setujui')">Setujui</button>
                         </div>
                     </div>
                 </div>
@@ -167,20 +227,45 @@
                     tahun_uji: '{{date("Y")}}',
                     sekolah_jejaring: "",
                     uji_kompetensi: "",
-                    uji_kom_uid: ""
+                    uji_kom_uid: "",
+                    catatanReview: "Disetujui untuk melaksanakan Uji Kompetensi"
                 },
                 urls: {
                     utils_ujikom: `{{ route('utils.ujikom.get') }}`,
+                    upstatus_pendaftaran: `{{ route('sertifikasi.aplikasi.update-status') }}`,
                     get_pendaftaran: `{{ route('sertifikasi.aplikasi.data') }}`
                 },
                 status: {
-                    cardShown: true
+                    cardShown: true,
+                    dataPendaftaran: {
+                        asesi: {
+                            nama: "Alfian Faiz",
+                            sekolah: "SMK Negeri 1 Kandeman",
+                            jurusan: "Teknik Audio Video",
+                            kelas: "XII TAV 1",
+                            no_hp: "087700860194"
+                        },
+                        pendaftaran: {
+                            user_id: 1,
+                            ujikom_id: 1,
+                            status: "review",
+                            jdwl_ujikom_id: 1,
+                            tujuan_sertifikasi: "sertifikasi-baru",
+                            tgl_daftar: "09-10-2020"
+                        },
+                        ujikom: {
+                            nama: "UJI KOmpetensi KL1",
+                            skema_judul_klaster: "Klaster 1 TAV",
+                            tuk: "TUK TAV SMK Negeri 1 Kandeman",
+                        }
+                    }
                 },
                 elements: {
                     dataTablePendaftaran: null,
                     ktdt: null,
                     cardPencarian : null,
-                    card_collapser: null
+                    card_collapser: null,
+                    modalPendaftaran: null
                 },
                 dataBase: {
                     daftar_ujikom: [],
@@ -248,7 +333,7 @@
                                 width: 100,
                                 autoHide: false,
                                 template: function(row, index) {                                    
-                                    return `<a href="#"  class="btn btn-sm btn-primary btnDetail" title="Klik untuk melihat detail">
+                                    return `<a href="#" data-id="${index}"  class="btn btn-sm btn-primary btnDetail" title="Klik untuk melihat detail">
                                                 <i class="flaticon-list"></i> Detail
                                             </a>`;
                                 },
@@ -330,12 +415,16 @@
                 let vm = this;
                 // vm.initDataTable();
                 this.initCardPencarian();
+                vm.modalPendaftaran = $('#staticBackdrop')
                 $(document).on('click','.btnDetail', function() {
-                    alert("WOY");
+                    vm.openModal()
+                    const unique = $(this).data('id')
+                    vm.showDetail(unique)
                 })
             }, 
             methods: {
                 initDataTable: async function() {
+                    let vm = this
                     let url = `${this.urls.get_pendaftaran}`
                     this.elements.dataTablePendaftaran = $('#ktdt_pendaftaran');                    
                     if(this.elements.ktdt != null) {
@@ -351,7 +440,11 @@
                         return;
                     }
                     console.log("ELEMENT",this.elements.dataTablePendaftaran)
+                    
                     this.elements.ktdt = CDatatableRemoteAjax.init(this.elements.dataTablePendaftaran, url, this.config.dataTable.columns);
+                    this.elements.ktdt.on('datatable-on-ajax-done', function(event, data) {
+                        vm.dataBase.daftar_pendaftaran = data;
+                    })
                     this.elements.ktdt.on('datatable-on-reloaded', function() {
                         swal.close();
                     })
@@ -371,6 +464,9 @@
                 }, 
                 changeCardShownStatus: function(value) {
                     this.status.cardShown = value
+                },
+                openModal() {
+                    this.modalPendaftaran.modal('show');
                 },
                 fetchDB: async function() {                    
                     let vm = this;
@@ -404,8 +500,68 @@
                             })
                         })
                 },
-                showDetail: async function() {
-
+                showDetail: async function(idx) {
+                    let dataPendaftaran = this.dataBase.daftar_pendaftaran[idx];
+                    this.status.dataPendaftaran = {
+                        asesi: {
+                            nama: dataPendaftaran.data_diri.nama,
+                            sekolah: "SMK Negeri 1 Kandeman",
+                            jurusan: dataPendaftaran.data_asesi.jurusan,
+                            kelas: dataPendaftaran.data_asesi.kelas,
+                            no_hp:dataPendaftaran.data_diri.no_telp,
+                        },
+                        pendaftaran: {
+                            user_id: dataPendaftaran.user_id,
+                            ujikom_id: dataPendaftaran.uji_kompetensi_id,
+                            status: dataPendaftaran.status,
+                            jdwl_ujikom_id: dataPendaftaran.jdwl_ujikom_id,
+                            tujuan_sertifikasi: dataPendaftaran.tujuan_sertifikasi,
+                            tgl_daftar: moment(dataPendaftaran.created_at).format('D MMMM Y LT')
+                        },
+                        ujikom: {
+                            nama: dataPendaftaran.uji_kompetensi.nama,
+                            skema_judul_klaster: dataPendaftaran.uji_kompetensi.skema.judul_klaster,
+                            tuk: dataPendaftaran.uji_kompetensi.tuk.nama,
+                        }
+                    }
+                },
+                updateStatus: async function(status) {
+                    console.log(status)
+                    let vm = this
+                    if(vm.form.catatanReview == "") {
+                        swal.fire({
+                            title:"Perhatian",
+                            text: "Catatan Review harus diisi",
+                            icon: "warning"
+                        })
+                        return
+                    }
+                    let data = {
+                        _method: "PUT",
+                        user_id: vm.status.dataPendaftaran.pendaftaran.user_id,
+                        ujikom_id: vm.status.dataPendaftaran.pendaftaran.ujikom_id,
+                        status: status,
+                        catatan: vm.form.catatanReview
+                    }
+                    axios.put(vm.urls.upstatus_pendaftaran, data)
+                        .then(response => {
+                            if(response.status == 200) {
+                                swal.fire({
+                                    title: "Berhasil",
+                                    text: "Ubah Status Pendaftaran Berhasil"
+                                })
+                                .then(() => {
+                                    vm.elements.modalPendaftaran.modal('hide')
+                                    vm.initDataTable()
+                                })
+                            }
+                        })
+                    // console.log([status, this.status.dataPendaftaran]);
+                    console.log({
+                        user_id: vm.status.dataPendaftaran.pendaftaran.user_id,
+                        ujikom_id: vm.status.dataPendaftaran.pendaftaran.ujikom_id,
+                        status: status
+                    })
                 }
             }
         })

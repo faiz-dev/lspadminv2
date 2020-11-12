@@ -21,7 +21,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "afif184979@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -32,7 +32,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "anim184980@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -43,7 +43,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arief184981@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -54,7 +54,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ciswati184982@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -65,7 +65,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "deby184983@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -76,7 +76,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "elang184984@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -87,7 +87,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "evi184985@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -98,7 +98,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "fajar184986@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -109,7 +109,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "fatma184987@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -120,7 +120,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "fenti184988@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -131,7 +131,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "feriska184989@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -142,7 +142,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ida184990@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -153,7 +153,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "iman184991@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -164,7 +164,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "indah184992@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -175,7 +175,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "indo184993@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -186,7 +186,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "kiki184994@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -197,7 +197,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "kiswanto184995@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -208,7 +208,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "kumalasari184996@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -219,7 +219,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ana185015@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -230,7 +230,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ari185016@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -241,7 +241,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ayuk185017@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -252,7 +252,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dian185018@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -263,7 +263,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dian185019@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -274,7 +274,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dina185020@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -285,7 +285,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "diyas185021@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -296,7 +296,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "evi185022@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -307,7 +307,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "febri185023@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -318,7 +318,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "firman185024@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -329,7 +329,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "lukita185025@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -340,7 +340,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "misbahul185026@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -351,7 +351,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "mohamad185027@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -362,7 +362,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "agil185028@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -373,7 +373,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "nabilla185029@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -384,7 +384,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "nokhita185030@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -395,7 +395,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "nuraisah185031@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -406,7 +406,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "nurul185032@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -417,7 +417,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "adi184800@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -428,7 +428,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ali184801@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -439,7 +439,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "andika184802@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -450,7 +450,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "andriansyah184803@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -461,7 +461,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ardiyanto184804@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -472,7 +472,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arif184805@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -483,7 +483,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arya184806@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -494,7 +494,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "aulia184807@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -505,7 +505,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "bayu184808@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -516,7 +516,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "bayu184809@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -527,7 +527,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dewi184810@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -538,7 +538,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dhito184811@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -549,7 +549,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dhofin184812@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -560,7 +560,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dwi184813@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -571,7 +571,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dwi184814@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -582,7 +582,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "fajar184815@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -593,7 +593,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "firman184816@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -604,7 +604,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ifnu184817@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -615,7 +615,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "adam184836@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -626,7 +626,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ahmad184837@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -637,7 +637,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "angga184838@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -648,7 +648,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arya184839@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -659,7 +659,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "bagas184840@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -670,7 +670,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "bisma184841@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -681,7 +681,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "denny184842@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -692,7 +692,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "diah184843@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -703,7 +703,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "edi184844@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -714,7 +714,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "farid184845@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -725,7 +725,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "feri184846@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -736,7 +736,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "galih184847@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -747,7 +747,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "galih184848@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -758,7 +758,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ghulaman184849@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -769,7 +769,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "hermawan184850@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -780,7 +780,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ipnu184851@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -791,7 +791,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ivan184852@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -802,7 +802,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "adian184872@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -813,7 +813,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "aditya184873@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -824,7 +824,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ahmad184874@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -835,7 +835,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "andi184875@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -846,7 +846,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "bagus184877@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -857,7 +857,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "celvin184878@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -868,7 +868,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "chumaedi184879@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -879,7 +879,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "eka184880@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -890,7 +890,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "elang184881@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -901,7 +901,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "eric184882@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -912,7 +912,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "faza184883@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -923,7 +923,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "ficky184884@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -934,7 +934,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "firman184885@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -945,7 +945,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "imam184886@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -956,7 +956,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "lutfan184887@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -967,7 +967,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "m.184888@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -978,7 +978,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "m.184889@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -989,7 +989,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "aditya184731@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1000,7 +1000,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "afif184732@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1011,7 +1011,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "agung184733@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1022,7 +1022,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "agus184734@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1033,7 +1033,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "alfais184735@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1044,7 +1044,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "aris184736@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1055,7 +1055,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "azis184737@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1066,7 +1066,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "chamdin184738@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1077,7 +1077,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dias184739@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1088,7 +1088,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dimas184740@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1099,7 +1099,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "edi184741@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1110,7 +1110,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "fernanda184742@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1121,7 +1121,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "fiki184743@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1132,7 +1132,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "gustomi184744@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1143,7 +1143,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "heri184745@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1154,7 +1154,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "isro'184746@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1165,7 +1165,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "jazuli184747@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1176,7 +1176,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "miftakhul184748@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1187,7 +1187,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "achmad184766@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1198,7 +1198,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "adit184767@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1209,7 +1209,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "agal184768@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1220,7 +1220,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "agung184769@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1231,7 +1231,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "amanda184770@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1242,7 +1242,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "anggi184771@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1253,7 +1253,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "anggit184772@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1264,7 +1264,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arief184773@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1275,7 +1275,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arizal184774@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1286,7 +1286,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "arjuna184775@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1297,7 +1297,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "bagus184776@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1308,7 +1308,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "cisnandri184777@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1319,7 +1319,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "david184778@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1330,7 +1330,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dimas184779@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1341,7 +1341,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "dwi184780@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1352,7 +1352,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "emillul184781@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1363,7 +1363,7 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "gilang184782@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
@@ -1374,13 +1374,13 @@ class AsesiResourcesSeeder extends Seeder
                 "email" =>  "gilang184783@student.smkn1kandeman.sch.id",
                 "uid"   =>   Str::uuid(),
                 "tipe"  => json_encode(["asesi"]),
-                "password" =>   Hash::make("root", [
+                "password" =>   Hash::make("12345", [
                         'memory' => 1024,
                         'time'  => 2,
                         'threads' => 2
                     ]),
             ],
-
         ]);
+
     }
 }

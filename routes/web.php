@@ -114,12 +114,14 @@ Route::group(['middleware' => ['role:Member',ChckPwdExp::class], 'prefix' => '/m
 
 
 Route::group(['middleware'=>['auth']], function(){
-    Route::get('/keluar','Auth\LoginController@logout')->name('logout');
+    Route::post('/keluar','Auth\LoginController@logout')->name('logout');
 });
 // Auth::routes();
 
 // PORTAL ROUTES
-Route::get('/', 'Portal\HomeController@index')->name('home');
+Route::get('/', function() {
+    return redirect(route('member-show-login'));
+})->name('home');
 Route::get('/contactus', 'Portal\HomeController@contactus')->name('contactus');
 Route::get('/download', 'Portal\HomeController@download')->name('download');
 

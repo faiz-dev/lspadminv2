@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class PerencanaanController extends Controller
 {
-    //
+    public function index()
+    {
+        # code...
+    }
 }

@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SkemaResourcesSeeder::class);
         $this->call(UjiKompetensiResourcesSeeder::class);
         $this->call(AsesiResourcesSeeder::class);
+        $this->call(AsesiTambahan::class);
+        
     }
 }

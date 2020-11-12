@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Asesi\Pengaturan;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Service\MemberService;
+use App\Services\MemberService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 

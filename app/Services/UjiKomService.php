@@ -140,7 +140,8 @@ class UjiKomService
 
     public static function getAllPendaftaranSafe(Object $filter,Object $options): Collection
     {
-        $daftar_pendaftaran = PendaftaranUji::with('ujiKompetensi')
+        $daftar_pendaftaran = PendaftaranUji::with('ujiKompetensi.skema')
+                                            ->with('ujiKompetensi.tuk')
                                             ->with('user.asesi')
                                             ->with('user.dataDiri')
                                             ->orderBy('created_at', 'desc');
@@ -184,7 +185,8 @@ class UjiKomService
                 ];
 
                 $p->data_diri = (object) [
-                    "nama"  =>  $p->user->dataDiri->nama
+                    "nama"  =>  $p->user->dataDiri->nama,
+                    "no_telp"  =>  $p->user->dataDiri->no_telp,
                 ];
 
                 unset($p->user);
@@ -219,6 +221,19 @@ class UjiKomService
     {
         $pendaftaran = PendaftaranUji::where('user_id',$user_id)->where('uji_kompetensi_id',$ukom_id)->first();
 
+        return $pendaftaran;
+    }
+
+    public static function updateStatusPendaftaran($options)
+    {
+        $pendaftaran = PendaftaranUji::where('user_id',$options->user_id)
+                    ->where('uji_kompetensi_id', $options->ujikom_id)
+                    ->firstOrFail();
+        $pendaftaran->status = $options->status;
+        $pendaftaran->disetujui = true;
+        $pendaftaran->tanggal_disetujui = date('Y-m-d');
+        $pendaftaran->catatan = $options->catatan;
+        $pendaftaran->save();
         return $pendaftaran;
     }
 }
