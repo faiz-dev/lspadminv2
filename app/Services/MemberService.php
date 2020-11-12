@@ -9,12 +9,12 @@ use Illuminate\Support\Str;
 
 class MemberService 
 {
-    public function getAll($tipe, $deleted = false): Collection
+    public function getAll($tipe, $deleted = false)
     {
         $dataMember = User::select('*');
         switch($tipe) {
             case 'asesi' : 
-                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri','asesi');
+                $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri')->with('asesi');
             break;
             case 'manajer_jejaring':
                 $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataDiri','manajerJejaring');
@@ -30,6 +30,7 @@ class MemberService
             break;
         }
 
+        
         if($deleted)
             $dataMember = $dataMember->withTrashed();
 
@@ -95,12 +96,12 @@ class MemberService
         DB::transaction(function() use($idMember, $data, $dataAsesi) {
             // find last nomor urut
             $lastUrut = Asesi::select('no_urut', 'tahun_daftar')->latest()->first();
-            $noUrutTerakhir = $lastUrut != null ? $lastUrut->no_urut : 1;
+            $noUrutTerakhir = $lastUrut != null ? $lastUrut->no_urut+1 : 1;
             $dataAsesi->uid = Str::uuid();
             $dataAsesi->user_id = $idMember;
             $dataAsesi->no_urut = $noUrutTerakhir;
             $dataAsesi->tahun_daftar = date('Y');
-            $dataAsesi->no_reg = str_pad($noUrutTerakhir,7,"0", STR_PAD_LEFT) ." ".date('Y');
+            $dataAsesi->no_reg = str_pad($noUrutTerakhir++,7,"0", STR_PAD_LEFT) ." ".date('Y');
             $dataAsesi->jurusan = $data->jurusan;
             $dataAsesi->kelas = $data->kelas;
             $dataAsesi->tipe = $data->tipe;
@@ -133,7 +134,7 @@ class MemberService
         return $dataManajerJejaring;
     }
 
-    public function getOne($uid, $tipe = ''): User
+    public static function getOne($uid, $tipe = ''): User
     { 
         $dataMember = User::where('uid', $uid);
         switch($tipe) {

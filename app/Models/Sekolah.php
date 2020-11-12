@@ -10,4 +10,9 @@ class Sekolah extends Model
     {
         return $this->hasMany('App\Models\ManajerJejaring','sekolah_id');
     }
+
+    public function jurusan()
+    {
+        return $this->hasMany('App\Models\Jurusan','sekolah_id');
+    }
 }

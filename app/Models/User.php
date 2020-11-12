@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function dataDiri()
     {
-        return $this->hasOne('App\Models\DataDiri');
+        return $this->hasOne('App\Models\DataDiri','user_id');
     }
 
     public function asesi()

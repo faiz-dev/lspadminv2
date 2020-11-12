@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\{UjiKompetensi, PendaftaranUji};
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 class UjiKomService 
 {
@@ -172,6 +173,7 @@ class UjiKomService
             });
         } else {
             $daftar_pendaftaran->transform(function($p) {
+                $p->profile = json_decode($p->dump_profile);
                 unset($p->dump_skema);
                 unset($p->dump_profile);
 
@@ -226,14 +228,27 @@ class UjiKomService
 
     public static function updateStatusPendaftaran($options)
     {
-        $pendaftaran = PendaftaranUji::where('user_id',$options->user_id)
+        $update = [
+            "status"    => $options->status,
+            "disetujui" => $options->status == 'disetujui' ? true : false,
+        ];
+        if($options->status == 'disetujui') {
+            $update['tanggal_disetujui'] = date('Y-m-d');
+        }
+        // dd($options);
+        $pendaftaran = DB::table('pendaftaran_ujis')->where('user_id',$options->user_id)
                     ->where('uji_kompetensi_id', $options->ujikom_id)
-                    ->firstOrFail();
-        $pendaftaran->status = $options->status;
-        $pendaftaran->disetujui = true;
-        $pendaftaran->tanggal_disetujui = date('Y-m-d');
-        $pendaftaran->catatan = $options->catatan;
-        $pendaftaran->save();
+                    ->update($update);
+        return $pendaftaran;
+        // $pendaftaran->status = $options->status;
+        // if($options->status == 'disetujui') {
+        //     $pendaftaran->disetujui = true;
+        //     $pendaftaran->tanggal_disetujui = date('Y-m-d');
+        // }
+        // $pendaftaran->catatan = $options->catatan;
+        // $pendaftaran->save();
+        // $pendaftaran = PendaftaranUji::all();
+        
         return $pendaftaran;
     }
 }

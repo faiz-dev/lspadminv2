@@ -15,7 +15,9 @@ class SekolahService
         $daftar_sekolah = Sekolah::all();
 
         return $daftar_sekolah->transform(function($item) {
-            return (object) $item->only(["uid","nama","alamat","kota","provinsi","no_telp","email"]);
+            $is = (object) $item->only(["uid","nama","alamat","kota","provinsi","no_telp","email"]);
+            $is->jurusan = $item->jurusan;
+            return $is;
         });
     }
 

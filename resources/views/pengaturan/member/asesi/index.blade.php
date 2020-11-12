@@ -8,7 +8,7 @@
 
     <div class="row" id="app">
         <div class="col-12 col-sm-12 col-xl-8">
-            <div class="card card-custom gutter-b" id="card_pencarian">
+            <div class="card card-custom gutter-b d-none" id="card_pencarian">
                 <div class="card-header border-0">
                     <div class="card-title">
                         <h3 class="card-label">Pencarian Member Asesi</h3>
@@ -63,9 +63,10 @@
                             <label for="jurusan" class="col-2 col-form-label">Jurusan</label>
                             <div class="col-md-10">
                                 <select v-model="form.jurusan" name="jurusan" id="" class="form-control" required>
-                                    <option value="tav">Teknik Audio Video</option>
-                                    <option value="tkr">Teknik Kendaraan Ringan</option>
-                                    <option value="tp">Teknik Pemesinan</option>
+                                    <option value="">Pilih Jurusan</option>
+                                    @foreach($daftar_sekolah->jurusan as $jurusan)
+                                        <option value="{{$jurusan->slug}}">{{$jurusan->nama}}</option>
+                                    @endforeach
                                 </select>
                             </div>         
                         </div>
@@ -101,7 +102,7 @@
             </div>
         </div>
 
-        <div class="col-12" :class="{'d-none':status.cardShown}">
+        <div class="col-12">
             <div class="card card-custom">
                 <div class="card-header">
                     <div class="card-header border-0">
@@ -213,7 +214,7 @@
 
 {{-- Scripts Section --}}
 @section('scripts')
-    <script src="{{ url('js/custom/datatable/local.js') }}"></script>
+    <script src="{{ url('js/custom/datatable/ajax.js') }}"></script>
     
     <script>
         
@@ -231,46 +232,22 @@
                 elements: {
                     cardPencarian : null,
                     dataTableMember: null,
+                    ktdt: null,
                     filterTableNama: null,
                     filterTableJurusan: null,
                     filterTableSekolah: null,
                     filterTableNoReg: null,
                     card_collapser: null
                 },
+                urls: {
+                    get_member: '{{ route("pengaturan.member.asesi.fetch") }}',
+                    base: '{{ route("pengaturan.member.asesi") }}'
+                },
                 status: {
                     cardShown: true
                 },
                 dataBase: {
-                    daftarAsesi: [
-                        {
-                            nama: 'Alfian Faiz',
-                            no_reg: "1142500 2020",
-                            tipe: 'sendiri',
-                            jurusan: 'RPL',
-                            sekolah: "SMK Negeri 2 Pekalongan"
-                        },
-                        {
-                            nama: 'Vidiya',
-                            no_reg: "1142500 2020",
-                            tipe: 'sendiri',
-                            jurusan: 'TAV',
-                            sekolah: "SMK Negeri 2 Pekalongan"
-                        },
-                        {
-                            nama: 'Alfian Faiz',
-                            no_reg: "1142500 2020",
-                            tipe: 'sendiri',
-                            jurusan: 'RPL',
-                            sekolah: "SMK Negeri 2 Pekalongan"
-                        },
-                        {
-                            nama: 'Alfian Faiz',
-                            no_reg: "5411 2020",
-                            tipe: 'sendiri',
-                            jurusan: 'RPL',
-                            sekolah: "SMK Negeri 2 Pekalongan"
-                        }
-                    ]
+                    daftarAsesi: []
                 },
                 config: {
                     urls: {
@@ -292,32 +269,45 @@
                                 field: 'nama',
                                 title: 'Nama',    
                                 width: 150,
+                                autoHide: false, 
+                                template: function (row, index) {
+                                    if(row.data_diri) {
+                                        return row.data_diri.nama+` <i class="la la-check-circle text-primary"></i>`
+                                    } else {
+                                        return row.name+` <i class="la la-exclamation-circle text-warning"></i>`
+                                    }
+                                }
                             },
-                            {
-                                field: 'no_reg',
-                                title: 'No.Reg', 
-                                width: 150,
-                                autoHide: false,
-                            }, 
                             {
                                 field: 'email',
                                 title: 'email',    
                                 width: 150,
                             },
                             {
-                                field: 'tipe',
-                                title: 'Sekolah', 
-                                width: 200,
+                                field: 'no_reg',
+                                title: 'No.Reg', 
+                                width: 150,
                                 autoHide: false,
-                                template: function(row) {
-                                    return row.sekolah;
+                                template: function (row, index) {
+                                    if(row.asesi) {
+                                        return row.asesi.no_reg
+                                    } else {
+                                        return "-"
+                                    }
                                 }
                             },
                             {
-                                field: 'jurusan',
+                                field: 'asesi.jurusan',
                                 title: 'Jurusan', 
                                 width: 150,
-                                autoHide: false,
+                                autoHide: true,
+                                template: function (row, index) {
+                                    if(row.asesi) {
+                                        return row.asesi.jurusan ? row.asesi.jurusan.toUpperCase() : "-"
+                                    } else {
+                                        return "-"
+                                    }
+                                }
                             },
                             {
                                 field: 'Actions',
@@ -325,7 +315,7 @@
                                 width: 80,
                                 autoHide: false,
                                 template: function(row, index) {
-                                    return '<a href="javascript:;" data-id="'+index+'" class="btn btn-sm btn-clean btn-icon mr-2 btnEdit" title="Edit details">\
+                                    return '<a href="javascript:;" data-id="'+row.uid+'" class="btn btn-sm btn-clean btn-icon mr-2 btnEdit" title="Edit details">\
                                                 <span class="svg-icon svg-icon-md">\
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -349,6 +339,12 @@
             mounted() {
                 this.initCardPencarian();
                 let vm = this;
+                this.initDataTable()
+
+                $(document).on('click','.btnEdit', function() {
+                    const unique = $(this).data('id')
+                    window.location.href = vm.urls.base+`/edit?q=${unique}`
+                })
             }, 
             methods: {
                 initCardPencarian: function() {
@@ -368,9 +364,31 @@
                     this.status.cardShown = value
                 },
                 initDataTable: async function() {
-                    this.elements.dataTableMember = $('#kt_datatable');
-                    console.log(this.elements.dataTableMember)
-                    CDataTable.init(this.elements.dataTableMember, this.dataBase.daftarAsesi, this.config.dataTable.columns);
+                    let vm = this
+                    let url = `${this.urls.get_member}`
+                    this.elements.dataTableMember = $('#kt_datatable');              
+                    if(this.elements.ktdt != null) {
+                        // this.elements.ktdt.destroy();
+                        swal.fire({
+                            title: "Loading",
+                            text: "Mengambil data"
+                        })
+                        swal.showLoading();
+                        this.elements.ktdt.setDataSourceParam('no_reg', this.form.no_registrasi);
+                        this.elements.ktdt.setDataSourceParam('tahun_daftar', this.form.tahun_daftar);
+                        this.elements.ktdt.setDataSourceParam('jurusan_slug', this.form.jurusan);
+                        this.elements.ktdt.load()
+                        return;
+                    }
+                    console.log("ELEMENT",this.elements.dataTableMember)
+                    
+                    this.elements.ktdt = CDatatableRemoteAjax.init(this.elements.dataTableMember, url, this.config.dataTable.columns);
+                    this.elements.ktdt.on('datatable-on-ajax-done', function(event, data) {
+                        vm.dataBase.daftar_member = data;
+                    })
+                    this.elements.ktdt.on('datatable-on-reloaded', function() {
+                        swal.close();
+                    })
                 },
                 initDataTableToolbar: function() {
                     this.elements.filterTableNama = $('#filterTableNama')

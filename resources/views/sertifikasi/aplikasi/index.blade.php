@@ -139,6 +139,14 @@
                                             <td>@{{ status.dataPendaftaran.asesi.nama }}</td>
                                         </tr>
                                         <tr>
+                                            <td>Tempat, Tgl Lahir</td>
+                                            <td>@{{ status.dataPendaftaran.asesi.ttl }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Alamat</td>
+                                            <td>@{{ status.dataPendaftaran.asesi.alamat }}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Sekolah</td>
                                             <td>@{{ status.dataPendaftaran.asesi.sekolah }}</td>
                                         </tr>
@@ -199,7 +207,8 @@
                             <button type="button" class="btn btn-warning" @click="updateStatus('revisi')" >Revisi</button>
                             <button type="button" class="btn btn-danger" @click="updateStatus('ditolak')">Tolak</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success" @click="updateStatus('setujui')">Setujui</button>
+                        <button type="button" class="btn btn-info" @click="updateStatus('review')">Review</button>
+                        <button type="button" class="btn btn-success" @click="updateStatus('disetujui')">Setujui</button>
                         </div>
                     </div>
                 </div>
@@ -243,7 +252,9 @@
                             sekolah: "SMK Negeri 1 Kandeman",
                             jurusan: "Teknik Audio Video",
                             kelas: "XII TAV 1",
-                            no_hp: "087700860194"
+                            no_hp: "087700860194",
+                            ttl: '',
+                            alamat: '',
                         },
                         pendaftaran: {
                             user_id: 1,
@@ -316,13 +327,13 @@
                                             return `<span class="label label-info label-dot mr-2"></span><span class="font-weight-bold text-info">review</span>`
                                         break;
                                         case 'revisi' : 
-                                            return `<span class="label label-info label-dot mr-2"></span><span class="font-weight-bold ">revisi</span>`
+                                            return `<span class="label label-warning label-dot mr-2"></span><span class="font-weight-bold ">revisi</span>`
                                         break;
                                         case 'disetujui' : 
-                                            return `<span class="label label-info label-dot mr-2"></span><span class="font-weight-bold ">review</span>`
+                                            return `<span class="label label-success label-dot mr-2"></span><span class="font-weight-bold ">disetujui</span>`
                                         break;
                                         case 'ditolak' : 
-                                            return `<span class="label label-info label-dot mr-2"></span><span class="font-weight-bold ">review</span>`
+                                            return `<span class="label label-danger label-dot mr-2"></span><span class="font-weight-bold ">ditolak</span>`
                                         break;
                                     }
                                 }
@@ -501,14 +512,18 @@
                         })
                 },
                 showDetail: async function(idx) {
-                    let dataPendaftaran = this.dataBase.daftar_pendaftaran[idx];
+                    let dataPendaftaran = this.dataBase.daftar_pendaftaran.find(function(it) {
+                        return it.user_id == idx;
+                    });
                     this.status.dataPendaftaran = {
                         asesi: {
-                            nama: dataPendaftaran.data_diri.nama,
+                            nama: dataPendaftaran.profile.nama,
                             sekolah: "SMK Negeri 1 Kandeman",
                             jurusan: dataPendaftaran.data_asesi.jurusan,
                             kelas: dataPendaftaran.data_asesi.kelas,
-                            no_hp:dataPendaftaran.data_diri.no_telp,
+                            no_hp:dataPendaftaran.profile.no_telp,
+                            ttl:`${dataPendaftaran.profile.tempat_lahir}, ${dataPendaftaran.profile.tgl_lahir}`,
+                            alamat: dataPendaftaran.profile.alamat,
                         },
                         pendaftaran: {
                             user_id: dataPendaftaran.user_id,

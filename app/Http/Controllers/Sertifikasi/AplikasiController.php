@@ -65,15 +65,15 @@ class AplikasiController extends Controller
      */
     public function updateStatus(Request $request)
     {
-        return response()->json(["status" => "success", "req"=> $request->all()], 200);
         $request->validate([
-            'user_id'   =>  'required|exists:user',
-            'ujikom_id' =>  'required|exists:uji_kompetensis',
+            'user_id'   =>  'required',
+            'ujikom_id' =>  'required',
             'status'    =>  'required|in:review,revisi,ditolak,disetujui',
             'catatan'   =>  'required'
-        ]);
-        $options = (object) $request->only('user_id','ujikom_id','status');
+            ]);
+        $options = (object) $request->only('user_id','ujikom_id','status','catatan');
         $pendaftaran = UjiKomService::updateStatusPendaftaran($options);
+        return response()->json(["status" => "success", "data"=> $pendaftaran], 200);
     } 
 
     /**

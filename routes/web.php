@@ -75,8 +75,10 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
         // user manager
         Route::group(['middleware' => ['permission:user-manager'],'prefix'=>'/member'], function() {
             Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');
-            Route::get('/asesi/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
+            Route::post('/asesi/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
             Route::get('/asesi/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
+            Route::get('/asesi/edit', 'Pengaturan\MemberManController@editAsesi')->name('pengaturan.member.asesi.edit');
+            Route::put('/asesi/update-password', 'Pengaturan\MemberManController@updatePassword')->name('pengaturan.member.asesi.update-password');
         });
 
         // sekolah
