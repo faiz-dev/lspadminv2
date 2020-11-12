@@ -55,6 +55,17 @@ Route::group(['middleware'=>['guest']], function(){
 Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'prefix'=>'/manager'], function() {
     Route::get('/','Admin\MainController@index');
 
+    Route::group(['prefix'=>'/sertifikasi'], function() {
+        // aplikasi
+        Route::group(['prefix'=>'/aplikasi'], function() {
+            Route::get('/', 'Sertifikasi\AplikasiController@index')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.index');
+            Route::post('/data', 'Sertifikasi\AplikasiController@data')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.data');
+            Route::get('/detail', 'Sertifikasi\AplikasiController@detail')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.detail');
+            Route::put('/updateStatus', 'Sertifikasi\AplikasiController@updateStatus')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.update-status');
+            Route::delete('/', 'Sertifikasi\AplikasiController@delete')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.delete');
+        });
+    });
+
     Route::group(['prefix'=>'/pengaturan'], function() {      
         // permission          
         Route::resource('permission', 'Pengaturan\PermissionsManController')->middleware('permission:permission-manager');
@@ -72,7 +83,11 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
         Route::group(['middleware' => ['permission:sekolah manager'],'prefix' => "/sekolahjejaring"], function(){
             Route::get('/sekolah', 'Pengaturan\JejaringManController@index')->name('pengaturan.sekolahjejaring.sekolah.index');
         });
+    });
 
+    Route::group(['prefix'=>'utils'], function() {
+        // Resource Uji Kompetensi
+        Route::get('/ujikom/get', "Utils\UjiKomUtils@getSafe")->name('utils.ujikom.get');
     });
 });
 
@@ -99,12 +114,14 @@ Route::group(['middleware' => ['role:Member',ChckPwdExp::class], 'prefix' => '/m
 
 
 Route::group(['middleware'=>['auth']], function(){
-    Route::get('/keluar','Auth\LoginController@logout')->name('logout');
+    Route::post('/keluar','Auth\LoginController@logout')->name('logout');
 });
 // Auth::routes();
 
 // PORTAL ROUTES
-Route::get('/', 'Portal\HomeController@index')->name('home');
+Route::get('/', function() {
+    return redirect(route('member-show-login'));
+})->name('home');
 Route::get('/contactus', 'Portal\HomeController@contactus')->name('contactus');
 Route::get('/download', 'Portal\HomeController@download')->name('download');
 

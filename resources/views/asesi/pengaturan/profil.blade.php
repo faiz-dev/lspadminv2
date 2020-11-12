@@ -146,9 +146,9 @@
                                     <div class="col-md-6">
                                         <select name="jurusan" class="form-control">
                                             <option value="" selected>Pilih Jurusan</option>
-                                            <option value="tav" {{ $data_asesi->jurusan == "tav" ? "selected":"" }} >Teknik Audio Video</option>
-                                            <option value="tkr" {{ $data_asesi->jurusan == "tkr" ? "selected":"" }} >Teknik Kendaraan Ringan</option>
-                                            <option value="tp" {{ $data_asesi->jurusan == "tp" ? "selected":"" }} >Teknik Pemesinan</option>
+                                            <option value="tav" {{ isset($data_asesi->jurusan) && $data_asesi->jurusan == "tav" ? "selected":"" }} >Teknik Audio Video</option>
+                                            <option value="tkr" {{ isset($data_asesi->jurusan) && $data_asesi->jurusan == "tkr" ? "selected":"" }} >Teknik Kendaraan Ringan</option>
+                                            <option value="tp" {{ isset($data_asesi->jurusan) && $data_asesi->jurusan == "tp" ? "selected":"" }} >Teknik Pemesinan</option>
                                         </select>
                                     </div>
                                 </div>
@@ -158,13 +158,13 @@
                                     <div class="col-md-6">
                                         <select name="kelas" class="form-control">
                                             <option value="">Pilih Kelas</option>
-                                            <option value="tav1"  {{ $data_asesi->kelas == "tav1" ? "selected":"" }}  >XII TAV 1</option>
-                                            <option value="tav2" {{ $data_asesi->kelas == "tav2" ? "selected":"" }}  >XII TAV 2</option>
-                                            <option value="tkro1" {{ $data_asesi->kelas == "tkro1" ? "selected":"" }}  >XII TKRO 1</option>
-                                            <option value="tkro2" {{ $data_asesi->kelas == "tkro2" ? "selected":"" }}  >XII TKRO 2</option>
-                                            <option value="tkro3" {{ $data_asesi->kelas == "tkro3" ? "selected":"" }}  >XII TKRO 3</option>
-                                            <option value="tp1" {{ $data_asesi->kelas == "tp1" ? "selected":"" }}  >XII TP 1</option>
-                                            <option value="tp2" {{ $data_asesi->kelas == "tp2" ? "selected":"" }}  >XII TP 2</option>
+                                            <option value="tav1"  {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tav1" ? "selected":"" }}  >XII TAV 1</option>
+                                            <option value="tav2" {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tav2" ? "selected":"" }}  >XII TAV 2</option>
+                                            <option value="tkro1" {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tkro1" ? "selected":"" }}  >XII TKRO 1</option>
+                                            <option value="tkro2" {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tkro2" ? "selected":"" }}  >XII TKRO 2</option>
+                                            <option value="tkro3" {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tkro3" ? "selected":"" }}  >XII TKRO 3</option>
+                                            <option value="tp1" {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tp1" ? "selected":"" }}  >XII TP 1</option>
+                                            <option value="tp2" {{ isset($data_asesi->kelas) && $data_asesi->kelas == "tp2" ? "selected":"" }}  >XII TP 2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                                 <div class="form-group row">
                                     <label for="ktp_provinsi" class="col-12 col-md-3">Provinsi KTP<span class="reqstar">*</span></label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="ktp_provinsi" placeholder="Provinsi KTP" value="{{ $data_diri != null ? $data_diri->ktp_provinsi : '' }}">
+                                        <input type="text" class="form-control" name="ktp_provinsi" placeholder="Provinsi KTP" value="{{ $data_diri != null ? $data_diri->ktp_provinsi : 'Jawa Tengah' }}">
                                     </div>
                                 </div>
         

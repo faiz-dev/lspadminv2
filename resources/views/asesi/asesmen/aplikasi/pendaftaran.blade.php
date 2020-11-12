@@ -501,7 +501,13 @@
                                 </div>
                                 <!--end::Input-->
                             </div>                            
-                        </div>   
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xl-6">
+                                Apabila terdapat kekeliruan data di atas, klik tombol berikut: <a href="{{ route('asesi.pengaturan.profil') }}" class="btn btn-sm btn-light-info">Ubah Profil Member</a>
+                            </div>                            
+                        </div>
 
                     </div>
                     <!--end::Wizard Step 1-->

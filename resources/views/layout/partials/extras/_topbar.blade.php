@@ -129,10 +129,20 @@
             <div class="topbar-item">
                 <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
                     <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
-                    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{Auth::user()->dataDiri->nama}}</span>
+                    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ Auth::user()->dataDiri != null ? Auth::user()->dataDiri->nama : "Admin"}}</span>
                     <span class="symbol symbol-35 symbol-light-success">
                         <span class="symbol-label font-size-h5 font-weight-bold">S</span>
                     </span>
+                </div>
+                <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">Keluar</span>
+                    <span class="symbol symbol-35 symbol-light-success">
+                        <span class="symbol-label font-size-h5 font-weight-bold"><i class="flaticon-logout"></i></span>
+                    </span>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         @else

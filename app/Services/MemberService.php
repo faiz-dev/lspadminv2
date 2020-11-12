@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 use App\Models\{User, Asesi, Asesor, ManajerJejaring, DataDiri};
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
@@ -100,10 +100,11 @@ class MemberService
             $dataAsesi->user_id = $idMember;
             $dataAsesi->no_urut = $noUrutTerakhir;
             $dataAsesi->tahun_daftar = date('Y');
-            $dataAsesi->no_reg = $noUrutTerakhir +" 2020";
+            $dataAsesi->no_reg = str_pad($noUrutTerakhir,7,"0", STR_PAD_LEFT) ." ".date('Y');
             $dataAsesi->jurusan = $data->jurusan;
             $dataAsesi->kelas = $data->kelas;
             $dataAsesi->tipe = $data->tipe;
+            $dataAsesi->sekolah_id = 1;
             $dataAsesi->isActive = true;
             $dataAsesi->status = 'active';
             

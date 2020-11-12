@@ -52,6 +52,7 @@ class ProfileController extends Controller
             $dataDiri = $memberService->fillDataDiri($userID, $data);
             $data->tipe = "induk";
             $dataAsesi = $memberService->createAsesi($userID, $data);
+            
         } else {
             $dataDiri = $memberService->updateDataDiri($userID, $data);            
         }

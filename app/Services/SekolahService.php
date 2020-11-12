@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +15,14 @@ class SekolahService
         $daftar_sekolah = Sekolah::all();
 
         return $daftar_sekolah->transform(function($item) {
-            return $item->only(["uid","nama","alamat","kota","provinsi","no_telp","email"]);
+            return (object) $item->only(["uid","nama","alamat","kota","provinsi","no_telp","email"]);
         });
+    }
+
+    public static function getOne($uid): Sekolah
+    {
+        $sekolah = Sekolah::where('uid', $uid)->first();
+
+        return $sekolah;
     }
 }
