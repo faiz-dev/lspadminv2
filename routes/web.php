@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Pengaturan\MemberManController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\ChckPwdExp;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,11 +76,22 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
 
         // user manager
         Route::group(['middleware' => ['permission:user-manager'],'prefix'=>'/member'], function() {
+            
             Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');
             Route::post('/asesi/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
             Route::get('/asesi/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
             Route::get('/asesi/edit', 'Pengaturan\MemberManController@editAsesi')->name('pengaturan.member.asesi.edit');
             Route::put('/asesi/update-password', 'Pengaturan\MemberManController@updatePassword')->name('pengaturan.member.asesi.update-password');
+
+            Route::group(['prefix'  =>  '/manager'], function() {
+                Route::get('/', [MemberManController::class, 'managerPanel'])->name('pengaturan.member.manager.index');
+                // Route::post('/fetch', [MemberManController::class, 'fetchManager'])->name('pengaturan.member.manager.fetch');
+                Route::get('/create', [MemberManController::class, 'createManager'])->name('pengaturan.member.manager.create');
+                Route::post('/', [MemberManController::class, 'storeManager'])->name('pengaturan.member.manager.store');
+                Route::get('/{uid}/edit', [MemberManController::class, 'editManager'])->name('pengaturan.member.manager.edit');
+                Route::put('/{uid}', [MemberManController::class, 'updateManager'])->name('pengaturan.member.manager.update');
+                Route::get('/{uid}/delete', [MemberManController::class, 'deleteManager'])->name('pengaturan.member.manager.delete');
+            });
         });
 
         // sekolah

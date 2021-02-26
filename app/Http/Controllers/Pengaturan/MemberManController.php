@@ -41,8 +41,7 @@ class MemberManController extends Controller
     {
         if($request->ajax()) {
             $tipe = 'asesi';
-            $memberService = new MemberService();
-            $daftar_member = $memberService->getAll($tipe);
+            $daftar_member = MemberService::getAll($tipe);
             
             $data = (object) [
                 "meta" => (object) [
@@ -95,69 +94,94 @@ class MemberManController extends Controller
         return redirect(route('pengaturan.member.asesi.edit').'?q='.$user->uid)->with('success', 'Role barhasil ditambahkan');;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // ======= MANAGER SECTION ================================================ 
+    public function managerPanel()
     {
-        //
+        $page_title = 'Manajemen Data Asesi';
+        $daftar_mgr = MemberService::getAll('manajer');
+        // dd($daftar_mgr);
+        return view('pengaturan.member.manajer.index', compact('page_title', 'daftar_mgr'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function fetchManager(Request $request)
     {
-        //
+        if($request->ajax()) {
+            $daftar_member = MemberService::getAll('manajer');
+            
+            $data = (object) [
+                "meta" => (object) [
+                    "page"  =>  1,
+                    "total" =>  count($daftar_member)
+                ], 
+                "data" => $daftar_member
+            ];
+            
+            return response()->json($data);
+        } else 
+        abort(404);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function createManager()
     {
-        //
+        $page_title = "Tambah Data Manager";
+        return view('pengaturan.member.manajer.create', compact('page_title'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function storeManager(Request $request)
     {
-        //
+        $request->validate([
+            "nama"      =>  "required",
+            "email"     =>  "required",
+            "telp"      =>  "required",
+            "password"  =>  "required|min:8",
+        ]);
+
+        $memberService = new MemberService;
+        $userCreation = $memberService->createAccount((object) [
+            "nama"          => $request->nama,
+            "email"         => $request->email,
+            "password"      => $request->password,
+            "tipe"          => json_encode(["manager"]),
+        ]);
+        $role = \Spatie\Permission\Models\Role::findByName("Super Manajer", "web");
+        $userCreation->assignRole($role);
+
+        return redirect(route("pengaturan.member.manager.index"))->with("success","Tambah Manager Berhasil");
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function editManager ($uid)
     {
-        //
+        $page_title = "Edit Data Manager";
+        $mgr = MemberService::getOne($uid, 'manajer');
+
+        return view('pengaturan.member.manajer.edit', compact('page_title', 'mgr'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function updateManager(Request $request, $uid)
     {
-        //
+        $request->validate([
+            "nama"      =>  "required",
+            "email"     =>  "required",
+            "telp"      =>  "required",
+            "password"  =>  "nullable|min:8",
+        ]);
+        // dd($request->all());
+        $memberService = new MemberService;
+        $userCreation = $memberService->updateAccount($uid, (object) [
+            "nama"          => $request->nama,
+            "email"         => $request->email,
+            "password"      => $request->password,
+            "tipe"          => json_encode(["manager"]),
+        ]);
+        
+        return redirect(route("pengaturan.member.manager.edit", ["uid"=> $uid]))->with("success","Tambah Manager Berhasil");
+    }
+
+    public function deleteManager($uid)
+    {
+        $memberService = new MemberService;
+        $delete = $memberService->deleteMember($uid);
+
+        return redirect(route("pengaturan.member.manager.index"))->with("success","Hapus Manager Berhasil");
     }
 }

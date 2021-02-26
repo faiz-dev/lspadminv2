@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class MemberService 
 {
-    public function getAll($tipe, $deleted = false)
+    public static function getAll($tipe, $deleted = false)
     {
         $dataMember = User::select('*');
         switch($tipe) {
@@ -23,10 +23,10 @@ class MemberService
                 $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataDiri','asesor');
             break;
             case 'manajer':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer'])->with('dataDiri');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manager'])->with('dataDiri');
             break;
             default: 
-                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manajer'])->with('dataDiri');
+                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manager'])->with('dataDiri');
             break;
         }
 
@@ -39,8 +39,9 @@ class MemberService
 
     public function createAccount($data): User
     {
-        // create new instance
+        // create new instance        
         $user = new User();
+        $user->uid = Str::uuid();
         $user->name = $data->nama;
         $user->email = $data->email;
         $user->password =  Hash::make($data->password, [
@@ -148,10 +149,10 @@ class MemberService
                 $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataDiri','asesor');
             break;
             case 'manajer':
-                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer'])->with('dataDiri');
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manager'])->with('dataDiri');
             break;
             default: 
-                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manajer'])->with('dataDiri');
+                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manager'])->with('dataDiri');
             break;
         }
         return $dataMember->firstOrFail();
