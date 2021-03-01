@@ -176,7 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        Aacotroneo\Saml2\Saml2ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -233,6 +233,8 @@ return [
         'Metronic' => App\Classes\Theme\Metronic::class,
         'Menu' => App\Classes\Theme\Menu::class,
 
+        
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

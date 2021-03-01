@@ -16,12 +16,12 @@
                         </div>
                     </div> 
                     <div class="card-body p-1 pt-5 d-flex flex-column align-items-center profilebox">
-                        <img src="{{ url("/media/users/300_21.jpg") }}" width="200px" alt="">
+                        {{-- <img src="{{ url("/media/users/300_21.jpg") }}" width="200px" alt=""> --}}
 
                         <table class="table mt-5">
                             <tr>
                                 <td>Nama</td>
-                                <td align="right">Alfian Faiz</td>
+                                <td align="right">{{ $data_diri != null ? $data_diri->nama : '' }}</td>
                             </tr>
                             <tr>
                                 <td>Tipe Member</td>
@@ -326,7 +326,7 @@
                 tempat_lahir: {
                     validators: {
                         stringLength: {
-                            max: 10,
+                            max: 50,
                             message: 'Maksimal 10 Karakter'
                         }
                     }
@@ -351,7 +351,7 @@
                             message: 'Tidak boleh Kosong'
                         },
                         stringLength: {
-                            max: 10,
+                            max: 50,
                             message: 'Maksimal 10 Karakter'
                         }
                     }

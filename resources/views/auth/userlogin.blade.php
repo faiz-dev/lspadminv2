@@ -89,7 +89,7 @@
                                     class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign
                                     In</button>
 
-                                <button type="button"
+                                <a href="{{ route('socialauth.redirect',['provider'=>'google']) }}" 
                                     class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg" disabled>
                                     <span class="svg-icon svg-icon-md">
                                         <!--begin::Svg Icon | path:assets/media/svg/social-icons/google.svg--><svg
@@ -109,7 +109,7 @@
                                                 fill="#EB4335" />
                                         </svg>
                                         <!--end::Svg Icon--></span> Sign in with Google
-                                </button>
+                                    </a>
                             </div>
                             <!--end::Action-->
                         </form>

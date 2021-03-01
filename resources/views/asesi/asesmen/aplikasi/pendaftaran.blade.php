@@ -686,7 +686,7 @@
 
 {{-- Scripts Section --}}
 @section('scripts') 
-<script src="{{ url('js/custom/wizards/pendaftaran.js')}}"></script>
+<script src="{{ url('js/custom/wizards/pendaftaran2.js')}}"></script>
 <script>
     jQuery(document).ready(function () {	
         KTWizard1.init("{{route('asesi.asesmen.action-pendaftaran').'?q='.$data_ujikom->uid}}")    

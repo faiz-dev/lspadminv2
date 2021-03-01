@@ -197,7 +197,8 @@ return [
                 [
                     'title' => 'Modul TUK',
                     'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
-                    'bullet' => 'line'
+                    'bullet' => 'line',
+                    'page' => '/manager/administrasi/mg-tuk',
                 ],
                 
                 [

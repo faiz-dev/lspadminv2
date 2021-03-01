@@ -38,9 +38,16 @@ Route::group(['middleware'=>['guest']], function(){
     // MEMBER AUTH
     Route::group(['prefix'=>'memberauth'], function(){
         Route::get('/', 'Auth\LoginController@memberShowLogin')->name('member-show-login');
+        Route::get('/login', 'Auth\LoginController@memberShowLogin')->name('login');
         Route::post('/', 'Auth\LoginController@memberActionLogin')->name('member-action-login');
         Route::get('/reset', 'Auth\LoginController@memberShowLogin')->name('member-show-reset');
         Route::post('/reset', 'Auth\LoginController@memberActionReset')->name('member-action-reset');
+    });
+
+    // SOCIAL AUTH
+    Route::group(['prefix' => 'socialauth'], function () {
+        Route::get('/{provider}', 'Auth\SocialController@redirect')->name('socialauth.redirect');
+        Route::get('/{provider}/callback','Auth\SocialController@callback');
     });
 
     // SECRET AUTH
@@ -66,6 +73,11 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
             Route::put('/updateStatus', 'Sertifikasi\AplikasiController@updateStatus')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.update-status');
             Route::delete('/', 'Sertifikasi\AplikasiController@delete')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.delete');
         });
+    });
+
+    // MODUL ADMINISTRASI
+    Route::group(['prefix' => 'administrasi'], function() {
+        Route::resource('/mg-tuk', 'Administrasi\TukManController');
     });
 
     Route::group(['prefix'=>'/pengaturan'], function() {      
@@ -107,7 +119,7 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
 });
 
 // AUTHORIZED ACCESS ASESI
-Route::group(['middleware' => ['role:Member',ChckPwdExp::class], 'prefix' => '/member'], function() {
+Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function() {
     Route::get('/','Asesi\MainController@welcome')->name('asesi.welcome');
     
     // UJI KOMPETENSI

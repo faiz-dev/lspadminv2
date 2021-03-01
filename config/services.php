@@ -29,5 +29,11 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    
+    'google'=> [
+        'client_id'  => "137896371930-d2pvr66t3lsrt3j9ks5i18j39u7j90a2.apps.googleusercontent.com",
+        'client_secret'  => "3mKxzEhHi21GmOz-QUVx1tVX",
+        'redirect'  => "https://lsp.smkn1kandeman.sch.id/socialauth/google/callback",
+    ]
 
 ];
