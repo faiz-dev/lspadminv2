@@ -76,10 +76,14 @@ class TukManController extends Controller
             "kota"      => "required",
             "provinsi"  => "required",
             "kode_pos"  => "required",
-            "induk"     => "reqyured|uuid"
+            "induk"     => "required|uuid"
         ]);
+        $sekolah = SekolahService::getOne($request->induk);
+        $data = (object)    $request->all();
+        $data->sekolah_id = $sekolah->id;
+        $tuk = TukService::create($data);
 
-        $tuk = TukService::create($request->all());
+        return redirect(route('mg-tuk.index'))->with("success", "Tambah TUK Berhasil");
     }
 
     /**
@@ -90,7 +94,7 @@ class TukManController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -101,7 +105,25 @@ class TukManController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tuk = TukService::getOneByUID($id);
+        $page_title = "Tambah TUK Baru";
+        $page_breadcrumbs= [
+            [
+                "page" =>  route('mg-tuk.index'),
+                "title" =>  'Daftar TUK'
+            ],
+            [
+                "page" =>  url('/manager'),
+                "title" =>  'Dashboard'
+            ]
+        ];
+        $daftar_sekolah = SekolahService::getAllSafe();
+        return view('md_administrasi.mg_tuk.edit', [
+            'page_title'        =>  $page_title,
+            'page_breadcrumbs'  =>  $page_breadcrumbs,
+            'tuk'               =>  $tuk,
+            'daftar_sekolah'    =>  $daftar_sekolah
+        ]);
     }
 
     /**
@@ -113,7 +135,23 @@ class TukManController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            "nama"      => "required",
+            "telp"      => "required",
+            "jenis"     => "required|in:sewaktu,tetap",
+            "alamat"    => "required",
+            "kota"      => "required",
+            "provinsi"  => "required",
+            "kode_pos"  => "required",
+            "induk"     => "required|uuid"
+        ]);
+        $sekolah = SekolahService::getOne($request->induk);
+        $data = (object)    $request->all();
+        $data->sekolah_id = $sekolah->id;
+        $tuk = TukService::update($id, $data);
+        // dd($request);
+        return redirect(route('mg-tuk.edit', ['mg_tuk'=>$id]))->with("success", "Update TUK Berhasil");
     }
 
     /**
