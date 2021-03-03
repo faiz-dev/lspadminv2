@@ -48,7 +48,7 @@
                                 <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
                                     Welcome to Member Portal
                                 </h3>
-                                <span class="text-muted font-weight-bold font-size-h4">Gunakan Email anda untuk Login</span>
+                                <span class="text-muted font-weight-bold font-size-h4">Gunakan Email SMK anda untuk Login</span>
                             </div>
                             <!--begin::Title-->
 
@@ -58,7 +58,7 @@
                                 </div>
                             @endif
 
-                            <!--begin::Form group-->
+                            {{-- <!--begin::Form group-->
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text"
@@ -81,13 +81,13 @@
                                 <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password"
                                     name="password" autocomplete="off" />
                             </div>
-                            <!--end::Form group-->
+                            <!--end::Form group--> --}}
 
                             <!--begin::Action-->
                             <div class="pb-lg-0 pb-5">
-                                <button type="button" id="kt_login_signin_submit"
+                                {{-- <button type="button" id="kt_login_signin_submit"
                                     class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Sign
-                                    In</button>
+                                    In</button> --}}
 
                                 <a href="{{ route('socialauth.redirect',['provider'=>'google']) }}" 
                                     class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg" disabled>
