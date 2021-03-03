@@ -22,7 +22,7 @@
                     <div class="card-toolbar">
                         <!--begin::Button-->
                         <a href="{{ route('mg-unit.create') }}"  class="btn btn-light-success mx-2 font-weight-bolder ">
-                            <i class="flaticon-download"></i>
+                            <i class="flaticon-plus"></i>
                             Tambah Unit Kompetensi
                         </a>
                         <a href="#"  class="btn btn-light-primary mx-2 font-weight-bolder ">

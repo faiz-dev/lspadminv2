@@ -14,11 +14,7 @@
             @endif
             <div class="card card-custom">
                 <div class="card-header">
-                    <div class="card-header border-0">
-                        <div class="card-title">
-                            <h3 class="card-label">Daftar Unit Kompetensi</h3>
-                        </div>
-                    </div>
+                    <h3 class="card-title">Daftar Klaster</h3>             
                     <div class="card-toolbar">
                         <!--begin::Button-->
                         <a href="{{ route('mg-unit.create') }}"  class="btn btn-light-success mx-2 font-weight-bolder ">
@@ -35,25 +31,54 @@
                 </div>
                 
                 <div class="card-body">
-                    <table class="table" id="f-dt">
+                   <table class="table">
+                       <tr>
+                           <td>Nama Skema</td>
+                           <td>
+                               {{ $skema->nama }}
+                           </td>
+                       </tr>
+                        <tr>
+                            <td>Kode Skema</td>
+                            <td>
+                                {{ $skema->kode }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Level Skema</td>
+                            <td>
+                                {{ $skema->level_kkni }}
+                            </td>
+                        </tr>
+                   </table>
+                    <form method="POST" id="f-delete">
+                        @csrf
+                        @method("DELETE")
+                    </form>
+                </div>
+            </div>
+            @if ($skema->subSkema->count() > 0)
+            <div class="card card-custom mt-3">
+                <div class="card-header">
+                    <h3 class="card-title">Daftar Klaster</h3>
+                </div>
+                <div class="card-body">
+                     <table class="table" id="f-dt">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode</th>
                                 <th>Nama</th>
-                                <th>Level KKNI</th>
-                                <th width="200">Aksi</th>
+                                <th>Jumlah Unit</th>
+                                <th width="150">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($daftar_skema as $key => $skema)
+                            @foreach ($skema->subSkema as $key => $klaster)
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
-                                    <td> {{ $skema->kode }} </td>
-                                    <td> {{ $skema->nama }} </td>
-                                    <td> {{ $skema->level_kkni }} </td>
-                                    <td>
-                                        <a href="{{ route('mg-skema.show', ['mg_skema'=> $skema->uid]) }}" class="btn btn-light-primary">Detail</a>  
+                                    <td> {{ $klaster->judul_klaster }} </td>
+                                    <td> {{ $klaster->unitKompetensi->count() }} </td>
+                                    <td> 
                                         <a href="{{ route('mg-skema.edit', ['mg_skema'=> $skema->uid]) }}" class="btn btn-light-warning">Edit</a> 
                                         <button data-id="{{ $skema->uid }}" class="btn btn-light-danger btn-delete", function(event) {
                                             console.log($(event).data('id'));
@@ -65,12 +90,10 @@
                         </tbody>
                     </table>
                     <!--end: Datatable-->
-                    <form method="POST" id="f-delete">
-                        @csrf
-                        @method("DELETE")
-                    </form>
                 </div>
             </div>
+            @endif
+            
         </div>
     </div>
 
