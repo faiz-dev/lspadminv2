@@ -78,6 +78,10 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
     // MODUL ADMINISTRASI
     Route::group(['prefix' => 'administrasi'], function() {
         Route::resource('/mg-tuk', 'Administrasi\TukManController');
+
+        Route::group(['prefix' => '/mskema'], function() {
+            Route::resource('/mg-unit', 'Administrasi\UnitKomManController');
+        });
     });
 
     Route::group(['prefix'=>'/pengaturan'], function() {      
