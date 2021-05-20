@@ -215,7 +215,8 @@ return [
                         [
                             'title' => 'Skema',
                             'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
-                            'bullet' => 'line'
+                            'bullet' => 'line',
+                            'page'      =>  'manager/administrasi/mskema/mg-skema'
                         ],
                         [
                             'title'     => 'Unit Kompetensi',

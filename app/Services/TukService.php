@@ -90,4 +90,15 @@ class TukService
             abort(500, $e);
         }
     }
+
+    public static function delete($uid)
+    {
+        try {
+            $tuk = \App\Models\TUK::where('uid', $uid)->firstOrFail();            
+
+            return $tuk->delete();
+        } catch (Exception $e) {
+            abort(500, $e);
+        }
+    }
 }

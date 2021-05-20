@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skema extends Model
 {
+
+    public function subSkema()
+    {
+        return $this->hasMany('App\Models\Skema', 'parent_id');
+    }
+
     public function skemaInduk()
     {
         return $this->belongsTo('App\Models\Skema', 'parent_id');

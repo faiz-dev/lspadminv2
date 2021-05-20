@@ -88,6 +88,8 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
 
         Route::group(['prefix' => '/mskema'], function() {
             Route::resource('/mg-unit', 'Administrasi\UnitKomManController');
+
+            Route::resource('/mg-skema', 'Administrasi\SkemaManController');
         });
     });
 

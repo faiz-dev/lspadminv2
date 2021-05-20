@@ -19,7 +19,7 @@
                     <div class="card-toolbar">
                         <!--begin::Button-->
                         <a href="{{ route('mg-tuk.create') }}"  class="btn btn-light-success mx-2 font-weight-bolder ">
-                            <i class="flaticon-download"></i>
+                            <i class="flaticon-plus"></i>
                             Tambah TUK
                         </a>
                         <a href="#"  class="btn btn-light-primary mx-2 font-weight-bolder ">
@@ -53,8 +53,9 @@
                                     <td> {{ $tuk->telp }} </td>
                                     <td> {{ $tuk->skl_nama }} </td>
                                     <td> 
-                                        <a href="{{ route('mg-tuk.edit', ['mg_tuk'=> $tuk->tuk_uid]) }}" class="btn btn-light-warning">Edit</a> 
-                                        <button class="btn btn-light-danger">Suspend</button> 
+                                        <a href="{{ route('mg-tuk.edit', ['mg_tuk'=> $tuk->tuk_uid]) }}" class="btn btn-warning">Edit</a> 
+                                        <button class="btn btn-danger">Suspend</button> 
+                                        <button data-id="{{ $tuk->tuk_uid }}" class="btn btn-light-danger btnDelete">Delete</button> 
                                     </td>
                                 </tr>
                             @endforeach
@@ -66,34 +67,6 @@
         </div>
     </div>
 
-    <!-- Modal-->
-    <div class="modal fade" id="modalImport" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Import Data Asesi Baru</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i aria-hidden="true" class="ki ki-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Fasilitas import ini digunakan untuk menambahkan asesi yang benar-benar baru dan belum memiliki data member pada sistem. Apabila ditemukan data dengan NIK yang sama penambahan data akan langsung dibatalkan.</p>
-                    <p class="alert alert-custom alert-light-warning">Ikuti format excel berikut untuk mengambahkan data. dilarang menambahkan kolom </p>
-                    <a href="#" class="btn btn-block btn-light-primary"><i class="flaticon-download"></i> Download Template Import Asesi (.XLSX)</a>
-
-                    <hr>
-                    <div class="alert alert-custom alert-light-primary">
-                        <label for="">Upload File di sini</label>
-                        <input type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary font-weight-bold">Mulai Import Data</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection
 
@@ -108,6 +81,43 @@
     <script>
         $('#f-dt').DataTable({
             responsive: true
+        })
+
+        $(document).on('click', '.btnDelete', function() {
+            const unique = $(this).data('id')
+
+            console.log(unique);
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin akan menghapus data ini ?',
+                icon: 'warning',
+                showCloseButton: true,
+                showCancelButton: true,
+                cancelButtonText: 'Batal'
+            }).then(response => {
+                if(response.isConfirmed) {
+                    Swal.showLoading();
+                    return axios.post('{{ route("mg-tuk.index") }}/'+unique,{'_method':"DELETE"})  
+                }
+            }).then(response => {
+                if(response.data.success) {
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Hapus data TUK Berhasil",
+                        icon: 'success'
+                    }).then(respoonse => {
+                        window.location.reload();
+                    })
+                } else {
+                    throw 500;
+                }
+            }).catch(e => {
+                Swal.fire({
+                    title: "Gagal",
+                    text: "Hapus data TUK Gagal",
+                    icon: 'error'
+                })
+            })
         })
 
         // let app = new Vue({

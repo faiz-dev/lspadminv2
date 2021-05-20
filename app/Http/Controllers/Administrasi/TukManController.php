@@ -157,11 +157,17 @@ class TukManController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $uid
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($uid)
     {
-        //
+        $delete = TukService::delete($uid);
+        // $delete = false;
+        if($delete) {
+            return response()->json((object) ['success'=> true]);
+        } else {
+            return response()->json((object) ['success'=> false]);
+        }
     }
 }

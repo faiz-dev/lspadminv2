@@ -22,7 +22,7 @@
                     <div class="card-toolbar">
                         <!--begin::Button-->
                         <a href="{{ route('mg-unit.create') }}"  class="btn btn-light-success mx-2 font-weight-bolder ">
-                            <i class="flaticon-download"></i>
+                            <i class="flaticon-plus"></i>
                             Tambah Unit Kompetensi
                         </a>
                         <a href="#"  class="btn btn-light-primary mx-2 font-weight-bolder ">
@@ -54,10 +54,7 @@
                                     <td> {{ $unit->jenis_standar }} </td>
                                     <td> 
                                         <a href="{{ route('mg-unit.edit', ['mg_unit'=> $unit->uid]) }}" class="btn btn-light-warning">Edit</a> 
-                                        <button data-id="{{ $unit->uid }}" class="btn btn-light-danger btn-delete", function(event) {
-                                            console.log($(event).data('id'));
-                                            alert("Delete");
-                                        }>Hapus</button> 
+                                        <button data-id="{{ $unit->uid }}" class="btn btn-light-danger btn-delete">Hapus</button> 
                                     </td>
                                 </tr>
                             @endforeach

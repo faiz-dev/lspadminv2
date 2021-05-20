@@ -18,7 +18,7 @@
                 <div class="card-header">
                     <div class="card-header border-0">
                         <div class="card-title">
-                            <h3 class="card-label">Tambah TUK LSP</h3>
+                            <h3 class="card-label">Edit TUK LSP</h3>
                         </div>
                     </div>
                     <div class="card-toolbar">
