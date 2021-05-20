@@ -9,12 +9,42 @@ use Illuminate\Support\Str;
 
 class MemberService 
 {
-    public static function getAll($tipe, $deleted = false)
-    {
-        $dataMember = User::select('*');
+    public static function getAll($tipe, $deleted = false, $select = '*')
+    {        
+        $dataMember = User::select(['name']);
         switch($tipe) {
             case 'asesi' : 
                 $dataMember = $dataMember->whereJsonContains('tipe',['asesi'])->with('dataDiri')->with('asesi');
+            break;
+            case 'manajer_jejaring':
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataDiri','manajerJejaring');
+            break;
+            case 'asesor':
+                $dataMember = $dataMember->whereJsonContains('tipe', ['asesor'])->with('dataDiri','asesor');
+            break;
+            case 'manajer':
+                $dataMember = $dataMember->whereJsonContains('tipe', ['manager'])->with('dataDiri');
+            break;
+            default: 
+                $dataMember = $dataMember->whereJsonDoesntContain('tipe', ['manager'])->with('dataDiri');
+            break;
+        }
+
+        
+        if($deleted)
+            $dataMember = $dataMember->withTrashed();
+
+        return $dataMember->get();
+    }
+
+    public static function getAllQB($tipe, $deleted = false, $select = [])
+    {        
+        $dataMember = DB::table('users')->select($select);
+        switch($tipe) {
+            case 'asesi' : 
+                $dataMember = $dataMember->whereJsonContains('users.tipe',['asesi'])
+                                            ->leftJoin('data_diris', 'users.id', 'data_diris.user_id')
+                                            ->leftJoin('asesis', 'users.id', 'asesis.user_id');
             break;
             case 'manajer_jejaring':
                 $dataMember = $dataMember->whereJsonContains('tipe', ['manajer_jejaring'])->with('dataDiri','manajerJejaring');
@@ -66,9 +96,9 @@ class MemberService
         $dataDiri->nama                 = $data->nama;
         $dataDiri->gelar_depan          = isset($data->gelar_depan) ? $data->gelar_depan : "";
         $dataDiri->gelar_belakang       = isset($data->gelar_belakang) ? $data->gelar_belakang : "";
-        $dataDiri->jenis_kelamin        = $data->jenis_kelamin;
+        $dataDiri->jenis_kelamin        = $data->jenis_kelamin == "on" ? "L" : "P";
         $dataDiri->tempat_lahir         = $data->tempat_lahir;
-        $dataDiri->tanggal_lahir        = $data->tanggal_lahir;
+        $dataDiri->tanggal_lahir        = date('Y-m-d', strtotime($data->tanggal_lahir));
         $dataDiri->url_foto             = isset($data->url_foto) ? $data->url_foto : "";
         $dataDiri->no_telp              = $data->no_telp;
         $dataDiri->pendidikan_terakhir  = isset($data->pendidikan_terakhir)  ? $data->pendidikan_terakhir : "";
@@ -118,10 +148,15 @@ class MemberService
 
     public function createAsesor($idMember, $data): Asesor
     {
+
+        // lsp induk 
+        $sekolah = SekolahService::getOnebyUid($data->lsp_induk, ['id']);
+
         $dataAsesor = new Asesor();
+        $dataAsesor->uid = Str::uuid();
         $dataAsesor->user_id = $idMember;
         $dataAsesor->met = $data->met;
-        $dataAsesor->lsp_induk = $data->lsp_induk;
+        $dataAsesor->lsp_induk = $sekolah->id;
         
         $dataAsesor->save();
 
@@ -162,8 +197,11 @@ class MemberService
     {
         // create new instance
         $user = User::where('uid', $uuid)->firstOrFail();
-        $user->name = $data->nama;
-        $user->email = $data->email;
+        if(isset($data->nama))
+            $user->name = $data->nama;
+        if(isset($data->email))
+            $user->email = $data->email;
+
         if(isset($user->password)) {
             $user->password =  Hash::make($data->password, [
                 'memory' => 1024,
@@ -171,13 +209,35 @@ class MemberService
                 'threads' => 2
             ]);
         }
-        $user->tipe = $data->tipe;
+        if(isset($data->tipe))
+            $user->tipe = $data->tipe;
         
         // saving
         $user->save();
         
         // return result
         return $user;
+    }
+
+    public function updateDataAsesor($user_id, $data): Asesor
+    {
+        // create new instance
+        $asesor = Asesor::where('user_id', $user_id)->first();
+        if($asesor == null) throw Error(404);
+
+        if(isset($data->met))
+            $asesor->met = $data->met;
+
+        if(isset($data->lsp_induk)) {
+            $sekolah = SekolahService::getOnebyUid($data->lsp_induk, ['id']);
+            $asesor->lsp_induk = $sekolah->id;
+        }
+
+        // saving
+        $asesor->save();
+        
+        // return result
+        return $asesor;
     }
     
     public function grantAsesorToUser($uid): User
@@ -241,9 +301,9 @@ class MemberService
         $dataDiri->nama                 = $data->nama;
         $dataDiri->gelar_depan          = isset($data->gelar_depan) ? $data->gelar_depan : "";
         $dataDiri->gelar_belakang       = isset($data->gelar_belakang) ? $data->gelar_belakang : "";
-        $dataDiri->jenis_kelamin        = $data->jenis_kelamin;
+        $dataDiri->jenis_kelamin        = $data->jenis_kelamin == "on" ? "L" : "P";
         $dataDiri->tempat_lahir         = $data->tempat_lahir;
-        $dataDiri->tanggal_lahir        = $data->tanggal_lahir;
+        $dataDiri->tanggal_lahir        = date('Y-m-d', strtotime($data->tanggal_lahir));
         $dataDiri->url_foto             = isset($data->url_foto) ? $data->url_foto : "";
         $dataDiri->no_telp              = $data->no_telp;
         $dataDiri->pendidikan_terakhir  = isset($data->pendidikan_terakhir)  ? $data->pendidikan_terakhir : "";
@@ -299,6 +359,22 @@ class MemberService
     {
         $dataMember = User::where('uid', $uid)->firstOrFail();
         $dataMember->delete();
+    }
+
+    public function getMemberById($id)
+    {
+        $dataMember = User::where('id', $id)->firstOrFail();
+        return $dataMember;
+    }
+
+    public function deleteAsesorDataByUserId($user_id)
+    {
+        return DB::table('asesors')->where('user_id', $user_id)->delete();
+    }
+
+    public function deleteDataDiriByUserId($user_id)
+    {
+        return DB::table('data_diris')->where('user_id', $user_id)->delete();
     }
 
     public function restoreMember($uid): User

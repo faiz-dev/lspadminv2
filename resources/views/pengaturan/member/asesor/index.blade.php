@@ -7,100 +7,7 @@
     {{-- Dashboard 1 --}}
 
     <div class="row" id="app">
-        <div class="col-12 col-sm-12 col-xl-8">
-            <div class="card card-custom gutter-b d-none" id="card_pencarian">
-                <div class="card-header border-0">
-                    <div class="card-title">
-                        <h3 class="card-label">Pencarian Member Asesi</h3>
-                    </div>
-                    <div class="card-toolbar">
-                        <button class="btn btn-light-info mx-2 font-weight-bolder " data-toggle="modal" data-target="#modalImport">
-                            <i class="flaticon-upload"></i>
-                            Import Data
-                        </button>
-                        <a href="{{route('pengaturan.member.asesi.create')}}"  class="btn btn-light-success mx-2 font-weight-bolder ">
-                            <i class="flaticon-upload"></i>
-                            New Record
-                        </a>
-                        <!--begin::Button-->
-                        <button id="card_collapser" class="btn btn-sm btn-light-primary mx-2 font-weight-bolder " data-card-tool="toggle">
-                            <i class="ki ki-arrow-up icon-nm"></i>
-                        </button>
-                        <!--end::Button-->
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <form action="">
-                        <div class="form-group row">
-                            <label for="tipe_pencarian" class="col-2 col-form-label">Jenis Member Asesi</label>
-                            <div class="col-md-10">
-                                <div class="btn-group">
-                                    <button class="btn" :class="{'btn-primary' : form.jenis_asesi == 'sendiri'}" type="button" @click="form.jenis_asesi = 'sendiri'" id="btnSiswaSendiri">Siswa Sendiri</button>
-                                    <button class="btn" :class="{'btn-primary' : form.jenis_asesi == 'jejaring'}" type="button" @click="form.jenis_asesi = 'jejaring'" id="btnSiswaJejaring">Siswa Jejaring</button>
-                                </div>
-                            </div>                      
-                        </div>
-                        <div class="form-group row">
-                            <label for="tipe_pencarian" class="col-2 col-form-label">No Registrasi</label>
-                            <div class="col-md-10">
-                                <input type="text" v-model="form.no_registrasi" class="form-control" name="no_registrasi" placeholder="Nomor Registrasi" required>
-                            </div>                      
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="tipe_pencarian" class="col-2 col-form-label">Tahun Daftar</label>
-                            <div class="col-md-10">
-                                <select v-model="form.tahun_daftar" name="tahun_daftar" id="" class="form-control" required>
-                                    @for ($i = date('Y'); $i >= 2019 ; $i--)
-                                        <option>{{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>         
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="jurusan" class="col-2 col-form-label">Jurusan</label>
-                            <div class="col-md-10">
-                                <select v-model="form.jurusan" name="jurusan" id="" class="form-control" required>
-                                    <option value="">Pilih Jurusan</option>
-                                    @foreach($daftar_sekolah->jurusan as $jurusan)
-                                        <option value="{{$jurusan->slug}}">{{$jurusan->nama}}</option>
-                                    @endforeach
-                                </select>
-                            </div>         
-                        </div>
-
-                        <div class="form-group row" v-if="form.jenis_asesi == 'jejaring'">
-                            <label for="sekolah_jejaring" class="col-2 col-form-label">Sekolah Jejaring</label>
-                            <div class="col-md-10">
-                                <select v-model="form.sekolah_jejaring" name="sekolah_jejaring" id="" class="form-control" required>
-                                    <option value="fa212d">SMK Negeri X</option>
-                                    <option value="afe2">SMK Negeri Y</option>
-                                    <option value="fa21hrf2d">SMK Negeri Z</option>
-                                </select>
-                            </div>         
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer" >
-                    <div v-if="!status.cardShown">
-                        Hasil Pencarian untuk filter : 
-                        <button class="btn btn-sm btn-success" v-if="form.jenis_asesi"> Jenis Asesi : @{{form.jenis_asesi}}  </button>
-                        <button class="btn btn-sm btn-success" @click="form.no_registrasi=''" v-if="form.no_registrasi"> <i class="flaticon-close"></i> NoReg : @{{form.no_registrasi}}</button>
-                        <button class="btn btn-sm btn-success" @click="form.tahun_daftar=''" v-if="form.tahun_daftar"> <i class="flaticon-close"></i> Tahun Daftar : @{{form.tahun_daftar}}</button>
-                        <button class="btn btn-sm btn-success" @click="form.jurusan=''" v-if="form.jurusan"> <i class="flaticon-close"></i> Jurusan : @{{form.jurusan}}</button>
-                        <button class="btn btn-sm btn-success" @click="form.sekolah_jejaring=''" v-if="form.jenis_asesi == 'jejaring' && form.sekolah_jejaring"> <i class="flaticon-close"></i> Sekolah Jejaring : @{{form.sekolah_jejaring}}</button>
-                    </div>
-                    <a href="{{route('role.create')}}" v-if="status.cardShown" class="btn btn-primary mx-2 font-weight-bolder ">
-                        Reload
-                    </a>
-                    <button v-if="status.cardShown" @click="fetchDB" class="btn btn-primary mx-2 font-weight-bolder ">
-                        Cari Asesi
-                    </button>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="col-12">
             <div class="card card-custom">
@@ -112,10 +19,17 @@
                     </div>
                     <div class="card-toolbar">
                         <!--begin::Button-->
-                        
+                        <a href="#"  class="btn btn-light-primary mx-2 font-weight-bolder ">
+                            <i class="flaticon-upload"></i>
+                            Import Data
+                        </a>
                         <a href="#"  class="btn btn-light-primary mx-2 font-weight-bolder ">
                             <i class="flaticon-download"></i>
                             Export Data
+                        </a>
+                        <a href="{{route('pengaturan.member.asesor.create')}}"  class="btn btn-light-success mx-2 font-weight-bolder ">
+                            <i class="flaticon-plus"></i>
+                            New Asesor
                         </a>
                         
                         <!--end::Button-->
@@ -131,36 +45,6 @@
                                 <span>
                                     <i class="flaticon2-search-1 text-muted"></i>
                                 </span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 my-2 my-md-0">
-                            <div class="input-icon">
-                                <input type="text" class="form-control" placeholder="Search No Reg..." id="filterTableNoReg" />
-                                <span>
-                                    <i class="flaticon2-search-1 text-muted"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 my-2 my-md-0">
-                            <div class="d-flex align-items-center">
-                                <label class="mr-3 mb-0 d-none d-md-block">Jurusan:</label>
-                                <select class="form-control" id="filterTableJurusan">
-                                    <option value="">All</option>
-                                    <option value="tav">Teknik Audio Video</option>
-                                    <option value="tkr">Teknik Kendaraan Ringan</option>
-                                    <option value="tp">Teknik Pemesinan</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-3 my-2 my-md-0">
-                            <div class="d-flex align-items-center">
-                                <label class="mr-3 mb-0 d-none d-md-block">Sekolah</label>
-                                <select class="form-control" id="filterTableSekolah">
-                                    <option value="">All</option>
-                                    <option value="fa212d">SMK Negeri X</option>
-                                    <option value="afe2">SMK Negeri Y</option>
-                                    <option value="fa21hrf2d">SMK Negeri Z</option>
-                                </select>
                             </div>
                         </div>
                         {{-- <div class="col-md-1 my-2 my-md-0">
@@ -222,13 +106,6 @@
         let app = new Vue({
             el: '#app',
             data: {
-                form: {
-                    jenis_asesi: 'sendiri',
-                    no_registrasi: '',
-                    tahun_daftar: '{{date("Y")}}',
-                    jurusan: 'tav',
-                    sekolah_jejaring: 'fa212d',
-                },
                 elements: {
                     cardPencarian : null,
                     dataTableMember: null,
@@ -240,8 +117,8 @@
                     card_collapser: null
                 },
                 urls: {
-                    get_member: '{{ route("pengaturan.member.asesi.fetch") }}',
-                    base: '{{ route("pengaturan.member.asesi") }}'
+                    get_member: '{{ route("pengaturan.member.asesor.fetch") }}',
+                    base: '{{ route("pengaturan.member.asesor") }}'
                 },
                 status: {
                     cardShown: true
@@ -251,7 +128,7 @@
                 },
                 config: {
                     urls: {
-                        base: '{{ route("pengaturan.member.asesi") }}'
+                        base: '{{ route("pengaturan.member.asesor") }}'
                     },
                     dataTable: {
                         columns: [
@@ -266,16 +143,14 @@
                                 }
                             },
                             {
-                                field: 'name',
+                                field: 'nama',
                                 title: 'Nama',    
                                 width: 150,
                                 autoHide: false, 
-                                template: function (row, index) {
-                                    if(row.data_diri) {
-                                        return row.data_diri.nama+` <i class="la la-check-circle text-primary"></i>`
-                                    } else {
-                                        return row.name+` <i class="la la-exclamation-circle text-warning"></i>`
-                                    }
+                                template: function(row, index) {
+                                    return (row.gelar_depan ? (row.gelar_depan+" ") : "") 
+                                        + (row.nama_lengkap? row.nama_lengkap : "-")
+                                        + (row.gelar_belakang ?  (", " +row.gelar_belakang) : '')
                                 }
                             },
                             {
@@ -288,13 +163,12 @@
                                 title: 'No.Reg', 
                                 width: 150,
                                 autoHide: false,
-                                template: function (row, index) {
-                                    if(row.asesi) {
-                                        return row.asesi.no_reg
-                                    } else {
-                                        return "-"
-                                    }
-                                }
+                            },
+                            {
+                                field: 'lsp_induk_nama',
+                                title: 'LSP Induk', 
+                                width: 150,
+                                autoHide: true,
                             },
                             {
                                 field: 'Actions',
@@ -313,7 +187,7 @@
                                                     </svg>\
                                                 </span>\
                                             </a>\
-                                            <a href="javascript:;" data-id="'+index+'" class="btn btn-sm btn-clean btn-icon btnDelete" title="Delete">\
+                                            <a href="javascript:;" data-id="'+row.id+'" class="btn btn-sm btn-clean btn-icon btnDelete" title="Delete">\
                                                 <i class="fa fa-trash"></i>\
                                             </a>\
                                         ';
@@ -324,32 +198,55 @@
                 }
             },
             mounted() {
-                this.initCardPencarian();
                 let vm = this;
                 this.initDataTable()
 
                 $(document).on('click','.btnEdit', function() {
                     const unique = $(this).data('id')
-                    window.location.href = vm.urls.base+`/edit?q=${unique}`
+                    window.location.href = vm.urls.base+`/edit/${unique}`
+                })
+                $(document).on('click','.btnDelete', function() {
+                    const unique = $(this).data('id')
+                    
+                    Swal.fire({
+                        title: 'Konfirmasi',
+                        text: 'Anda yakin akan menghapus data ini ?',
+                        icon: 'warning',
+                        showCloseButton: true,
+                        showCancelButton: true,
+                        cancelButtonText: 'Batal'
+                    })
+                    .then(response => {
+                        if(response.isConfirmed) {
+                            Swal.showLoading();
+                            return axios.post('{{ route("pengaturan.member.asesor.delete") }}',{'_method':"DELETE", 'unique': unique})  
+                        }
+                    })
+                    .then(response => {
+                        if(!response) return
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: "Hapus data berhasil",
+                            icon: "success"
+                        })
+                        .then(() => {
+                            window.location.reload();
+                        })
+                    
+                    })
+                    .catch(err => {
+                        Swal.fire({
+                            title: "Gagal",
+                            text: "Hapus data gagal",
+                            icon: "error"
+                        })
+                    })
+
+                    // alert(unique);
+                    // window.location.href = vm.urls.base+`/edit?q=${unique}`
                 })
             }, 
             methods: {
-                initCardPencarian: function() {
-                    this.elements.card_collapser = $('#card_collapser')
-                    let card = new KTCard('card_pencarian');
-                    let vm = this
-                    card.on('afterCollapse', function(card) {
-                        vm.changeCardShownStatus(false)
-                    })
-                    card.on('afterExpand', function(card) {
-                        vm.changeCardShownStatus(true)
-                    })
-                    
-                    this.elements.cardPencarian  = card;
-                }, 
-                changeCardShownStatus: function(value) {
-                    this.status.cardShown = value
-                },
                 initDataTable: async function() {
                     let vm = this
                     let url = `${this.urls.get_member}`
@@ -361,9 +258,7 @@
                             text: "Mengambil data"
                         })
                         swal.showLoading();
-                        this.elements.ktdt.setDataSourceParam('no_reg', this.form.no_registrasi);
-                        this.elements.ktdt.setDataSourceParam('tahun_daftar', this.form.tahun_daftar);
-                        this.elements.ktdt.setDataSourceParam('jurusan_slug', this.form.jurusan);
+                        this.elements.ktdt.setDataSourceParam('met', this.form.no_registrasi);
                         this.elements.ktdt.load()
                         return;
                     }
@@ -379,19 +274,11 @@
                 },
                 initDataTableToolbar: function() {
                     this.elements.filterTableNama = $('#filterTableNama')
-                    this.elements.filterTableNoReg = $('#filterTableNoReg')
-                    this.elements.filterTableJurusan = $('#filterTableJurusan')
-                    this.elements.filterTableSekolah = $('#filterTableSekolah')
                     console.log("initializing datatable toolbar", this.elements.filterTableNama)
                     CDataTable.initSearch(this.elements.dataTableMember, this.elements.filterTableNama, 'nama')
-                    CDataTable.initSearch(this.elements.dataTableMember, this.elements.filterTableNoReg, 'no_reg')
-                    CDataTable.initSearch(this.elements.dataTableMember, this.elements.filterTableJurusan, 'jurusan')
-                    CDataTable.initSearch(this.elements.dataTableMember, this.elements.filterTableSekolah, 'tipe')
                 },
                 resetFilterTable() {
                     this.elements.filterTableNama.val(null)
-                    this.elements.filterTableNoReg.val(null)
-                    // this.elements.dataTableMember.reload();
                 },
                 fetchDB() {
                     this.elements.card_collapser.trigger('click')

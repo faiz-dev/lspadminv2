@@ -21,6 +21,20 @@ class SekolahService
         });
     }
 
+    public static function getAll($select = [])
+    {
+        $select = $select == [] ? ['uid', 'nama', 'kota'] : $select;
+        
+        return $sekolah = DB::table('sekolahs')->select($select)->get();
+    }
+
+    public static function getOnebyUid($uid, $select = [])
+    {
+        $select = $select = [] ? ['uid', 'nama'] : $select;
+        return DB::table('sekolahs')->where('uid', $uid)->first();
+
+    }
+
     public static function getOne($uid): Sekolah
     {
         $sekolah = Sekolah::where('uid', $uid)->first();

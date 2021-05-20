@@ -117,62 +117,88 @@ class SkemaResourceTKRSeeder extends Seeder
 
         // ]);
 
+        // DB::table('uji_kompetensis')->insert([
+        //     [
+        //         "uid" => Str::uuid(),
+        //         "nama"  => "UKK TKR Klaster 3 Maret 2021",
+        //         "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
+        //         "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
+        //         "jml_asesi" => 25,
+        //         "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
+        //         "skema_id"  => 9,
+        //         "tuk_id"    => 2,
+        //         "sekolah_id"    =>  1
+        //     ],
+        //     [
+        //         "uid" => Str::uuid(),
+        //         "nama"  => "UKK TKR Klaster 4 Maret 2021",
+        //         "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
+        //         "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
+        //         "jml_asesi" => 25,
+        //         "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
+        //         "skema_id"  => 10,
+        //         "tuk_id"    => 2,
+        //         "sekolah_id"    =>  1
+        //     ],
+        //     [
+        //         "uid" => Str::uuid(),
+        //         "nama"  => "UKK TKR Klaster 5 Maret 2021",
+        //         "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
+        //         "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
+        //         "jml_asesi" => 25,
+        //         "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
+        //         "skema_id"  => 11,
+        //         "tuk_id"    => 2,
+        //         "sekolah_id"    =>  1
+        //     ],
+        //     [
+        //         "uid" => Str::uuid(),
+        //         "nama"  => "UKK TKR Klaster 6 Maret 2021",
+        //         "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
+        //         "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
+        //         "jml_asesi" => 25,
+        //         "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
+        //         "skema_id"  => 12,
+        //         "tuk_id"    => 2,
+        //         "sekolah_id"    =>  1
+        //     ],
+        //     [
+        //         "uid" => Str::uuid(),
+        //         "nama"  => "UKK TKR Klaster 7 Maret 2021",
+        //         "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
+        //         "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
+        //         "jml_asesi" => 25,
+        //         "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
+        //         "skema_id"  => 13,
+        //         "tuk_id"    => 2,
+        //         "sekolah_id"    =>  1
+        //     ],
+        // ]);
+
+
         DB::table('uji_kompetensis')->insert([
             [
                 "uid" => Str::uuid(),
-                "nama"  => "UKK TKR Klaster 3 Maret 2021",
-                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
-                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
-                "jml_asesi" => 25,
+                "nama"  => "UKK TKR Klaster 1 Periode Maret 2021",
+                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-16")),
+                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-30")),
+                "jml_asesi" => 60,
                 "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
-                "skema_id"  => 9,
+                "skema_id"  => 7,
                 "tuk_id"    => 2,
                 "sekolah_id"    =>  1
             ],
             [
                 "uid" => Str::uuid(),
-                "nama"  => "UKK TKR Klaster 4 Maret 2021",
-                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
-                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
+                "nama"  => "UKK TKR Klaster 2 Periode Maret 2021",
+                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-16")),
+                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-30")),
                 "jml_asesi" => 25,
                 "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
-                "skema_id"  => 10,
+                "skema_id"  => 8,
                 "tuk_id"    => 2,
                 "sekolah_id"    =>  1
-            ],
-            [
-                "uid" => Str::uuid(),
-                "nama"  => "UKK TKR Klaster 5 Maret 2021",
-                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
-                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
-                "jml_asesi" => 25,
-                "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
-                "skema_id"  => 11,
-                "tuk_id"    => 2,
-                "sekolah_id"    =>  1
-            ],
-            [
-                "uid" => Str::uuid(),
-                "nama"  => "UKK TKR Klaster 6 Maret 2021",
-                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
-                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
-                "jml_asesi" => 25,
-                "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
-                "skema_id"  => 12,
-                "tuk_id"    => 2,
-                "sekolah_id"    =>  1
-            ],
-            [
-                "uid" => Str::uuid(),
-                "nama"  => "UKK TKR Klaster 7 Maret 2021",
-                "tgl_awal"  => date('Y-m-d', strtotime("2020-03-03")),
-                "tgl_akhir" => date('Y-m-d', strtotime("2020-03-09")),
-                "jml_asesi" => 25,
-                "deskripsi" => "Uji Kompetensi dalam rangka UKK 2021 SMK Negeri 1 Kandeman",
-                "skema_id"  => 13,
-                "tuk_id"    => 2,
-                "sekolah_id"    =>  1
-            ],
+            ]
         ]);
     }
 

@@ -74,6 +74,7 @@ return [
                     'title' => 'Modul Perencanaan',
                     'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
                     'bullet' => 'line',
+                    'page'  =>  './manager/sertifikasi/perencanaan/mcert'
                 ],
                 [
                     'title' => 'Modul Aplikasi',
@@ -198,13 +199,31 @@ return [
                     'title' => 'Modul TUK',
                     'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
                     'bullet' => 'line',
-                    'page' => '/manager/administrasi/mg-tuk',
+                    'page' => '/manager/administrasi/mg-tuk'
                 ],
                 
                 [
                     'title' => 'Modul Skema',
                     'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
-                    'bullet' => 'line'
+                    'bullet' => 'line',
+                    "submenu"=>[
+                        [
+                            'title' => 'MUK',
+                            'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
+                            'bullet' => 'line'
+                        ],
+                        [
+                            'title' => 'Skema',
+                            'icon' => 'media/svg/icons/Layout/Layout-4-blocks.svg',
+                            'bullet' => 'line'
+                        ],
+                        [
+                            'title'     => 'Unit Kompetensi',
+                            'icon'      => 'media/svg/icons/Layout/Layout-4-blocks.svg',
+                            'bullet'    => 'line',
+                            'page'      =>  'manager/administrasi/mskema/mg-unit'
+                        ],
+                    ]
                 ],
                 [
                     'title' => 'Modul Pengetahuan',

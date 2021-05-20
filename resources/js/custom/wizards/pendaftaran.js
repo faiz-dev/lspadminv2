@@ -106,8 +106,8 @@ var KTWizard1 = function () {
                     tempat_lahir: {
                         validators: {
                             stringLength: {
-                                max: 50,
-                                message: 'Maksimal 50 Karakter'
+                                max: 10,
+                                message: 'Maksimal 10 Karakter'
                             }
                         }
                     },

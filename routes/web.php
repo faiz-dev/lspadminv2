@@ -3,6 +3,8 @@
 use App\Http\Controllers\Pengaturan\MemberManController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\ChckPwdExp;
+use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Sertifikasi\RencanaSertifikasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,9 +64,14 @@ Route::group(['middleware'=>['guest']], function(){
 
 // AUTHORIZED ACCESS
 Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'prefix'=>'/manager'], function() {
-    Route::get('/','Admin\MainController@index');
+    Route::get('/',[MainController::class, 'index']);
 
     Route::group(['prefix'=>'/sertifikasi'], function() {
+        // perencanaan
+        Route::prefix('perencanaan')->group(function () {
+            Route::resource('mcert', 'Sertifikasi\RencanaSertifikasiController');
+        });
+        
         // aplikasi
         Route::group(['prefix'=>'/aplikasi'], function() {
             Route::get('/', 'Sertifikasi\AplikasiController@index')->middleware('role:Super Manajer')->name('sertifikasi.aplikasi.index');
@@ -78,6 +85,10 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
     // MODUL ADMINISTRASI
     Route::group(['prefix' => 'administrasi'], function() {
         Route::resource('/mg-tuk', 'Administrasi\TukManController');
+
+        Route::group(['prefix' => '/mskema'], function() {
+            Route::resource('/mg-unit', 'Administrasi\UnitKomManController');
+        });
     });
 
     Route::group(['prefix'=>'/pengaturan'], function() {      
@@ -89,11 +100,26 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
         // user manager
         Route::group(['middleware' => ['permission:user-manager'],'prefix'=>'/member'], function() {
             
-            Route::get('/asesi', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');
-            Route::post('/asesi/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
-            Route::get('/asesi/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
-            Route::get('/asesi/edit', 'Pengaturan\MemberManController@editAsesi')->name('pengaturan.member.asesi.edit');
-            Route::put('/asesi/update-password', 'Pengaturan\MemberManController@updatePassword')->name('pengaturan.member.asesi.update-password');
+            Route::prefix('asesi')->group(function () {
+                Route::get('/export', 'Pengaturan\MemberManController@exportMember')->name('pengaturan.member.asesi.export');
+                Route::get('/', 'Pengaturan\MemberManController@asesiPanel')->name('pengaturan.member.asesi');
+                Route::post('/fetch', 'Pengaturan\MemberManController@fetchMember')->name('pengaturan.member.asesi.fetch');
+                Route::get('/create', 'Pengaturan\MemberManController@createAsesi')->name('pengaturan.member.asesi.create');
+                Route::get('/edit', 'Pengaturan\MemberManController@editAsesi')->name('pengaturan.member.asesi.edit');
+                Route::put('/update-password', 'Pengaturan\MemberManController@updatePassword')->name('pengaturan.member.asesi.update-password');
+            });
+
+            Route::prefix('asesor')->group(function () {
+                Route::get('/', [MemberManController::class, 'asesorPanel'])->name('pengaturan.member.asesor');
+                Route::get('/create', [MemberManController::class, 'createAsesor'])->name('pengaturan.member.asesor.create');
+                Route::post('/', [MemberManController::class, 'storeAsesor'])->name('pengaturan.member.asesor.store');
+                Route::post('/fetch', [MemberManController::class, 'fetchAsesor'])->name('pengaturan.member.asesor.fetch');
+                Route::get('/edit/{uid}', [MemberManController::class, 'editAsesor'])->name('pengaturan.member.asesor.edit');
+                Route::delete('/delete', [MemberManController::class, 'deleteAsesor'])->name('pengaturan.member.asesor.delete');
+                Route::put('/{uid}', [MemberManController::class, 'updateAccountAsesor'])->name('pengaturan.member.asesor.update-account');
+                Route::put('/{uid}/profile', [MemberManController::class, 'updateProfileAsesor'])->name('pengaturan.member.asesor.update-profile');
+            });
+            
 
             Route::group(['prefix'  =>  '/manager'], function() {
                 Route::get('/', [MemberManController::class, 'managerPanel'])->name('pengaturan.member.manager.index');
