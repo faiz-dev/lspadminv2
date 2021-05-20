@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sertifikasi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Services\UjiKomService;
 
 class RencanaSertifikasiController extends Controller
 {
@@ -14,7 +15,16 @@ class RencanaSertifikasiController extends Controller
      */
     public function index()
     {
-        return view('sertifikasi.perencanaan.mcert.index');
+        $daftar_sekolah = \App\Services\SekolahService::getAll();
+
+        
+        $daftar_ujikom = UjiKomService::getAllAdvancedV2();
+        // dd($daftar_ujikom);
+        return view('sertifikasi.perencanaan.mcert.index',[
+            'page_title'        => "Manajemen Rencana Sertifikasi",
+            'daftar_ujikom'     => $daftar_ujikom,
+            'daftar_sekolah'    => $daftar_sekolah,
+        ]);
     }
 
     /**
@@ -24,7 +34,20 @@ class RencanaSertifikasiController extends Controller
      */
     public function create()
     {
-        //
+        $daftar_sekolah = \App\Services\SekolahService::getAll();
+        $daftar_tuk = \App\Services\TukService::getAll(['tuks.uid', 'tuks.sekolah_id', 'tuks.nama']);
+        $daftar_skema = \App\Services\SkemaService::getAll(['uid', 'nama', 'judul_klaster'], true);
+        $daftar_asesor = \App\Services\MemberService::getAll('asesor');
+
+        // dd([$daftar_tuk, $daftar_skema, $daftar_asesor]);
+
+        return view('sertifikasi.perencanaan.mcert.create',[
+            'page_title'        => "Tambah Rencana Sertifikasi",
+            'daftar_tuk'        => $daftar_tuk,
+            'daftar_skema'      => $daftar_skema,
+            'daftar_asesor'     => $daftar_asesor,
+            'daftar_sekolah'    => $daftar_sekolah,
+        ]);
     }
 
     /**

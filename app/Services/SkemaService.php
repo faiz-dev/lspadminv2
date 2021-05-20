@@ -6,7 +6,7 @@ use Illuminate\SUpport\Facades\DB;
 
 class SkemaService
 {
-    public static function getAll($select = [])
+    public static function getAll($select = [], $isParent = false)
     {        
         $select = $select == [] ? [
                     "id",
@@ -19,10 +19,14 @@ class SkemaService
         ] : $select;
 
         $data = DB::table("skemas")
-            ->select($select)
-            ->get();
+            ->select($select);
+        
+        if($isParent) {
+            $data = $data->where('parent_id', null);
+        }    
+            
 
-        return $data;
+        return $data->get();
     }
 
     public static function getOne($uid, $select = [])

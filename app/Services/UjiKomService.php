@@ -34,9 +34,14 @@ class UjiKomService
         return $daftar_ujikom;
     }
 
-    public static function getAllAdvanced(Object $filter,Object $options): Collection
+    public static function getAllAdvanced(Object $filter = null,Object $options = null): Collection
     {
-        $daftar_ujikom = UjiKompetensi::with('skema')->where('isActive', $filter->isActive);
+        $filter = $filter == null ? (object) [] : $filter;
+        $options = $options == null ? (object) [] : $options;
+
+        $daftar_ujikom = UjiKompetensi::with('skema')->where('isActive', $filter->isActive ?? true);
+
+       
 
         if(isset($filter->sekolah)) {
             $daftar_ujikom = $daftar_ujikom->where('sekolah_id', $filter->sekolah);
@@ -66,6 +71,59 @@ class UjiKomService
                 return $item;
             });
         }
+        
+        return $daftar_ujikom;
+    }
+
+    public static function getAllAdvancedV2(Object $filter = null,Object $options = null, $select = [])
+    {
+        $filter = $filter == null ? (object) [] : $filter;
+        $options = $options == null ? (object) [] : $options;
+        $select = $select == [] ? [
+            'uk.id', 'uk.uid', 'uk.nama', 'uk.tgl_awal', 'uk.tgl_akhir', 'uk.jml_asesi',
+            's.nama as s_nama', 's.judul_klaster as s_judul_klaster', 's.parent_id as s_parent',
+            't.nama as t_nama'
+        ] : $select;
+
+        // $daftar_ujikom = UjiKompetensi::with('skema')->where('isActive', $filter->isActive ?? true);
+
+        $daftar_ujikom = DB::table('uji_kompetensis as uk')->select($select)->where('isActive', $filter->isActive ?? true);
+       
+
+        if(isset($filter->sekolah)) {
+            $daftar_ujikom = $daftar_ujikom->where('sekolah_id', $filter->sekolah);
+        }
+
+        // SKEMA
+        $daftar_ujikom = $daftar_ujikom->leftJoin('skemas as s', 'uk.skema_id', 's.id');
+        $daftar_ujikom = $daftar_ujikom->leftJoin('tuks as t', 'uk.skema_id', 't.id');
+
+        $daftar_ujikom = $daftar_ujikom->get();
+
+
+
+        // if(!isset($options->complete) || (isset($options->complete) && !$options->complete) ) {
+        //     $daftar_ujikom->transform(function($item) {
+        //         $item = (object) $item->only(['uid','nama','tgl_awal','tgl_akhir','jml_asesi','deskripsi','skema']);
+                
+        //         $dataSkema = (object) [
+        //             "uid"   =>  $item->uid,
+        //             "nama" => $item->skema->nama,
+        //             "kode" => $item->skema->kode,
+        //             "kode" => $item->skema->kode,
+        //             "level_kkni" => $item->skema->level_kkni,
+        //             "judul_klaster" => $item->skema->judul_klaster,
+        //         ];
+
+        //         if($item->skema->parent_id != null) {
+        //             $dataSkema->nama_skema_induk = $item->skema->skemaInduk->nama;
+        //             $dataSkema->kode_skema_induk = $item->skema->skemaInduk->kode;
+        //         }
+
+        //         $item->skema = $dataSkema;
+        //         return $item;
+        //     });
+        // }
         
         return $daftar_ujikom;
     }
