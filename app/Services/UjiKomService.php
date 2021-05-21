@@ -3,8 +3,11 @@
 namespace App\Services;
 
 use App\Models\{UjiKompetensi, PendaftaranUji};
+use Carbon\Carbon;
+use Error;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UjiKomService 
 {
@@ -87,7 +90,10 @@ class UjiKomService
 
         // $daftar_ujikom = UjiKompetensi::with('skema')->where('isActive', $filter->isActive ?? true);
 
-        $daftar_ujikom = DB::table('uji_kompetensis as uk')->select($select)->where('isActive', $filter->isActive ?? true);
+        $daftar_ujikom = DB::table('uji_kompetensis as uk')->select($select);
+
+        if(isset($filter->isActive))
+            $daftar_ujikom = $daftar_ujikom->where('isActive', $filter->isActive);
        
 
         if(isset($filter->sekolah)) {
@@ -96,7 +102,7 @@ class UjiKomService
 
         // SKEMA
         $daftar_ujikom = $daftar_ujikom->leftJoin('skemas as s', 'uk.skema_id', 's.id');
-        $daftar_ujikom = $daftar_ujikom->leftJoin('tuks as t', 'uk.skema_id', 't.id');
+        $daftar_ujikom = $daftar_ujikom->leftJoin('tuks as t', 'uk.tuk_id', 't.id');
 
         $daftar_ujikom = $daftar_ujikom->get();
 
@@ -133,6 +139,35 @@ class UjiKomService
         $dataUjiKompetensi = UjiKompetensi::where('uid',$uid)
                                         ->with('skema.skemaInduk')
                                         ->firstOrFail();
+
+        return $dataUjiKompetensi;
+    }
+
+    public static function createUjiKom($data)
+    {
+        $sekolah = SekolahService::getOnebyUid($data->sekolah);
+        if($sekolah == null) throw new Error("Sekolah Not Found", 400);
+
+        $skema = SkemaService::getOne($data->skema, ['id']);
+        if($skema == null) throw new Error("Skema not found", 400);
+
+        $tuk = TukService::getOneByUID($data->tuk, ["tuks.id"]);
+        if($tuk == null) throw new Error("TUK not found", 400);
+
+        $dataUjiKompetensi = DB::table('uji_kompetensis')
+                ->insert([
+                    "uid"           =>  Str::uuid(),
+                    "nama"          =>  $data->judul,
+                    "tgl_awal"      =>  date('Y-m-d', strtotime('tgl_awal')),
+                    "tgl_akhir"     =>  date('Y-m-d', strtotime('tgl_akhir')),
+                    "jml_asesi"     =>  $data->kuota,
+                    "deskripsi"     =>  $data->keterangan,
+                    "isActive"      =>  $data->mode == "submit" ? true : false,
+                    "skema_id"      =>  $skema->id,
+                    "tuk_id"        =>  $tuk->id,
+                    "sekolah_id"    =>  $sekolah->id,
+                    "created_at"    =>  Carbon::now()
+                ]);
 
         return $dataUjiKompetensi;
     }
@@ -309,4 +344,6 @@ class UjiKomService
         
         return $pendaftaran;
     }
+
+    
 }

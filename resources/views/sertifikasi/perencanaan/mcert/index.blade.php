@@ -30,6 +30,11 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            {{Session::get('success')}}
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -60,7 +65,7 @@
                                     <td width="40" >No</td>
                                     <td>Judul</td>
                                     <td width="200">Skema</td>
-                                    <td width="100" >TUK</td>
+                                    <td width="200" >TUK</td>
                                     <td width="80">Status</td>
                                     <td width="80">Aksi</td>
                                 </tr>

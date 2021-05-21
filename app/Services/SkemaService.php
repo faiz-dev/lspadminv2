@@ -6,7 +6,7 @@ use Illuminate\SUpport\Facades\DB;
 
 class SkemaService
 {
-    public static function getAll($select = [], $isParent = false)
+    public static function getAll($select = [], $isParent = null)
     {        
         $select = $select == [] ? [
                     "id",
@@ -21,9 +21,15 @@ class SkemaService
         $data = DB::table("skemas")
             ->select($select);
         
-        if($isParent) {
+        if($isParent === null) {
             $data = $data->where('parent_id', null);
-        }    
+        } else {
+            if($isParent === false) {
+                $data = $data->whereNotNull('parent_id');
+            } else {
+                $data = $data->where('parent_id', $isParent);
+            }
+        } 
             
 
         return $data->get();
@@ -42,7 +48,7 @@ class SkemaService
         ] : $select;
         $skema = \App\Models\Skema::where('uid', $uid)
                                 ->with('subSkema','skemaInduk')
-                                ->firstOrFail();
+                                ->first();
         return $skema;
     }
 }

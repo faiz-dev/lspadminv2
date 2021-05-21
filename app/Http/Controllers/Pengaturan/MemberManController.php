@@ -125,10 +125,10 @@ class MemberManController extends Controller
     public function storeAsesor(Request $request)
     {
         $request->validate([
-                "met"    =>  "required",
-                "email" =>  "required",
+                "met"    =>  "required|unique:asesors",
+                "email" =>  "required|unique:users",
                 "password"  =>  "required|min:8",
-                "nik"   =>  "required",
+                "nik"   =>  "required|unique:data_diris",
                 "nama"  =>  "required",
                 "no_telp"      =>  "required",
                 "tanggal_lahir" =>  "required",
@@ -150,16 +150,27 @@ class MemberManController extends Controller
         ]);
 
         $memberService = new MemberService;
-        $userCreation = $memberService->createAccount((object) [
-            "nama"          => $request->nama,
-            "email"         => $request->email,
-            "password"      => $request->password,
-            "tipe"          => json_encode(["asesor"]),
-        ]);
+        try {
+            $userCreation = $memberService->createAccount((object) [
+                "nama"          => $request->nama,
+                "email"         => $request->email,
+                "password"      => $request->password,
+                "tipe"          => json_encode(["asesor"]),
+                ]);
+        } catch (\Exception $e) {
+            return abort(500, 'Maaf, Terjadi kesalahan pada server');
+        }
+                
         $role = \Spatie\Permission\Models\Role::findByName("Asesor", "web");
         $userCreation->assignRole($role);
         $data = (object) $request->all();
-        $asesorCreation = $memberService->createAsesor($userCreation->id,  $data);
+
+        try {
+            $asesorCreation = $memberService->createAsesor($userCreation->id,  $data);
+        } catch (\Exception $e) {
+            return abort(500, 'Maaf, Terjadi kesalahan pada server gagal membuat data asesor');
+        }
+        
         
         $dataDiri = $memberService->fillDataDiri($userCreation->id, $data);
         

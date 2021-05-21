@@ -8,6 +8,13 @@
 
     <div class="row">
         <div class="col-md-12">
+            @if ($errors->any())
+                <div class="alert alert-danger mb-5" role="alert">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }} <br>
+                    @endforeach
+                </div>
+            @endif
             <div class="card card-custom gutter-b mb-4">
                 <div class="card-header border-0">
                     <div class="card-title">

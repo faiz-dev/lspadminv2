@@ -36,8 +36,8 @@ class RencanaSertifikasiController extends Controller
     {
         $daftar_sekolah = \App\Services\SekolahService::getAll();
         $daftar_tuk = \App\Services\TukService::getAll(['tuks.uid', 'tuks.sekolah_id', 'tuks.nama']);
-        $daftar_skema = \App\Services\SkemaService::getAll(['uid', 'nama', 'judul_klaster'], true);
-        $daftar_asesor = \App\Services\MemberService::getAll('asesor');
+        $daftar_skema = \App\Services\SkemaService::getAll(['uid', 'nama', 'judul_klaster'], false);
+        $daftar_asesor = \App\Services\UserService::getAllMember('asesor');
 
         // dd([$daftar_tuk, $daftar_skema, $daftar_asesor]);
 
@@ -58,7 +58,22 @@ class RencanaSertifikasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "judul"     =>  'required',
+            "kuota"     =>  'required|numeric',
+            "tgl_awal"      =>  'required|date',
+            "tgl_akhir"     =>  'required|date|after:tgl_awal',
+            "sekolah"       =>  'required|uuid',
+            "skema"     =>  'required|uuid',
+            "tuk"       =>  'required|uuid'
+        ]);
+        $insert = UjiKomService::createUjiKom((object) $request->all());
+        // $insert = false;
+        if($insert) {
+            return redirect(route('mcert.index'))->with('success', "Simpan Rencana Sertifikasi Berhasil");
+        } else {
+            return redirect()->back()->withInput($request->input())->withErrors(["Gagal" => "Gagal menyimpan rencana sertifikasi"]);
+        }
     }
 
     /**

@@ -143,6 +143,7 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
     Route::group(['prefix'=>'utils'], function() {
         // Resource Uji Kompetensi
         Route::get('/ujikom/get', "Utils\UjiKomUtils@getSafe")->name('utils.ujikom.get');
+        Route::get('/asesor/get', "Utils\AsesorUtils@getSafe")->name('utils.asesor.get');
     });
 });
 

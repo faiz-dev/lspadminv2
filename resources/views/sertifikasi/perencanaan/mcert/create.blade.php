@@ -8,6 +8,8 @@
 
     <div class="row">
         <div class="col-md-12">
+
+            
             <div class="card card-custom gutter-b mb-4">
                 <div class="card-header border-0">
                     <div class="card-title">
@@ -19,43 +21,118 @@
                 </div>
             </div>
 
-
+            @if ($errors->any())
+                <div class="alert alert-danger mb-5" role="alert">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }} <br>
+                    @endforeach
+                </div>
+            @endif
+            
             <div class="card border-1 mb-4" id="kt_form_wrapper">
                 
                 <div class="card-body">
-                    <form class="form" method="post" action="{{ route('mcert.store') }}" novalidate="novalidate" id="kt_form">
+                    <form class="form" method="post" action="{{ route('mcert.store') }}" id="kt_form">
                         @csrf
-                        <h3 class="card-label">Data Profil Sertifikasi</h3>
+                        <h3 class="card-label mb-5">Data Profil Sertifikasi</h3>
                         <div class="form-group row">
-                            <label class="col-12 col-md-2">MET Asesor</label>
+                            <label class="col-12 col-md-2">Judul Sertifikasi</label>
                             <div class="col-12 col-md-9">
-                                <input type="text" class="form-control" name="met" placeholder="Nomor Registrasi BNSP (MET)" value="MET.000.004306 2019">
+                                <input type="text" class="form-control border border-success" name="judul" placeholder="Judul Sertifikasi" value="{{ old('judul', 'Pelaksanaan PSKK Paket 1 Tahun 2021') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-12 col-md-2">Kuota Asesi</label>
+                            <div class="col-12 col-md-9">
+                                <input type="number" class="form-control border border-success" name="kuota" placeholder="Kuota Asesi (isikan 0 jika tidak dibatasi)"  value="{{ old('judul', '20') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-12 col-md-2">Tanggal Awal</label>
+                            <div class="col-12 col-md-9">
+                                <input type="date" class="form-control border border-success" name="tgl_awal" value="{{ old('tgl_awal') }}" required>
                             </div>
                         </div>
                         
+                        <div class="form-group row">
+                            <label class="col-12 col-md-2">Tanggal Akhir</label>
+                            <div class="col-12 col-md-9">
+                                <input type="date" class="form-control border border-success" name="tgl_akhir" value="{{ old('tgl_akhir') }}" required>
+                            </div>
+                        </div>
+
+                        <h4 class="card-label">Sekolah / Jejaring</h4>
+                        <div class="form-group row">
+                            <label for="pekerjaan_instansi" class="col-12 col-md-2">Nama Sekolah / Jejaring</label>
+                            <div class="col-md-6">
+                                <select name="sekolah" class="form-control border border-success" required>
+                                    <option value="">Pilih Sekolah / Jejaring</option>
+                                    @foreach ($daftar_sekolah as $skl)
+                                    <option value="{{ $skl->uid }}"> {{$skl->nama}} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
                         <h4 class="card-label">Skema</h4>
                         <div class="form-group row">
-                            <label for="pekerjaan_instansi" class="col-12 col-md-2">Instansi</label>
+                            <label for="pekerjaan_instansi" class="col-12 col-md-2">Skema Sertifikasi</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="pekerjaan_instansi" placeholder="Instansi" value="SMK N 1 Kandeman">
+                                <select name="skema" class="form-control border border-success" required>
+                                    <option value="">Pilih Skema</option>
+                                    @foreach ($daftar_skema as $skm)
+                                    <option value="{{ $skm->uid }}"> {{$skm->nama}} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         
 
                         <h4 class="card-label">TUK</h4>
                         <div class="form-group row">
-                            <label for="domisili_alamat" class="col-12 col-md-2">Alamat sama dengan KTP ? </label>
+                            <label for="pekerjaan_instansi" class="col-12 col-md-2">Tempat Uji Kompetensi</label>
                             <div class="col-md-6">
-                                <input data-switch="true" id="sama_ktp" name="sama_ktp" type="checkbox" data-on-text="Sama" data-off-text="Berbeda" data-off-color="success"   />
+                                <select name="tuk" class="form-control border border-success" required>
+                                    <option value="">Pilih TUK</option>
+                                    @foreach ($daftar_tuk as $tuk)
+                                    <option value="{{ $tuk->uid }}"> {{$tuk->nama}} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
-                        <h4 class="card-label">Asesor</h4>
+                        {{-- <h4 class="card-label">Data Asesor</h4>
+                        <div class="row">
+                            <div class="col-2">
+                                <button class="btn btn-sm btn-info" type="button" data-toggle="modal" data-target="#modalPilihAsesor">Pilih Asesor</button>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-bordered">
+                                    <thead class="bg-secondary">
+                                        <tr>
+                                            <td width="40">No</td>
+                                            <td >Nama</td>
+                                            <td>No. Registrasi</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Amri Bustami</td>
+                                            <td>MET. 000625 2019</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> --}}
+
+                        <h4 class="card-label">Keterangan</h4>
                         <div class="form-group row">
-                            <label for="domisili_alamat" class="col-12 col-md-2">Alamat sama dengan KTP ? </label>
+                            <label for="domisili_alamat" class="col-12 col-md-2">Keterangan </label>
                             <div class="col-md-6">
-                                <input data-switch="true" id="sama_ktp" name="sama_ktp" type="checkbox" data-on-text="Sama" data-off-text="Berbeda" data-off-color="success"   />
+                                <textarea name="keterangan" rows="3" class="form-control border border-success"></textarea>
                             </div>
                         </div>
 
@@ -64,15 +141,21 @@
                 </div>
                 <div class="card-footer text-right">
                     <!--begin::Button-->
-                    <button id="btnSubmit" type="button" class="btn btn-success font-weight-bolder">
+                    <button form="kt_form" type="submit" name="mode" value="draft" class="btnSimpan btn btn-info">
                         <i class="fa fa-save"></i>
-                        Simpan Data Diri Asesor
+                        Simpan Draft
+                    </button>
+                    <button form="kt_form" type="submit" name="mode" value="submit" class="btnSimpan btn btn-success">
+                        <i class="fa fa-save"></i>
+                        Submit Rencana
                     </button>
                     <!--end::Button-->
                 </div>
             </div>
         </div>
     </div>
+
+    
 @endsection
 
 
@@ -86,316 +169,50 @@
         let formAkun = KTUtil.getById('kt_form_account')
         let currentAccount = {}
 
-        validation_form = FormValidation.formValidation(form, {
-            fields: {
-                met: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh kosong'
-                        }
-                    }
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh kosong'
-                        },
-                        emailAddress: {
-                            message: 'Format Email harus benar'
-                        }
-                    }
-                }, 
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh kosong'
-                        },
-                        stringLength: {
-                            min: 8,
-                            message: "Minimal 8 Karakter"
-                        }
-                    }
-                },
-                tipe: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh kosong'
-                        }
-                    }
-                },
-                nik: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        }
-                    }
-                },
-                no_telp: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        }
-                    }
-                },
-                nama: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        }
-                    }
-                },
-                gelar_depan: {
-                    validators: {
-                        stringLength: {
-                            max: 3,
-                            message: 'Maksimal 10 Karakter'
-                        }
-                    }
-                },
-                gelar_belakng: {
-                    validators: {
-                        stringLength: {
-                            max: 10,
-                            message: 'Maksimal 10 Karakter'
-                        }
-                    }
-                },
-                tempat_lahir: {
-                    validators: {
-                        stringLength: {
-                            max: 10,
-                            message: 'Maksimal 10 Karakter'
-                        }
-                    }
-                },
-                tanggal_lahir: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        }
-                    }
-                },
-                pendidikan_terakhir: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 10,
-                            message: 'Maksimal 10 Karakter'
-                        }
-                    }
-                },
-                kewarganegaraan: {
-                    validators: {
-                        stringLength: {
-                            max: 20,
-                            message: 'Maksimal 20 Karakter'
-                        }
-                    }
-                },
-                pekerjaan_instansi: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 50,
-                            message: 'Maksimal 50 Karakter'
-                        }
-                    }
-                },
-                pekerjaan_jabatan: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 30,
-                            message: 'Maksimal 30 Karakter'
-                        }
-                    }
-                },
-                pekerjaan_alamat: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 250,
-                            message: 'Maksimal 250 Karakter'
-                        }
-                    }
-                },
-                pekerjaan_telp: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 20,
-                            message: 'Maksimal 20 Karakter'
-                        }
-                    }
-                },
-                pekerjaan_kode_pos: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 7,
-                            message: 'Maksimal 7 Karakter'
-                        }
-                    }
-                },
-                domisili_alamat: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 250,
-                            message: 'Maksimal 250 Karakter'
-                        }
-                    }
-                },
-                domisili_provinsi: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 20,
-                            message: 'Maksimal 20 Karakter'
-                        }
-                    }
-                },
-                domisili_kota: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 30,
-                            message: 'Maksimal 30 Karakter'
-                        }
-                    }
-                },
-                domisili_kode_pos: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 10,
-                            message: 'Maksimal 10 Karakter'
-                        }
-                    }
-                },
-                ktp_alamat: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        }
-                    }
-                },
-                ktp_provinsi: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 20,
-                            message: 'Maksimal 20 Karakter'
-                        }
-                    }
-                },
-                ktp_kota: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 30,
-                            message: 'Maksimal 30 Karakter'
-                        }
-                    }
-                },
-                ktp_kode_pos: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Tidak boleh Kosong'
-                        },
-                        stringLength: {
-                            max: 7,
-                            message: 'Maksimal 7 Karakter'
-                        }
-                    }
-                }
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                defaultSubmit: new FormValidation.plugins
-                        .DefaultSubmit(), // Uncomment this line to enable normal button submit after form validation
-                bootstrap: new FormValidation.plugins.Bootstrap()
-            }
-        })
+        let asesor = [];
 
-        $('#btnSimpanAkun').on('click', function(e) {
-            validation_form_account.validate().then(function(status) {
-                if(status == 'Valid') {
-                    swal.fire({
-                        text: "Akun member telah dibuat dengan email tersebut, isi data diri atau keluar?",
-                        icon: "success",
-                        confirmButtonText: "Isi data Diri",
-                        cancelButtonText: 'Keluar',
-                        showCloseButton: true,
-                        showCancelButton: true,
-                    }).then(function(confirm) {
-                        if(confirm.value) {
-                            $('#kt_form_wrapper').removeClass('d-none')
-                            $('#kt_form_account_wrapper').addClass('d-none')
-                        } else {
-
-                        }
-                    });
-                } else {
-                    swal.fire({
-                        text: "Maaf, terjadi kesalahan, silakan isikan form dengan benar.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok",
-                        customClass: {
-                            confirmButton: "btn font-weight-bold btn-light-primary"
-                        }
-                    }).then(function() {
-                        KTUtil.scrollTop();
-                    });
-                }
-            })
-        })
-
-        $('#btnSubmit').on('click', function(e) {
+        // $(document).ready(function() {
+        //     console.log("WOOW");
+        //     fetchAsesor()
             
-            validation_form.validate().then(function(status) {
-                if(status == 'Valid') {
-                    alert("OK Valid")
-                } else {
-                    swal.fire({
-                        text: "Maaf, terjadi kesalahan, silakan coba lagi.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok",
-                        customClass: {
-                            confirmButton: "btn font-weight-bold btn-light-primary"
-                        }
-                    }).then(function() {
-                        KTUtil.scrollTop();
-                    });
-                }
+        // })
+
+        // let fetchAsesor = () => {
+        //     return axios.get('{{ route("utils.asesor.get") }}')
+        //         .then(response => {
+        //             console.log(response.data)
+        //         })
+        // }
+
+
+        $('.kt_form').on('submit', function(e) {
+            swal.fire({
+                title: "Loading",
+                text: "Menyimpan data rencana sertifikasi",
             })
-        });
+            swal.showLoading();
+        })
+
+        // $('#btnSubmit').on('click', function(e) {
+            
+        //     validation_form.validate().then(function(status) {
+        //         if(status == 'Valid') {
+        //             alert("OK Valid")
+        //         } else {
+        //             swal.fire({
+        //                 text: "Maaf, terjadi kesalahan, silakan coba lagi.",
+        //                 icon: "error",
+        //                 buttonsStyling: false,
+        //                 confirmButtonText: "Ok",
+        //                 customClass: {
+        //                     confirmButton: "btn font-weight-bold btn-light-primary"
+        //                 }
+        //             }).then(function() {
+        //                 KTUtil.scrollTop();
+        //             });
+        //         }
+        //     })
+        // });
 
         $('input[name="jenis_kelamin"]').bootstrapSwitch({
             onSwitchChange: function(e) {
