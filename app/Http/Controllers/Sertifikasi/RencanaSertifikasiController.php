@@ -82,9 +82,14 @@ class RencanaSertifikasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uid)
     {
-        //
+        $sertifikasi = UjiKomService::getOne($uid);
+        // dd($sertifikasi);
+        return view('sertifikasi.perencanaan.mcert.detail',[
+            'page_title'        => "Detail Rencana Sertifikasi",
+            'sertifikasi'        => $sertifikasi,
+        ]);
     }
 
     /**

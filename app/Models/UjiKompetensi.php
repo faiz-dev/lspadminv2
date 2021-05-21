@@ -15,4 +15,9 @@ class UjiKompetensi extends Model
     {
         return $this->belongsTo('App\Models\Tuk','tuk_id');
     }
+
+    public function sekolah()
+    {
+        return $this->belongsTo('App\Models\Sekolah', 'sekolah_id');
+    }
 }

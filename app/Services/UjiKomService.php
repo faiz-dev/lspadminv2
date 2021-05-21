@@ -85,7 +85,8 @@ class UjiKomService
         $select = $select == [] ? [
             'uk.id', 'uk.uid', 'uk.nama', 'uk.tgl_awal', 'uk.tgl_akhir', 'uk.jml_asesi',
             's.nama as s_nama', 's.judul_klaster as s_judul_klaster', 's.parent_id as s_parent',
-            't.nama as t_nama'
+            't.nama as t_nama',
+            'skl.nama as skl_nama'
         ] : $select;
 
         // $daftar_ujikom = UjiKompetensi::with('skema')->where('isActive', $filter->isActive ?? true);
@@ -103,6 +104,7 @@ class UjiKomService
         // SKEMA
         $daftar_ujikom = $daftar_ujikom->leftJoin('skemas as s', 'uk.skema_id', 's.id');
         $daftar_ujikom = $daftar_ujikom->leftJoin('tuks as t', 'uk.tuk_id', 't.id');
+        $daftar_ujikom = $daftar_ujikom->leftJoin('sekolahs as skl', 'uk.sekolah_id', 'skl.id');
 
         $daftar_ujikom = $daftar_ujikom->get();
 

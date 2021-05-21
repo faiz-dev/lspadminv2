@@ -65,7 +65,7 @@
                                     <td width="40" >No</td>
                                     <td>Judul</td>
                                     <td width="200">Skema</td>
-                                    <td width="200" >TUK</td>
+                                    <td width="200">TUK</td>
                                     <td width="80">Status</td>
                                     <td width="80">Aksi</td>
                                 </tr>
@@ -76,10 +76,10 @@
                                     <td> {{$key+1}} </td>
                                     <td> {{$uji->nama}} </td>
                                     <td> {{$uji->s_nama}} </td>
-                                    <td> {{$uji->t_nama}} </td>
+                                    <td> Asesi {{$uji->skl_nama}} di <br><i>{{$uji->t_nama}}</i> </td>
                                     <td> Status </td>
                                     <td>
-                                        <button class="btn btn-info">Detail</button>
+                                        <a href="{{ route('mcert.show', ['mcert' => $uji->uid]) }}" class="btn btn-info">Detail</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -102,7 +102,17 @@
 @endsection
 
 
+@section('styles')
+    <link rel="stylesheet" href="{{ url('plugins/custom/datatables/datatables.bundle.css') }}">
+@endsection
+
 {{-- Scripts Section --}}
 @section('scripts')
-    <script src="{{ url('js/custom/datatable/ajax.js') }}"></script>
+    {{-- <script src="{{ url('js/custom/datatable/ajax.js') }}"></script> --}}
+    <script src="{{ url('plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script>
+        $('#f-dt').DataTable({
+            responsive: true
+        })
+    </script>
 @endsection
