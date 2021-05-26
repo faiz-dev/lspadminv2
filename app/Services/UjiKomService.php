@@ -347,5 +347,38 @@ class UjiKomService
         return $pendaftaran;
     }
 
+    public static function createJadwal($uid_crt, $uid_asesor, $tanggal)
+    {
+        $sertifikasi = DB::table('uji_kompetensis')->where('uid', $uid_crt)->first();
+
+        if($sertifikasi == null) {
+            throw new Error(404, "Sertifikasi Tidak Ada");
+            return 0;
+        }
+
+        $asesor = DB::table('users')
+                    ->select(['users.id', 'asesors.id as asesor_id'])
+                    ->where('users.uid', $uid_asesor)
+                    ->whereJsonContains('tipe', ['asesor'])
+                    ->leftJoin('asesors', 'users.id', 'asesors.user_id')
+                    ->first();
+
+        if($asesor == null) {
+            throw new Error(404, "Asesor Tidak Ada");
+            return 0;
+        }
+
+        $insertJadwal = DB::table('jadwal_uji_koms')
+            ->insert([
+                "ujikom_id"         => $sertifikasi->id, 
+                "tgl_pelaksanaan"   => date('Y-m-d', strtotime($tanggal)),
+                "status"            => "baru",
+                "asesor_id"         => $asesor->asesor_id,
+                "created_at"        => Carbon::now(),
+            ]);
+
+        return $insertJadwal;
+        
+    }
     
 }

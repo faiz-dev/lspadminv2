@@ -70,6 +70,7 @@ Route::group(['middleware'=>['role:Super Manajer|Asesor|Manajer Jejaring'],'pref
         // perencanaan
         Route::prefix('perencanaan')->group(function () {
             Route::resource('mcert', 'Sertifikasi\RencanaSertifikasiController');
+            Route::resource('jadwal-ujk', 'Sertifikasi\PenjadwalanUjkController');
         });
         
         // aplikasi

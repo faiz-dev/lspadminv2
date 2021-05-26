@@ -139,7 +139,7 @@
                 <div class="card-header">
                     <div class="card-title">Asesor & Jadwal Pelaksanaan</div>
                     <div class="card-toolbar">
-                        <a href=""  class="btn btn-light-success mx-2 font-weight-bolder ">
+                        <a href="{{ route('jadwal-ujk.create') }}?crt={{ $sertifikasi->uid }}"  class="btn btn-light-success mx-2 font-weight-bolder ">
                             <i class="flaticon-plus"></i>
                             Tambah Jadwal
                         </a>

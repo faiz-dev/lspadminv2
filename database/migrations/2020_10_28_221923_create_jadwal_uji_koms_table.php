@@ -21,9 +21,11 @@ class CreateJadwalUjiKomsTable extends Migration
             $table->string('status');
             $table->string('url_surat_tugas')->nullable();
             $table->string('url_berita_acara')->nullable();
+            $table->unsignedBigInteger('asesor_id');
 
             // relation
             $table->foreign('ujikom_id')->references('id')->on('uji_kompetensis');           
+            $table->foreign('asesor_id')->references('id')->on('asesors');
 
             $table->timestamps();
         });
