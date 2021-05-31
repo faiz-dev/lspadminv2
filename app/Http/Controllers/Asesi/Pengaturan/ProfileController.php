@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\MemberService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -91,7 +92,44 @@ class ProfileController extends Controller
 
     public function updateFoto(Request $request)
     {
-        echo \App\Helpers\FileManager\FileManagerV1::storeImageFile($request->file('image'), \App\Helpers\FileManager\FileLocations::AVATAR);
-        // dd($request->all());
+        $request->validate([
+            "image" =>  "image"
+        ]);
+
+        $fm = new \App\Helpers\FileManager\FileManagerV1;
+
+        $dataDiri = Auth::user()->dataDiri;
+       
+        $newFile = $fm->storeImageFile($request->file('image'), $dataDiri->url_foto, \App\Helpers\FileManager\FileCategories::AVATAR);
+        if($dataDiri->url_foto == "") {
+            $dataDiri->url_foto = $newFile;
+            $dataDiri->save();
+        }
+        echo $newFile;
+    }
+
+    public function downloadMemberCard()
+    {
+        $user = Auth::user();
+        $dataKartu = MemberService::getOneAsesiQB($user->id);
+
+        $qr = base64_encode(Storage::get('assets/images/qr.jpg'));
+        $banner = base64_encode(Storage::get('assets/images/banner.png'));
+        $avatar = base64_encode(Storage::get(\App\Helpers\FileManager\FileLocations::AVATAR."/".$dataKartu->url_foto));
+        
+        
+        // return view('pdf_templates.membercard-asesi', [
+        //     "qr"        => $qr,
+        //     "banner"    => $banner,
+        //     "avatar"    => $avatar,
+        //     "dataKartu" => $dataKartu
+        // ]);
+        $pdf = \PDF::loadview('pdf_templates.membercard-asesi', [
+            "qr"        => $qr,
+            "banner"    => $banner,
+            "avatar"    => $avatar,
+            "dataKartu" => $dataKartu
+        ])->setPaper([0,0, 175.1811, 300.75591],'landscape');
+        return $pdf->stream();
     }
 }

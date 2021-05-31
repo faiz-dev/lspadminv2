@@ -193,6 +193,22 @@ class MemberService
         return $dataMember->firstOrFail();
     }
 
+    public static function getOneAsesiQB($user_id){
+        $user = DB::table('users as u')
+                    ->where('u.id', $user_id)
+                    ->select([
+                        'dd.nama as nama', 'dd.url_foto',
+                        'u.uid','u.email',
+                        'skl.nama as sekolah',
+                        'a.no_reg','a.jurusan'
+                    ]);
+        $user = $user->leftJoin('data_diris as dd', 'u.id', 'dd.user_id')
+                    ->leftJoin('asesis as a', 'u.id', 'a.user_id')
+                    ->leftJoin('sekolahs as skl', 'a.sekolah_id', 'skl.id');
+
+        return $user->first();
+    }
+
     public function updateAccount($uuid, $data): User
     {
         // create new instance
@@ -385,4 +401,8 @@ class MemberService
         return $dataMember;
     }
 
+    // public function getOneById(Type $var = null)
+    // {
+    //     # code...
+    // }
 }

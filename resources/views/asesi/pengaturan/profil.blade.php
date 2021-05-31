@@ -16,25 +16,27 @@
                         </div>
                     </div> 
                     <div class="card-body p-1 pt-5 d-flex flex-column align-items-center profilebox">
-                        <div class="image-input image-input-empty image-input-outline" id="kt_image_5" style="background-image: url(assets/media/users/blank.png)">
+                        @php
+                            if($data_diri->url_foto == "") {
+                                $avatar = "assets/media/users/blank.png";
+                            } else {
+                                $avatar = asset('ava/'.$data_diri->url_foto);
+                            }
+                        @endphp
+                        <div class="image-input image-input-empty image-input-outline" id="kt_image_5" style="background-image: url({{$avatar}})">
                             <div class="image-input-wrapper"></div>
 
-                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow d-none"  id="changeAvatar"
+                                data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                                 <i class="fa fa-pen icon-sm text-muted"></i>
                                 <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg"/>
-                                <input type="hidden" name="profile_avatar_remove"/>
                             </label>
 
-                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
-                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                            </span>
 
-                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
-                                <i class="ki ki-bold-close icon-xs text-muted"></i>
-                            </span>
                         </div>
+
                         {{-- <img src="{{ url("/media/users/300_21.jpg") }}" width="200px" alt=""> --}}
-                        <div class="symbol symbol-50 symbol-lg-120 symbol-light-danger">
+                        {{-- <div class="symbol symbol-50 symbol-lg-120 symbol-light-danger">
                             <span class="font-size-h3 symbol-label font-weight-boldest">
                                 @php
                                     $arrName = explode(" ",$data_diri->nama)
@@ -43,7 +45,7 @@
                                     {{$item[0]}}
                                 @endforeach
                             </span>
-                        </div>
+                        </div> --}}
 
                         <table class="table mt-5">
                             <tr>
@@ -63,12 +65,12 @@
                                 <td align="right"><span class="label label-warning label-inline font-weight-bolder mr-2">0000014 2020</span></td>
                             </tr>
                         </table>
-                        <button class="btn btn-block btn-light-primary font-weight-bolder">
+                        <button class="btn btn-block btn-light-primary font-weight-bolder" onclick="changeFoto()">
                             <i class="flaticon2-photo-camera"></i> Ganti Foto
                         </button>
-                        <button class="btn btn-block btn-light-primary font-weight-bolder">
+                        <a href="{{ route('asesi.pengaturan.profil.membercard') }}" class="btn btn-block btn-light-primary font-weight-bolder">
                             <i class="flaticon-download"></i> Download Kartu member
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -306,6 +308,11 @@
 @section('scripts')
     <script src="{{ url('js/custom/bootstrapswitch/bootstrapswitch.js') }}"></script>
     <script>
+
+        function changeFoto() {
+            $('#changeAvatar').trigger('click')
+        }
+
         var avatar5 = new KTImageInput('kt_image_5');
 
         avatar5.on('cancel', function(imageInput) {
@@ -322,31 +329,37 @@
             const formData = new FormData()
             const imageFile = imageInput.input
             formData.append("image", imageFile.files[0]);
+            swal.fire({
+                    title: 'Mengganti Gambar',
+                    text: "Loading.."
+            });
+            swal.showLoading();
+
             axios.post('{{route("pengaturan.member.asesi.update-foto")}}', formData, {
                 headers: {
                 'Content-Type': 'multipart/form-data'
                 }
+            }).then( res => {
+                swal.fire({
+                    title: 'Gambar berhasil diganti',
+                    type: 'success',
+                    buttonsStyling: false,
+                    confirmButtonText: 'Awesome!',
+                    confirmButtonClass: 'btn btn-primary font-weight-bold'
+                });
+            }).catch(e => {
+                swal.fire({
+                    title: 'Gambar gagal diganti',
+                    type: 'error',
+                    confirmButtonText: 'OK',
+                    confirmButtonClass: 'btn btn-primary font-weight-bold'
+                }).then(e => {
+                    window.location.reload();
+                });
             })
-
-            console.log(imageInput);
-            swal.fire({
-                title: 'Image successfully changed !',
-                type: 'success',
-                buttonsStyling: false,
-                confirmButtonText: 'Awesome!',
-                confirmButtonClass: 'btn btn-primary font-weight-bold'
-            });
+            
         });
 
-        avatar5.on('remove', function(imageInput) {
-            swal.fire({
-                title: 'Image successfully removed !',
-                type: 'error',
-                buttonsStyling: false,
-                confirmButtonText: 'Got it!',
-                confirmButtonClass: 'btn btn-primary font-weight-bold'
-            });
-        });
     </script>
     <script>
         // KTBootstrapSwitch.init()

@@ -99,6 +99,14 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        // CUSTOM CHANNEL 
+
+        'fileUpload' => [
+            'driver' => 'single',
+            'level' => 'debug',
+            'path' => storage_path('logs/fileUpload.log'),
+        ]
     ],
 
 ];

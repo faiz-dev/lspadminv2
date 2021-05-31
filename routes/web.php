@@ -167,6 +167,7 @@ Route::group(['middleware' => ['role:Member'], 'prefix' => '/member'], function(
         Route::get('/profil/password-reset','Asesi\Pengaturan\ProfileController@showResetPassword')->name('asesi.pengaturan.profil.show-password-reset');
         Route::put('/profil/password-reset','Asesi\Pengaturan\ProfileController@actionResetPassword')->name('asesi.pengaturan.profil.action-password-reset');
         Route::post('/profil/update-foto', 'Asesi\Pengaturan\ProfileController@updateFoto')->name('pengaturan.member.asesi.update-foto');
+        Route::get('/profil/membercard','Asesi\Pengaturan\ProfileController@downloadMemberCard')->name('asesi.pengaturan.profil.membercard');
     });
 });
 
