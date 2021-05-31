@@ -88,4 +88,10 @@ class ProfileController extends Controller
 
         return response()->json(['status'=>'success'], 200);
     }
+
+    public function updateFoto(Request $request)
+    {
+        echo \App\Helpers\FileManager\FileManagerV1::storeImageFile($request->file('image'), \App\Helpers\FileManager\FileLocations::AVATAR);
+        // dd($request->all());
+    }
 }

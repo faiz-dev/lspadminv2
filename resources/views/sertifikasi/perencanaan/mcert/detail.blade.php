@@ -152,22 +152,32 @@
                                 <td width="40">No</td>
                                 <td width="170">Tanggal</td>
                                 <td>Asesor</td>
-                                <td>Daftar Asesi</td>
+                                {{-- <td>Daftar Asesi</td> --}}
                                 <td>Surat Tugas</td>
                                 <td>Status</td>
+                                <td width="100">Aksi</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @for($i = 1; $i < 6; $i++)
+                            @foreach ($daftar_jadwal as $key => $j)
                             <tr>
-                                <td>{{$i}}</td>
-                                <td>Senin, 5 Mei 2021</td>
-                                <td>Asesor {{$i}} <br> MET 00062{{$i}} 2020</td>
-                                <td><a href="#">5 Asesi</a></td>
-                                <td><a href="#">{{16+$i}}/LSP/V/2021</a></td>
-                                <td>Terlaksana</td>
+                                <td>{{$key + 1}}</td>
+                                <td>{{ date("l, d F Y", strtotime($j->tgl_pelaksanaan))}}</td>
+                                <td>{{$j->asesor_nama}} <br> {{ $j->asesor_met}} </td>
+                                {{-- <td><a href="#">5 Asesi</a></td> --}}
+                                <td>
+                                    @if ($j->url_surat_tugas)
+                                    <a href="#">/LSP/V/2021</a>
+                                    @else
+                                    <a href="#" class="btn btn-sm btn-primary">Generate</a>
+                                    @endif
+                                </td>
+                                <td>{{$j->status}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-light-danger">Cancel</button>
+                                </td>
                             </tr>
-                            @endfor
+                            @endforeach
                             
                         </tbody>
                     </table>

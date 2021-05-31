@@ -16,7 +16,34 @@
                         </div>
                     </div> 
                     <div class="card-body p-1 pt-5 d-flex flex-column align-items-center profilebox">
+                        <div class="image-input image-input-empty image-input-outline" id="kt_image_5" style="background-image: url(assets/media/users/blank.png)">
+                            <div class="image-input-wrapper"></div>
+
+                            <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg"/>
+                                <input type="hidden" name="profile_avatar_remove"/>
+                            </label>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+
+                            <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="remove" data-toggle="tooltip" title="Remove avatar">
+                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                            </span>
+                        </div>
                         {{-- <img src="{{ url("/media/users/300_21.jpg") }}" width="200px" alt=""> --}}
+                        <div class="symbol symbol-50 symbol-lg-120 symbol-light-danger">
+                            <span class="font-size-h3 symbol-label font-weight-boldest">
+                                @php
+                                    $arrName = explode(" ",$data_diri->nama)
+                                @endphp
+                                @foreach ($arrName as $item)
+                                    {{$item[0]}}
+                                @endforeach
+                            </span>
+                        </div>
 
                         <table class="table mt-5">
                             <tr>
@@ -278,6 +305,49 @@
 {{-- Scripts Section --}}
 @section('scripts')
     <script src="{{ url('js/custom/bootstrapswitch/bootstrapswitch.js') }}"></script>
+    <script>
+        var avatar5 = new KTImageInput('kt_image_5');
+
+        avatar5.on('cancel', function(imageInput) {
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'Awesome!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar5.on('change', function(imageInput) {
+            const formData = new FormData()
+            const imageFile = imageInput.input
+            formData.append("image", imageFile.files[0]);
+            axios.post('{{route("pengaturan.member.asesi.update-foto")}}', formData, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                }
+            })
+
+            console.log(imageInput);
+            swal.fire({
+                title: 'Image successfully changed !',
+                type: 'success',
+                buttonsStyling: false,
+                confirmButtonText: 'Awesome!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+
+        avatar5.on('remove', function(imageInput) {
+            swal.fire({
+                title: 'Image successfully removed !',
+                type: 'error',
+                buttonsStyling: false,
+                confirmButtonText: 'Got it!',
+                confirmButtonClass: 'btn btn-primary font-weight-bold'
+            });
+        });
+    </script>
     <script>
         // KTBootstrapSwitch.init()
         let validation_form, validation_form_account;

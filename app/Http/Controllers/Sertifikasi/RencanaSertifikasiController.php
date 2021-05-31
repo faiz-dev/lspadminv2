@@ -85,10 +85,12 @@ class RencanaSertifikasiController extends Controller
     public function show($uid)
     {
         $sertifikasi = UjiKomService::getOne($uid);
-        // dd($sertifikasi);
+        $jadwal = UjiKomService::getDaftarJadwal($sertifikasi->id);
+        // dd($jadwal);
         return view('sertifikasi.perencanaan.mcert.detail',[
             'page_title'        => "Detail Rencana Sertifikasi",
-            'sertifikasi'        => $sertifikasi,
+            'sertifikasi'       => $sertifikasi,
+            'daftar_jadwal'            =>  $jadwal
         ]);
     }
 

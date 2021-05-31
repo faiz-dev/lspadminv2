@@ -380,5 +380,31 @@ class UjiKomService
         return $insertJadwal;
         
     }
+
+    public static function getDaftarJadwal($id_crt = null, $uid_crt = null)
+    {
+        if($id_crt == null) {
+            
+            if($uid_crt == null) throw new Error(500, "Kesalahan, Sertifikasi tidak ditemukan");
+
+            $sertifikasi = UjiKomService::getOne($uid_crt);
+            $id_crt = $sertifikasi->id;
+        }
+
+        $select = [
+            "juk.id", "juk.tgl_pelaksanaan", "juk.url_surat_tugas", "juk.status",
+            "a.met as asesor_met", "dd.nama as asesor_nama","dd.gelar_depan as asesor_gelar_depan", "dd.gelar_belakang as asesor_gelar_belakang"
+        ];
+        
+        $daftar_jadwal = DB::table('jadwal_uji_koms as juk')
+                            ->select($select)
+                            ->where('ujikom_id', $id_crt)
+                            ->leftJoin('asesors as a', 'juk.asesor_id', 'a.id')
+                            ->leftJoin('users as u', 'a.user_id', 'u.id')
+                            ->leftJoin('data_diris as dd', 'u.id', 'dd.user_id')
+                            ->get();
+        
+        return $daftar_jadwal;
+    }
     
 }

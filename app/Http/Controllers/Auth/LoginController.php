@@ -76,6 +76,10 @@ class LoginController extends Controller
         if (Auth::attempt(['email'=> $credentials->username, 'password' => $credentials->password])) {                        
             $user = Auth::user();
             $userType = json_decode($user->tipe);
+            // $role = ModelsRole::findByName('Member', 'web');
+            // $user->assignRole($role);
+            // return redirect('/member');
+            // dd($user);
 
             if($user->hasRole(['Member'])) {
                 return redirect('/member');
